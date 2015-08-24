@@ -1,0 +1,1 @@
+$(function(){var a=$(".header");!a[0]});
