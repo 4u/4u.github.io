@@ -1,1 +1,1 @@
-$(function(){var a=$(".header");!a[0]});
+$(function(){function n(){o?o=!1:($(t).removeClass("contextmenu-control-is-visible"),t=null)}var o=!1,t=null;$(document.body).on("click",".contextmenu-control",function(){if(t)return n();var c=this;$(c).addClass("contextmenu-control-is-visible"),o=!0,t=c}),$(document.body).on("click",n)}),$(function(){var n=$(".header");!n[0]});
