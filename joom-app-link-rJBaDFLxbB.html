@@ -7,8 +7,14 @@
       window.location = "https://itunes.apple.com/app/id1117424833";
     }
 
+    var isFirstError = true;
     document.getElementById("l").src = "joom://products/1488294747401755301-98-1-26341-3000625353?utm_deeplink=branch&utm_source=smm&utm_campaign=vk_4u&link_click_id=365821179271833494";
-    document.getElementById("l").onerror = goToStore;
+    document.getElementById("l").onerror = function() {
+      if (isFirstError) {
+        isFirstError = false;
+        goToStore();
+      }
+    };
     setTimeout(goToStore, 500);
   };
 </script>
