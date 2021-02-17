@@ -11,13 +11,6 @@
         height: 100%;
         width: 100%;
       }
-
-      button {
-        bottom: 0;
-        right: 0;
-        position: absolute;
-      }
-
     </style>
   </head>
   <body>
@@ -28,14 +21,5 @@
       allowfullscreen
       frameborder="0"   
     ></iframe>
-    <button>login</button>
-    <script>
-      document.querySelector('button').addEventListener('click', () => {
-        window.open('https://www.joom.com/auth/google',
-        'auth',
-        `height=480,width=640,location=0,menubar=0,toolbar=0,personalbar=0`
-        );
-      });
-    </script>
   </body>
 </html>
