@@ -25,7 +25,8 @@
       document.write('<p><a href="https://www.joom.com/en/products/1512115729520159960-217-1-709-1135939070" target="_blank">js en blank</a></p>');
       document.write('<p><a href="https://www.joom.com/ln/products/1512115729520159960-217-1-709-1135939070" target="_blank">js ln blank</a></p>');
 
-      document.querySelector('button').addEventListener('click', function() {
+      document.querySelector('button').addEventListener('click', function(evt) {
+        evt.preventDefault();
         window.location.href = "https://www.joom.com/ln/products/1512115729520159960-217-1-709-1135939070";
       });
     </script>
