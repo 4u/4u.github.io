@@ -575,10 +575,10 @@ function registerProfiles(...profiles                )       {
     minimumEvidence: 1, lastReviewedAt: '2026-09-17',
     sources: [novaActRepo],
     notes: 'The one framework here with an explicit, vendor-documented self-identification convention: the README recommends developers "look for NovaAct in the user agent string." This is opt-in and overridable by the developer (not enforced), so absence of the token is not evidence against Nova Act, only its presence (when found) is a genuine documented marker.',
-    headerMarker: { pattern: 'novaact', confidence: 'medium', source: novaActRepo },
+    headerMarker: { pattern: 'novaact', confidence: 'high', source: novaActRepo },
     rules: [
       mkRule('environment.ua', 'includes', 'NovaAct', 30, 'UA contains vendor-documented "NovaAct" self-identification token',
-        'browser-fingerprint', 'medium', novaActRepo)
+        'browser-fingerprint', 'high', novaActRepo)
     ]
   }));
 })();
@@ -904,13 +904,13 @@ function registerProfiles(...profiles                )       {
     category: 'product-agent', execution: 'cloud', status: 'research-profile',
     minimumEvidence: 2, lastReviewedAt: '2026-09-17',
     sources: [rfc9421, cfConfirm, uaCapture, fpAgent, botsDocs],
-    notes: 'OpenAI does not publish a fifth, distinct UA token/IP list specifically for the newer agentic-browsing mode beyond GPTBot/OAI-SearchBot/OAI-AdsBot/ChatGPT-User. RFC 9421 signing of Operator/agent requests is independently confirmed by Cloudflare, and is the strongest signal here — but it requires server-side signature verification; the header existing alone proves nothing.',
+    notes: 'OpenAI does not publish a fifth, distinct UA token/IP list specifically for the newer agentic-browsing mode beyond GPTBot/OAI-SearchBot/OAI-AdsBot/ChatGPT-User. RFC 9421 signing of Operator/agent requests is independently confirmed by Cloudflare, and is the strongest signal here — but it requires server-side signature verification; the header existing alone proves nothing. The two header rules below read from the merged header view (`server.headers` and/or the public HTTP-echo `http.headers`) since either collection path observes the same plain, spoofable header — neither path constitutes server-side verification, which only `server.webBotAuth.verified` can confer.',
     headerMarker: { pattern: 'chatgpt|openai|gptbot', confidence: 'low', source: botsDocs },
     rules: [
-      mkRule('server.headers.signature-agent', 'includes', 'chatgpt.com', 30, 'Signature-Agent references chatgpt.com',
-        'server-heuristic', 'medium', rfc9421, { requiresServerEvidence: true, knownConflicts: ['Signature-Agent is a plain header and can be spoofed; only a verified signature (webBotAuth.verified) is trustworthy.'] }),
-      mkRule('server.headers.signature-input', 'truthy', true, 15, 'RFC 9421 Signature-Input header present',
-        'server-heuristic', 'medium', rfc9421, { requiresServerEvidence: true }),
+      mkRule('headers.signature-agent', 'includes', 'chatgpt.com', 30, 'Signature-Agent references chatgpt.com',
+        'server-heuristic', 'medium', rfc9421, { knownConflicts: ['Signature-Agent is a plain header and can be spoofed; only a verified signature (webBotAuth.verified) is trustworthy.'] }),
+      mkRule('headers.signature-input', 'truthy', true, 15, 'RFC 9421 Signature-Input header present',
+        'server-heuristic', 'medium', rfc9421),
       mkRule('environment.ua', 'includes', 'Chrome/138.0.0.0', 8, 'UA matches one third-party ChatGPT Agent capture (Aug 2025, may already be stale)',
         'browser-fingerprint', 'low', uaCapture, { reviewBy: '2026-12-01' }),
       mkRule('behavior.pasteCount', 'gte', 1, 18, 'text pasted rather than typed (FP-Agent: statistically significant vs. human baseline)',
@@ -1210,6 +1210,20 @@ function registerProfiles(...profiles                )       {
     return new Set(matched.map(m => m.layer)).size;
   }
 
+  /**
+   * A genuine, correctly-tagged RFC 9421 signature (`tag="web-bot-auth"`) naming a specific vendor
+   * domain is a structured, vendor-specific artifact — not a generic common property like screen size
+   * or CPU count — even though it remains unverified and spoofable. It is allowed to lift the
+   * single-layer cap partway (to 64, below the 70 'strong' threshold) but never all the way, since
+   * only a server that actually checked the signature (`server.webBotAuth.verified`) can justify
+   * 'strong'/'verified'.
+   */
+  function hasWellFormedWebBotAuthSignature(matched                 , headers                        )          {
+    const domainMatch = matched.some(m => m.path?.endsWith('signature-agent'));
+    const inputMatch = matched.some(m => m.path?.endsWith('signature-input'));
+    return domainMatch && inputMatch && !!headers.signature && /tag="web-bot-auth"/i.test(headers['signature-input'] ?? '');
+  }
+
   AD.scoreProfile = function (profile, data) {
     const serverPresent = !!data.server;
     const available = profile.rules.filter(rule => {
@@ -1240,7 +1254,8 @@ function registerProfiles(...profiles                )       {
     // matched evidence spans more than one independent evidence layer.
     const meetsMinimum = matched.length >= profile.minimumEvidence;
     const independentLayers = matchedLayerCount(matched) >= 2;
-    const score = meetsMinimum && independentLayers ? raw : Math.min(raw, 24);
+    const webBotAuthSignature = hasWellFormedWebBotAuthSignature(matched, data.headers);
+    const score = meetsMinimum && independentLayers ? raw : webBotAuthSignature ? Math.min(raw, 64) : Math.min(raw, 24);
 
     return {
       id: profile.id, name: profile.name, vendor: profile.vendor, category: profile.category, execution: profile.execution,
@@ -1275,7 +1290,8 @@ function registerProfiles(...profiles                )       {
         layer: 'server-heuristic', weight, value: new RegExp(marker.pattern, 'i').exec(text)?.[0] ?? text, confidence: marker.confidence
       };
       const matched = [...candidate.matched, matchLabel];
-      const bumped = Math.max(candidate.score, matchedLayerCount(matched) >= 2 ? Math.min(90, weight + candidate.score) : Math.min(24, weight));
+      const bumped = Math.max(candidate.score, matchedLayerCount(matched) >= 2 ? Math.min(90, weight + candidate.score) :
+        hasWellFormedWebBotAuthSignature(matched, headers) ? Math.min(64, weight + candidate.score) : Math.min(24, weight));
       return { ...candidate, score: bumped, matched, availableRules: candidate.availableRules + 1, totalRules: candidate.totalRules + 1 };
     }).sort((a, b) => b.score - a.score);
   }
