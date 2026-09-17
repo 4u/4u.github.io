@@ -5,14 +5,14 @@
 <body>
   <header><div><p class="eyebrow">Browser Agent Detector / v0.3</p><h1>Who opened this page?</h1><p class="lede">A transparent, extensible guess based on browser fingerprints, HTTP headers, interaction patterns, and optional server evidence.</p></div><div class="actions" data-ignore-events><button id="rerun">Run again</button><button id="export" class="primary">Export JSON</button></div></header>
   <main>
-    <section class="verdict"><div><span id="status" class="status">Starting…</span><h2 id="agentName">Collecting…</h2><p id="agentMeta">Reading available client signals</p></div><div class="automation"><small>Automation likelihood</small><strong id="automationScore">—</strong><span id="automationLabel">Waiting</span></div></section>
+    <section class="verdict"><div><span id="status" class="status">Starting…</span><h2 id="agentName">Collecting…</h2><p id="agentMeta">Reading available client signals</p></div><div class="automation"><small>Automation likelihood</small><strong id="automationScore">—</strong><span id="automationLabel">Waiting</span><details><summary>Automation evidence</summary><ul id="automationEvidence"></ul></details></div></section>
     <section><div class="section-head"><div><p class="eyebrow">01 / Attribution</p><h2>Candidate agents</h2></div><p>Scores are profile matches, not probabilities. A verified request signature overrides heuristics.</p></div><div id="candidateList" class="candidates" data-ignore-events></div></section>
     <section><div class="section-head"><div><p class="eyebrow">02 / Behavioral probe</p><h2>Give the visitor a tiny task</h2></div><span id="eventCount" class="pill">0 events observed</span></div><p>Ask the visitor to type <code>agent test 123</code>, click the target, and scroll the panel. Text itself is never stored; only event types, timing, coordinates, and modifier keys.</p><div class="probe"><label>Test field<input id="testInput" autocomplete="off" placeholder="Type agent test 123"></label><button id="testButton">Click target</button><div class="scrollbox" tabindex="0"><p>Scroll this panel ↓</p><div></div><p>End of panel</p></div></div><div class="actions" data-ignore-events><button id="clear">Clear observed events</button></div><details><summary>Behavior features</summary><pre id="behaviorJson">Waiting…</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">03 / HTTP headers</p><h2>Public echo checks</h2></div><button id="httpButton">Run HTTP header checks</button></div><p>Cross-origin requests reveal the headers actually sent by this browser. Echo services receive the request headers and source IP; the detector keeps only reflected headers and discards echoed IP data.</p><details open><summary>Observed request headers</summary><pre id="httpJson">HTTP header checks have not finished.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">05 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-17T13:20:33.126Z</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-17T15:53:48.254Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -48,7 +48,10 @@
                                                                      
                                                                                  
                                                      
-                                                                                                                                   
+               
+                                                                                                                     
+                                                                                
+    
                                                                                                          
                                                                            
                                                                      
@@ -1062,6 +1065,15 @@ function registerProfiles(...profiles                )       {
     });
     const globals = AD.safe(() => [...new Set([...Object.getOwnPropertyNames(root), ...Object.getOwnPropertyNames(document)])]
       .filter(key => /^\$?cdc_|^\$?wdc_|__webdriver|__selenium|_selenium|callSelenium|callPhantom|_phantom|domAutomation|__playwright|__pw_manual|__nightmare/i.test(key)).slice(0, 100), []) ?? [];
+    // `navigator.webdriver`'s real getter lives on `Navigator.prototype` and stringifies as native code
+    // (Chrome/WebDriver/CDP all agree on this shape). A patch script that hides automation typically
+    // shadows it as an own property on `navigator` itself, or replaces the getter with JS-authored code —
+    // either is a stronger automation signal than the flag's current false/true value alone.
+    const webdriverTampered = !!webdriverDescriptor && (webdriverDescriptor.own || !/\{\s*\[native code\]\s*\}\s*$/.test(webdriverDescriptor.getter || ''));
+    // A zero-size outer window is normal for CDP-driven Chrome (headless or headed-but-unsized via the
+    // Page domain) — a real user's OS window chrome always reports nonzero outerWidth/outerHeight.
+    const zeroOuterWindow = outerWidth === 0 && outerHeight === 0;
+    const pluginsEmpty = /Chrome|Chromium/.test(ua) && (navigator.plugins?.length ?? 0) === 0;
     const environment                      = {
       collectedAt: new Date().toISOString(), ua, platform: navigator.platform, vendor: navigator.vendor,
       isChrome: /Chrome|Chromium/.test(ua), clientHints: { brands: navigator.userAgentData?.brands || null, mobile: navigator.userAgentData?.mobile ?? null, platform: navigator.userAgentData?.platform || null, highEntropy },
@@ -1073,7 +1085,11 @@ function registerProfiles(...profiles                )       {
       touch: { maxPoints: navigator.maxTouchPoints || 0, touchEvent: 'ontouchstart' in root, coarse: matchMedia('(pointer: coarse)').matches },
       media: { hdr: matchMedia('(dynamic-range: high)').matches, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorScheme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' },
       plugins: { count: navigator.plugins?.length ?? null, names: [...(navigator.plugins || [])].map(p => p.name) },
-      automation: { webdriver: navigator.webdriver === true, webdriverDescriptor, globals, rootAttributes: ['webdriver', 'selenium', 'driver'].filter(x => document.documentElement.hasAttribute(x)) },
+      automation: {
+        webdriver: navigator.webdriver === true, webdriverDescriptor, globals,
+        rootAttributes: ['webdriver', 'selenium', 'driver'].filter(x => document.documentElement.hasAttribute(x)),
+        webdriverTampered, zeroOuterWindow, pluginsEmpty
+      },
       rendering: { ...gl, ...detectedFonts, canvasTail: AD.safe(canvasHash), audioMagnitude: await audio() },
       page: { origin: location.origin, path: location.pathname, secure: isSecureContext, framed: top !== self },
       workerComparison: await workerCompare(mainWorkerFields)
@@ -1315,6 +1331,10 @@ function registerProfiles(...profiles                )       {
     if (automation.webdriver) add(55, 'navigator.webdriver=true', 'browser-fingerprint');
     if (automation.traces) add(35, `${automation.traces} automation global(s)`, 'browser-fingerprint');
     if (automation.rootAttributes) add(25, 'automation attribute on <html>', 'browser-fingerprint');
+    if (environment.automation.webdriverTampered) add(30, 'navigator.webdriver getter is non-native or an own property (patched to hide automation)', 'browser-fingerprint');
+    if (environment.automation.zeroOuterWindow) add(20, 'zero-size outer window (typical of CDP-driven Chrome)', 'browser-fingerprint');
+    if (environment.automation.pluginsEmpty) add(10, 'empty plugin list on a Chrome/Chromium UA (typical of a bare CDP session)', 'browser-fingerprint');
+    if (environment.rendering.softwareRenderer) add(15, 'software WebGL renderer (SwiftShader/llvmpipe, common in headless/CDP environments)', 'browser-fingerprint');
     if (behavior.trustedEvents >= 4 && behavior.pointerMoves === 0 && (behavior.keydownCount || behavior.clickCount)) add(12, 'interaction without pointer movement', 'behavioral');
     if (behavior.keydownCount >= 6 && behavior.interKeyStdMs !== null && behavior.interKeyStdMs < 5) add(22, 'near-uniform typing cadence', 'behavioral');
     if (behavior.pasteCount) add(8, 'paste-driven input', 'behavioral');
@@ -1440,6 +1460,9 @@ function registerProfiles(...profiles                )       {
     $('agentName').classList.toggle('verified-name', verified);
     $('automationScore').textContent = `${result.automation.score}%`;
     $('automationLabel').textContent = result.automation.label;
+    $('automationEvidence').innerHTML = result.automation.evidence.map(e =>
+      `<li>${esc(e.label)} <small>(${esc(e.layer)}, weight ${e.weight})</small></li>`
+    ).join('') || '<li>No automation signals observed</li>';
     const candidateList = $('candidateList');
     const openDetails = new Set(
       Array.from(candidateList.querySelectorAll('article.candidate')).map((article, articleIndex) =>
