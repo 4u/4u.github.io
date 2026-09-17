@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Browser Agent Detector</title><style>:root{color-scheme:dark;--bg:#0a0d12;--panel:#111722;--panel2:#171f2d;--line:#293449;--text:#eef3fb;--muted:#9aa8bd;--accent:#71e6be;--accent2:#89a7ff;--danger:#ffb36b;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#17213a 0,transparent 32rem),var(--bg);color:var(--text)}header,main,footer{width:min(1100px,calc(100% - 32px));margin:auto}header{display:flex;justify-content:space-between;gap:32px;align-items:end;padding:72px 0 40px;border-bottom:1px solid var(--line)}h1{font-size:clamp(2.5rem,7vw,5.8rem);line-height:.95;letter-spacing:-.06em;margin:.2rem 0 1.2rem;max-width:780px}h2{font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.035em;margin:.25rem 0}.eyebrow{color:var(--accent);font:600 .72rem/1.2 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}.lede{color:var(--muted);font-size:1.1rem;max-width:650px}.actions,.server-controls{display:flex;gap:10px;flex-wrap:wrap}button,.file,input{border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--text);padding:.75rem 1rem;font:inherit}button,.file{cursor:pointer}button:hover,.file:hover{border-color:var(--accent)}button.primary{background:var(--accent);color:#07120f;border-color:var(--accent);font-weight:700}button:disabled{opacity:.5;cursor:wait}.file input{display:none}main{display:grid;gap:18px;padding:24px 0}section{background:linear-gradient(145deg,rgba(23,31,45,.92),rgba(14,19,28,.94));border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,36px);box-shadow:0 20px 50px #0004}.verdict{display:grid;grid-template-columns:1fr auto;align-items:center;border-color:#3c6c61}.status,.pill{display:inline-flex;border:1px solid #315e54;color:var(--accent);border-radius:999px;padding:.2rem .65rem;font-size:.75rem}.verdict h2{font-size:clamp(2.2rem,6vw,4.6rem)}.verdict p,.section-head>p,.candidate p,footer{color:var(--muted)}.automation{min-width:190px;padding:20px;border-left:1px solid var(--line);display:grid}.automation strong{font-size:3rem;color:var(--accent)}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:18px}.section-head>p{max-width:430px}.candidates{display:grid;gap:10px}.candidate{display:grid;grid-template-columns:42px 1fr;gap:14px;background:#0c111a;border:1px solid var(--line);padding:16px;border-radius:10px}.rank{font:700 1.6rem ui-monospace;color:#53617a}.candidate-head{display:flex;justify-content:space-between;gap:15px}.candidate-head span{font:700 1rem ui-monospace;color:var(--accent)}.meter{height:4px;background:#222d3f;margin:8px 0}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}.candidate p{margin:.2rem 0;font-size:.82rem}details{margin-top:12px}summary{cursor:pointer;color:#bfcaDC}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto;background:#090d14;padding:16px;border-radius:8px;color:#b9c9df;font:12px/1.55 ui-monospace,monospace}.probe{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end;margin:20px 0}.probe label{display:grid;gap:6px;color:var(--muted)}.scrollbox{height:110px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:10px;background:#090d14}.scrollbox div{height:180px;background:linear-gradient(var(--accent2),transparent);opacity:.18}.server-controls input{flex:1;min-width:230px}code{color:var(--accent);background:#0b1119;padding:.15rem .35rem;border-radius:4px}footer{padding:30px 0 60px}a{color:var(--accent2)}small{color:var(--muted)}@media(max-width:700px){header{align-items:start;padding-top:42px}.verdict,.probe{grid-template-columns:1fr}.automation{border-left:0;border-top:1px solid var(--line)}.section-head{display:block}header{display:block}header .actions{margin-top:20px}}
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Browser Agent Detector</title><style>:root{color-scheme:dark;--bg:#0a0d12;--panel:#111722;--panel2:#171f2d;--line:#293449;--text:#eef3fb;--muted:#9aa8bd;--accent:#71e6be;--accent2:#89a7ff;--danger:#ffb36b;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#17213a 0,transparent 32rem),var(--bg);color:var(--text)}header,main,footer{width:min(1100px,calc(100% - 32px));margin:auto}header{display:flex;justify-content:space-between;gap:32px;align-items:end;padding:72px 0 40px;border-bottom:1px solid var(--line)}h1{font-size:clamp(2.5rem,7vw,5.8rem);line-height:.95;letter-spacing:-.06em;margin:.2rem 0 1.2rem;max-width:780px}h2{font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.035em;margin:.25rem 0}.eyebrow{color:var(--accent);font:600 .72rem/1.2 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}.lede{color:var(--muted);font-size:1.1rem;max-width:650px}.actions,.server-controls{display:flex;gap:10px;flex-wrap:wrap}button,.file,input{border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--text);padding:.75rem 1rem;font:inherit}button,.file{cursor:pointer}button:hover,.file:hover{border-color:var(--accent)}button.primary{background:var(--accent);color:#07120f;border-color:var(--accent);font-weight:700}button:disabled{opacity:.5;cursor:wait}.file input{display:none}main{display:grid;gap:18px;padding:24px 0}section{background:linear-gradient(145deg,rgba(23,31,45,.92),rgba(14,19,28,.94));border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,36px);box-shadow:0 20px 50px #0004}.verdict{display:grid;grid-template-columns:1fr auto;align-items:center;border-color:#3c6c61}.status,.pill{display:inline-flex;border:1px solid #315e54;color:var(--accent);border-radius:999px;padding:.2rem .65rem;font-size:.75rem}.verdict h2{font-size:clamp(2.2rem,6vw,4.6rem)}.verdict p,.section-head>p,.candidate p,footer{color:var(--muted)}.automation{min-width:190px;padding:20px;border-left:1px solid var(--line);display:grid}.automation strong{font-size:3rem;color:var(--accent)}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:18px}.section-head>p{max-width:430px}.candidates{display:grid;gap:10px}.candidate{display:grid;grid-template-columns:42px 1fr;gap:14px;background:#0c111a;border:1px solid var(--line);padding:16px;border-radius:10px}.rank{font:700 1.6rem ui-monospace;color:#53617a}.candidate-head{display:flex;justify-content:space-between;gap:15px}.candidate-head span{font:700 1rem ui-monospace;color:var(--accent)}.badge{font:600 .68rem/1.2 ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:.15rem .5rem;border:1px solid var(--line)}.badge-verified{color:#07120f;background:var(--accent);border-color:var(--accent)}.badge-heuristic{color:var(--danger);border-color:var(--danger)}.verified-name{color:var(--accent)}.notes{font-style:italic}.conflicts summary{color:var(--danger)}.meter{height:4px;background:#222d3f;margin:8px 0}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}.candidate p{margin:.2rem 0;font-size:.82rem}details{margin-top:12px}summary{cursor:pointer;color:#bfcaDC}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto;background:#090d14;padding:16px;border-radius:8px;color:#b9c9df;font:12px/1.55 ui-monospace,monospace}.probe{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end;margin:20px 0}.probe label{display:grid;gap:6px;color:var(--muted)}.scrollbox{height:110px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:10px;background:#090d14}.scrollbox div{height:180px;background:linear-gradient(var(--accent2),transparent);opacity:.18}.server-controls input{flex:1;min-width:230px}code{color:var(--accent);background:#0b1119;padding:.15rem .35rem;border-radius:4px}footer{padding:30px 0 60px}a{color:var(--accent2)}small{color:var(--muted)}@media(max-width:700px){header{align-items:start;padding-top:42px}.verdict,.probe{grid-template-columns:1fr}.automation{border-left:0;border-top:1px solid var(--line)}.section-head{display:block}header{display:block}header .actions{margin-top:20px}}
 </style></head>
 <body>
   <header><div><p class="eyebrow">Browser Agent Detector / v0.3</p><h1>Who opened this page?</h1><p class="lede">A transparent, extensible guess based on browser fingerprints, HTTP headers, interaction patterns, and optional server evidence.</p></div><div class="actions" data-ignore-events><button id="rerun">Run again</button><button id="export" class="primary">Export JSON</button></div></header>
@@ -161,47 +161,113 @@
 
                                                                                                
 
+/** Which layer of the layered evidence model a rule belongs to. Ordering below matches confidence ranking. */
+                    
+                              
+                      
                          
-               
-                   
-                 
-                 
                 
- 
+                                
 
-                          
-             
-               
-                 
-                 
-                                                                                  
-                     
-                         
- 
-
-                       
-                
-                
-                 
-                 
- 
-
-                          
-             
-               
-                 
-                 
                                                 
+
+                 
+                   
+                   
+                   
+                       
+                          
+                      
+
+                                                                                                   
+
+                          
+              
                 
                    
+                                 
+                     
+                          
+ 
+
                          
+               
+                   
+                 
+                 
+                
+                       
+                             
                          
                      
+                           
+                            
+                                   
+                                                                                                         
+                    
+ 
+
+                                                                              
+                                                                             
+                                                                                                                
+
+                        
+             
+               
+                 
+                    
+                          
+                            
+                        
+                         
+                          
+                            
+                         
+                 
+     
+                                                                                                   
+                                                                                                    
+                                                                                                    
+                                   
+     
+                                                                                         
+ 
+
+                         
+                
+                       
+                 
+                 
+                
+                              
+ 
+
+                          
+             
+               
+                 
+                          
+                            
+                                     
+                
+                   
+                           
+                    
+                               
+                         
+                     
+                            
+                    
+                 
  
 
                            
-                                                                   
-                                                                                                                                                           
+                                                                                                                 
+                
+                                                                    
+                               
+                                 
+    
  
 
                           
@@ -223,8 +289,9 @@
 
                             
                   
+                           
                        
-                               
+                           
                                            
                                                           
                                         
@@ -238,7 +305,7 @@
                                                            
                                 
                                                                
-                                                                                                                                                         
+                                                                                                                                                       
                                                  
                  
  
@@ -287,109 +354,642 @@
     a.href = URL.createObjectURL(new Blob([data], { type: 'application/json' }));
     a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   };
+  AD.registry = [];
+  AD.REGISTRY_VERSION = '2026-09-17';
 })(globalThis);
+
+/** Shared authoring helpers for registry files. Kept out of AgentDetectorApi since they are build-time-only. */
+function mkSource(
+  kind            , reliability                   , url        , title        , observedAt        , productVersion         
+)                 {
+  return { kind, reliability, url, title, observedAt, ...(productVersion ? { productVersion } : {}) };
+}
+function mkRule(
+  path        , op              , value         , weight        , label        ,
+  layer               , confidence                , source                ,
+  opts                                                                                                                                    = {}
+)                {
+  return {
+    path, op, value, weight, label, layer, confidence, source,
+    observedAt: opts.observedAt ?? source.observedAt,
+    ...(opts.affectedVersion ? { affectedVersion: opts.affectedVersion } : {}),
+    ...(opts.knownConflicts ? { knownConflicts: opts.knownConflicts } : {}),
+    ...(opts.requiresServerEvidence ? { requiresServerEvidence: true } : {}),
+    ...(opts.reviewBy ? { reviewBy: opts.reviewBy } : {})
+  };
+}
+function mkProfile(profile              )               { return profile; }
+function registerProfiles(...profiles                )       {
+  (globalThis                                                  ).AgentDetector.registry.push(...profiles);
+}
 
 
 //# sourceURL=src/core.ts
 
-(function (root                   ) {
+(function () {
   'use strict';
-  const AD = root.AgentDetector = root.AgentDetector || {};
-  const r = (path        , op              , value         , weight        , label        )                => ({ path, op, value, weight, label });
-  AD.signatures = [
-    {
-      id: 'chatgpt-agent', name: 'ChatGPT Agent', vendor: 'OpenAI', source: 'FP-Agent (May 2026)',
-      status: 'research-profile', minMatched: 2,
-      rules: [
-        r('environment.screen.size', 'eq', '1280x960', 24, 'screen 1280×960'),
-        r('environment.hardware.logicalCores', 'eq', 13, 24, '13 logical cores'),
-        r('environment.rendering.fontCount', 'eq', 1, 12, 'single detected font'),
-        r('behavior.pasteCount', 'gte', 1, 22, 'text pasted'),
-        r('behavior.ctrlVOnMac', 'truthy', true, 28, 'Ctrl+V while reporting macOS')
-      ]
-    },
-    {
-      id: 'manus', name: 'Manus', vendor: 'Butterfly Effect', source: 'FP-Agent (May 2026)',
-      status: 'research-profile', minMatched: 3,
-      rules: [
-        r('environment.platform', 'regex', 'Linux|x86_64', 13, 'Linux-like platform'),
-        r('environment.screen.size', 'eq', '1280x1100', 20, 'screen 1280×1100'),
-        r('environment.hardware.memoryGB', 'eq', 4, 16, '4 GB device memory'),
-        r('environment.hardware.logicalCores', 'eq', 6, 16, '6 logical cores'),
-        r('environment.touch.maxPoints', 'eq', 10, 17, '10 touch points'),
-        r('environment.timezone.zone', 'oneOf', ['UTC', 'Etc/UTC'], 10, 'UTC timezone'),
-        r('environment.rendering.fontCount', 'eq', 0, 14, 'no detected fonts')
-      ]
-    },
-    {
-      id: 'skyvern', name: 'Skyvern', vendor: 'Skyvern', source: 'FP-Agent (May 2026)',
-      status: 'research-profile', minMatched: 3,
-      rules: [
-        r('environment.screen.size', 'eq', '1920x1080', 23, 'screen 1920×1080'),
-        r('environment.timezone.zone', 'eq', 'America/New_York', 18, 'New York timezone'),
-        r('environment.media.hdr', 'falsy', false, 10, 'HDR unavailable'),
-        r('environment.plugins.count', 'eq', 0, 16, 'empty plugin list'),
-        r('behavior.keydownCount', 'gte', 5, 12, 'key-event input'),
-        r('environment.rendering.softwareRenderer', 'truthy', true, 14, 'software renderer')
-      ]
-    },
-    {
-      id: 'claude-for-chrome', name: 'Claude for Chrome', vendor: 'Anthropic', source: 'FP-Agent (May 2026)',
-      status: 'behavior-profile', minMatched: 1,
-      rules: [
-        r('behavior.changeWithoutTyping', 'truthy', true, 60, 'field changed without typing events'),
-        r('behavior.interKeyMeanMs', 'lte', 8, 25, 'near-zero inter-key latency'),
-        r('environment.isChrome', 'truthy', true, 5, 'Chromium browser')
-      ]
-    },
-    {
-      id: 'comet', name: 'Comet', vendor: 'Perplexity', source: 'FP-Agent (May 2026)',
-      status: 'behavior-profile', minMatched: 3,
-      rules: [
-        r('behavior.pasteCount', 'gte', 1, 35, 'text pasted'),
-        r('environment.platform', 'regex', 'Mac', 12, 'macOS platform'),
-        r('environment.rendering.fonts.Gill Sans', 'truthy', true, 16, 'Gill Sans available'),
-        r('behavior.trustedEvents', 'gte', 2, 8, 'trusted interaction events')
-      ]
-    },
-    {
-      id: 'atlas-agent', name: 'Atlas Agent', vendor: 'OpenAI', source: 'FP-Agent (May 2026)',
-      status: 'behavior-profile', minMatched: 3,
-      rules: [
-        r('behavior.pasteCount', 'gte', 1, 42, 'text pasted'),
-        r('environment.platform', 'regex', 'Mac', 14, 'macOS platform'),
-        r('behavior.pointerMoves', 'eq', 0, 12, 'no pointer movement'),
-        r('behavior.trustedEvents', 'gte', 2, 8, 'trusted interaction events')
-      ]
-    },
-    {
-      id: 'browser-use', name: 'Browser Use', vendor: 'Browser Use', source: 'FP-Agent (May 2026)',
-      status: 'behavior-profile', minMatched: 2,
-      rules: [
-        r('behavior.keydownCount', 'gte', 5, 28, 'character-by-character input'),
-        r('behavior.pasteCount', 'eq', 0, 14, 'no paste event'),
-        r('environment.rendering.softwareRenderer', 'truthy', true, 14, 'software renderer'),
-        r('automation.webdriver', 'truthy', true, 22, 'WebDriver exposed')
-      ]
-    },
-    {
-      id: 'instinct-local', name: 'Instinct', vendor: 'Instinct', source: 'one local report (Sep 2026)',
-      status: 'local-sample', minMatched: 3,
-      rules: [
-        r('environment.ua', 'includes', 'Windows NT 10.0', 11, 'Windows 10 UA'),
-        r('environment.ua', 'includes', 'Chrome/152.', 18, 'Chrome 152'),
-        r('environment.screen.size', 'eq', '1280x720', 20, 'screen 1280×720'),
-        r('environment.hardware.logicalCores', 'eq', 2, 16, '2 logical cores'),
-        r('environment.timezone.zone', 'eq', 'America/Chicago', 13, 'Chicago timezone'),
-        r('environment.rendering.fonts.Roboto', 'truthy', true, 5, 'Roboto available')
-      ]
-    },
-    { id: 'museai', name: 'MuseAI', vendor: 'unknown', source: 'no public stable signature', status: 'unprofiled', minMatched: 99, rules: [] }
-  ];
-})(globalThis);
+  const fpAgent = mkSource('academic-research', 'research-paper-claim',
+    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
+  const supportArticle = mkSource('official-docs', 'verified-official',
+    'https://support.claude.com/en/articles/12012173', 'Anthropic support: Claude in Chrome permissions/architecture', '2026-08-01');
+  const reverseEngGist = mkSource('third-party-analysis', 'anecdotal',
+    'https://gist.github.com/sshh12/e352c053627ccbe1636781f73d6d715b', 'Claude for Chrome Extension Internals v1.0.56 (unofficial reverse-engineering)', '2026-08-01', 'extension v1.0.56');
+  const coworkBlog = mkSource('official-docs', 'verified-official',
+    'https://claude.com/blog/cowork-built-in-browser', 'Anthropic: Claude Cowork built-in browser', '2026-08-01');
+  const webStore = mkSource('official-repo', 'verified-official',
+    'https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn', 'Claude in Chrome — Chrome Web Store listing', '2026-09-01');
+
+  registerProfiles(mkProfile({
+    id: 'claude-in-chrome', name: 'Claude in Chrome / Claude for Chrome', vendor: 'Anthropic',
+    aliases: ['Claude for Chrome', 'Claude in Chrome'],
+    category: 'product-agent', execution: 'extension', status: 'research-profile',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-17',
+    sources: [fpAgent, supportArticle, reverseEngGist, webStore],
+    notes: 'Extension ID fcoeoabgfenejglbffodgkkbkcdhcgfn is official (Chrome Web Store). The "field changed without typing events / near-zero inter-key latency" behavior is FP-Agent\'s documented methodology finding (programmatic fill via a single `change` event), not an Anthropic disclosure — Anthropic can change the fill implementation at any time, so treat as version-scoped. DOM/CDP details below come from a single unverified third-party gist and are anecdotal-only.',
+    rules: [
+      mkRule('behavior.changeWithoutTyping', 'truthy', true, 26, 'field changed with no keydown/keyup or paste events (FP-Agent: programmatic fill via change event only)',
+        'behavioral', 'medium', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('behavior.interKeyMeanMs', 'lte', 1, 22, 'sub-millisecond inter-key latency when keystroke mode is used (FP-Agent measurement)',
+        'behavioral', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.rendering.fonts.Gill Sans', 'truthy', true, 6, 'Gill Sans reported only on macOS (FP-Agent dataset snapshot, weak alone)',
+        'browser-fingerprint', 'low', fpAgent, { knownConflicts: ['comet reports Gill Sans on Windows too, so this alone does not discriminate Claude vs Comet on macOS'], reviewBy: '2026-12-01' }),
+      mkRule('environment.isChrome', 'truthy', true, 4, 'Chromium browser (required, not discriminating alone)',
+        'browser-fingerprint', 'low', supportArticle)
+    ]
+  }));
+
+  registerProfiles(mkProfile({
+    id: 'claude-cowork-browser', name: 'Claude Cowork Browser', vendor: 'Anthropic',
+    aliases: ['Claude Cowork', 'Cowork built-in browser'],
+    category: 'product-agent', execution: 'local', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [coworkBlog],
+    notes: 'Real, officially announced product (merged into Claude chat ~2026-09-16). No official or reproducible UA string, header, IP range, browser fingerprint, or behavioral signature has been published or observed for Cowork\'s built-in browser specifically — FP-Agent studied the separate Claude for Chrome extension, not Cowork. Missing evidence: any labeled capture of Cowork browser network/behavioral traffic. Collect: HTTP headers from a Cowork session hitting a controlled endpoint, and a behavioral capture of its typing/scrolling pattern.',
+    rules: []
+  }));
+})();
 
 
-//# sourceURL=src/signatures.ts
+//# sourceURL=src/registry/anthropic.ts
+
+(function () {
+  'use strict';
+  function unprofiled(id        , name        , vendor        , aliases          , execution                , sourceUrl        , sourceTitle        , notes        ) {
+    return mkProfile({
+      id, name, vendor, aliases, category: 'product-agent'         , execution, status: 'unprofiled'         ,
+      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+      sources: [mkSource('official-docs', 'verified-official', sourceUrl, sourceTitle, '2026-09-01')],
+      notes, rules: []
+    });
+  }
+
+  registerProfiles(
+    unprofiled('genspark-super-agent', 'Genspark Super Agent', 'Genspark', ['Genspark AI Browser'], 'hybrid',
+      'https://www.genspark.ai/helpcenter/super-agent', 'Genspark: Super Agent help center',
+      'Real, officially documented autonomous agent plus a standalone "AI Browser" app. No published UA/header/IP/extension ID/fingerprint. One third-party security test (LayerX, via Skywork.ai) found its browser let over 90% of tested malicious pages execute vs. Chrome — a security-posture finding, not a detection signature.'),
+
+    unprofiled('gemini-in-chrome', 'Gemini in Chrome / Gemini Auto Browse', 'Google', ['Gemini Auto Browse'], 'local',
+      'https://support.google.com/chrome/answer/16821166', 'Google: Gemini in Chrome support',
+      'Official, native Chrome feature — Gemini drives the user\'s own real Chrome session rather than a separate client. Structurally very hard to detect via UA/IP by design, since traffic is indistinguishable from ordinary first-party Chrome use. No technical signature published or expected.'),
+
+    unprofiled('microsoft-copilot-tasks', 'Microsoft Copilot Tasks', 'Microsoft', [], 'cloud',
+      'https://support.microsoft.com/en-us/microsoft-copilot/using-copilot-tasks', 'Microsoft: Copilot Tasks support',
+      'Official Microsoft 365 Copilot feature (announced Feb 2026) that turns conversational answers into background/scheduled actions, largely via connectors/plugins rather than a literal driven browser client. No UA/header/IP/fingerprint published.'),
+
+    unprofiled('edge-copilot-actions', 'Microsoft Edge Copilot Actions', 'Microsoft', ['Browse with Copilot'], 'local',
+      'https://support.microsoft.com/en-us/topic/copilot-actions-in-edge-5ed5e17e-42df-40a3-984a-20420eba86e2', 'Microsoft: Copilot Actions in Edge',
+      'Official, native Edge feature — like Gemini Auto Browse, runs inside the user\'s own real Edge session, so it carries the ordinary Edge UA rather than a distinct one. A third-party bot-management vendor (HUMAN Security) treats "Copilot Actions" as a distinct traffic category worth flagging, but its detection method was not disclosed publicly. No client-observable technical signature is currently known.'),
+
+    unprofiled('grok-agent', 'Grok Agent / Grok Bot', 'xAI', [], 'unknown',
+      'https://docs.x.ai/overview', 'xAI: docs overview',
+      'No official xAI documentation of a UA token, IP range, or Web Bot Auth support was found for a "Grok Agent"/"GrokAgent" browsing product. Third-party AI-bot directory sites list a GrokBot entry, but these are unofficial aggregators, not xAI-published — the task\'s prior note about a possible "GrokAgent" UA token could not be confirmed from an official source and should not be trusted as a rule until it is.'),
+
+    unprofiled('meta-muse', 'Meta Muse', 'Meta', [], 'cloud',
+      'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/', 'Meta: Introducing Muse',
+      'Official product (launched 2026-09-08), runs inside an isolated per-user "Muse Secure VM" with an embedded browser and an on-machine "Sentinel" agent gating outbound traffic. Meta\'s own announcement confirms the architecture but discloses no UA/header/IP/fingerprint for the embedded browser. This directly confirms — rather than refutes — the task\'s prior finding that no stable public client-side signature exists for Muse.')
+  );
+})();
+
+
+//# sourceURL=src/registry/big-tech.ts
+
+(function () {
+  'use strict';
+  const fpAgent = mkSource('academic-research', 'research-paper-claim',
+    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
+
+  // --- Browser Use ---
+  const browserUseRepo = mkSource('official-repo', 'verified-official',
+    'https://github.com/browser-use/browser-use', 'Browser Use: GitHub repository', '2026-09-01');
+  const browserUseDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.browser-use.com/customize/browser/all-parameters', 'Browser Use: browser configuration parameters', '2026-09-01');
+  registerProfiles(mkProfile({
+    id: 'browser-use', name: 'Browser Use', vendor: 'Browser Use, Inc.',
+    aliases: [],
+    category: 'framework', execution: 'hybrid', status: 'research-profile',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-17',
+    sources: [browserUseRepo, browserUseDocs, fpAgent],
+    notes: 'Open-source + hosted cloud CDP-based automation framework (Playwright underneath). `user_agent` is an explicitly documented, overridable parameter with no fixed official default, so any UA-based rule would be fragile by design. Detecting Browser Use does not prove which product initiated the session — it is infrastructure, not a user-facing agent.',
+    rules: [
+      mkRule('behavior.keydownCount', 'gte', 5, 20, 'character-by-character keystroke input via CDP dispatchKeyEvent (FP-Agent measurement)',
+        'behavioral', 'medium', fpAgent),
+      mkRule('automation.webdriver', 'truthy', true, 22, 'WebDriver/automation flag exposed (CDP-driven Chromium)',
+        'browser-fingerprint', 'medium', browserUseRepo),
+      mkRule('environment.screen.size', 'eq', '1440x900', 6, 'screen 1440×900 (FP-Agent dataset snapshot; shared with Atlas/Claude on macOS — weak alone)',
+        'browser-fingerprint', 'low', fpAgent, { knownConflicts: ['openai-atlas-agent', 'claude-in-chrome'], reviewBy: '2026-12-01' })
+    ]
+  }));
+
+  // --- Skyvern ---
+  const skyvernRepo = mkSource('official-repo', 'verified-official',
+    'https://github.com/Skyvern-AI/skyvern', 'Skyvern: GitHub repository (Playwright extension)', '2026-09-01');
+  registerProfiles(mkProfile({
+    id: 'skyvern', name: 'Skyvern', vendor: 'Skyvern-AI',
+    aliases: [],
+    category: 'framework', execution: 'local', status: 'research-profile',
+    minimumEvidence: 3, lastReviewedAt: '2026-09-17',
+    sources: [skyvernRepo, fpAgent],
+    notes: 'Official README describes Skyvern as a Playwright extension. FP-Agent fingerprint values below are pinned to Skyvern v0.2.23 and likely stale for current releases — reviewBy dates reflect that. Framework detection does not identify which product built on Skyvern initiated the session.',
+    rules: [
+      mkRule('environment.screen.size', 'eq', '1920x1080', 14, 'screen 1920×1080 (FP-Agent v0.2.23 snapshot, differs from macOS-baseline agents)',
+        'browser-fingerprint', 'low', fpAgent, { affectedVersion: '0.2.23', reviewBy: '2026-12-01' }),
+      mkRule('environment.timezone.zone', 'eq', 'America/New_York', 10, 'America/New_York timezone (FP-Agent v0.2.23 snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { affectedVersion: '0.2.23', reviewBy: '2026-12-01' }),
+      mkRule('environment.media.hdr', 'falsy', false, 6, 'HDR unavailable (FP-Agent v0.2.23 snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { affectedVersion: '0.2.23', reviewBy: '2026-12-01' }),
+      mkRule('environment.plugins.count', 'eq', 0, 8, 'empty plugin list (FP-Agent v0.2.23 snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { affectedVersion: '0.2.23', reviewBy: '2026-12-01' }),
+      mkRule('behavior.keydownCount', 'gte', 5, 10, 'final-chunk keystroke input pattern (FP-Agent: types bulk programmatically, final ~20 chars via keystrokes)',
+        'behavioral', 'medium', fpAgent, { affectedVersion: '0.2.23' })
+    ]
+  }));
+
+  // --- Browserbase / Stagehand ---
+  const browserbaseDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.browserbase.com/platform/identity/vpn', 'Browserbase: identity/VPN and proxy allowlisting docs', '2026-09-01');
+  registerProfiles(mkProfile({
+    id: 'browserbase-stagehand', name: 'Browserbase / Stagehand', vendor: 'Browserbase, Inc.',
+    aliases: ['Stagehand'],
+    category: 'browser-infrastructure', execution: 'cloud', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [browserbaseDocs],
+    notes: 'Browserbase does not publish its own outbound IP ranges — its docs describe the inverse (you bring your own proxy and Browserbase routes through it). No official UA, header, or fingerprint signal was found; FP-Agent does not study raw browser-infra providers. Missing evidence: any labeled capture of Browserbase-hosted session traffic.',
+    rules: []
+  }));
+
+  // --- Playwright MCP ---
+  const playwrightMcpRepo = mkSource('official-repo', 'verified-official',
+    'https://github.com/microsoft/playwright-mcp', 'Microsoft: Playwright MCP repository', '2026-09-01');
+  registerProfiles(mkProfile({
+    id: 'playwright-mcp', name: 'Playwright MCP', vendor: 'Microsoft',
+    aliases: [],
+    category: 'framework', execution: 'hybrid', status: 'generic-only',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [playwrightMcpRepo],
+    notes: 'Self-hosted, fully operator-configurable (UA, headers via --cdp-header, browser channel). No fixed default UA or header exists to key a rule on — the project itself makes no stealth/detectability claims. What is detectable is generic CDP-driven Chromium automation (navigator.webdriver, missing window.chrome internals), which is already covered by the automation-likelihood scoring, not by a product-specific profile.',
+    rules: []
+  }));
+
+  // --- Computer Use APIs (Anthropic + OpenAI) ---
+  const anthropicCu = mkSource('official-docs', 'verified-official',
+    'https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool', 'Anthropic: computer use tool docs', '2026-08-01', 'computer_toolset_20260801');
+  const openaiCua = mkSource('official-docs', 'verified-official',
+    'https://developers.openai.com/api/docs/guides/tools-computer-use', 'OpenAI: computer-use-preview tool docs', '2026-08-01');
+  registerProfiles(mkProfile({
+    id: 'computer-use-apis', name: 'Computer Use APIs', vendor: 'Anthropic / OpenAI',
+    aliases: ['Anthropic computer use tool', 'OpenAI computer-use-preview', 'CUA'],
+    category: 'framework', execution: 'unknown', status: 'generic-only',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [anthropicCu, openaiCua],
+    notes: 'Both vendors host the execution environment on the DEVELOPER\'s infrastructure for the raw API tool ("your application runs every call in an environment you control" — Anthropic). There is therefore no single vendor-controlled fingerprint/IP/UA for the API tool itself; only the separately-profiled consumer products (chatgpt-agent) carry vendor-controlled signals. Detecting a generic computer-use harness (Xvfb/Docker screenshot loop) does not identify which vendor\'s model is driving it.',
+    rules: []
+  }));
+
+  // --- Amazon Nova Act ---
+  const novaActRepo = mkSource('official-repo', 'verified-official',
+    'https://github.com/aws/nova-act', 'AWS: Amazon Nova Act SDK README', '2026-09-01');
+  registerProfiles(mkProfile({
+    id: 'amazon-nova-act', name: 'Amazon Nova Act', vendor: 'AWS/Amazon',
+    aliases: [],
+    category: 'framework', execution: 'hybrid', status: 'research-profile',
+    minimumEvidence: 1, lastReviewedAt: '2026-09-17',
+    sources: [novaActRepo],
+    notes: 'The one framework here with an explicit, vendor-documented self-identification convention: the README recommends developers "look for NovaAct in the user agent string." This is opt-in and overridable by the developer (not enforced), so absence of the token is not evidence against Nova Act, only its presence (when found) is a genuine documented marker.',
+    headerMarker: { pattern: 'novaact', confidence: 'medium', source: novaActRepo },
+    rules: [
+      mkRule('environment.ua', 'includes', 'NovaAct', 30, 'UA contains vendor-documented "NovaAct" self-identification token',
+        'browser-fingerprint', 'medium', novaActRepo)
+    ]
+  }));
+})();
+
+
+//# sourceURL=src/registry/frameworks.ts
+
+(function () {
+  'use strict';
+  /**
+   * Cross-cutting caveat for this whole file: most cloud browser-infra vendors explicitly sell
+   * "stealth"/anti-detection/residential-proxy features as a product differentiator, meaning any
+   * default fingerprint they might otherwise expose is intentionally configurable/maskable by their
+   * own customers. None of the vendors below has a documented, stable, non-overridable client signal
+   * strong enough for a scoring rule — each is registered so it exists in the registry and is honestly
+   * marked, per the task's explicit instruction not to invent detection rules.
+   */
+  function infra(id        , name        , vendor        , url        , title        , notes        , aliases           = [], execution                 = 'cloud') {
+    return mkProfile({
+      id, name, vendor, aliases,
+      category: 'browser-infrastructure'         , execution, status: 'unprofiled'         ,
+      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+      sources: [mkSource('official-docs', 'verified-official', url, title, '2026-09-01')],
+      notes, rules: []
+    });
+  }
+
+  registerProfiles(
+    infra('cloudflare-kitesurf', 'Cloudflare Kitesurf', 'Cloudflare',
+      'https://blog.cloudflare.com/kitesurf/', 'Cloudflare: Kitesurf agent-first browser runtime',
+      'Agent-first browser engine on Workers/V8 isolates, not full Chromium. Documented limitation: cannot pass TLS-fingerprint bot-challenge negotiation like real Chromium can — useful only as a negative signal (traffic claiming Kitesurf while passing TLS-fingerprint checks would be suspicious), not a positive one. No UA/header/IP published. Not confirmed to use Web Bot Auth despite Cloudflare authoring that spec separately.'),
+    infra('firecrawl', 'Firecrawl', 'Firecrawl (Mendable)',
+      'https://github.com/mendableai/firecrawl', 'Firecrawl: advanced scraping guide',
+      'Documents a robots.txt matching token "FirecrawlAgent", but its own docs and an unresolved GitHub issue (#656) confirm this is NOT guaranteed to equal the literal User-Agent header sent on requests. No fixed outbound IP range (one static IP documented is for inbound API calls, not outbound crawling). Too unreliable for a rule.'),
+    infra('steel', 'Steel', 'Steel',
+      'https://steel.dev/blog/stealth-browser', 'Steel: Stealth Browser architecture',
+      'Open-source Chromium-fork browser infrastructure; newer "Stealth Browser" patches fingerprint surfaces at the source level specifically to defeat fingerprinting. No default UA/header/IP published.'),
+    infra('hyperbrowser', 'Hyperbrowser', 'Hyperbrowser',
+      'https://docs.hyperbrowser.ai/get-started/quickstart/ai-agents/browser-use', 'Hyperbrowser: docs',
+      'Cloud browser API for AI agents; no technical signal (UA/header/IP/fingerprint) found in official docs.'),
+    infra('browserless', 'Browserless', 'Browserless',
+      'https://www.browserless.io/blog/bot-detection', 'Browserless: bot detection blog',
+      'Managed CDP/Playwright/Puppeteer browser API. Documents User-Agent setting/masking as a client-configurable option (not a fixed default), and sells anti-bot-detection features — meaning no stable default fingerprint exists to key a rule on.'),
+    infra('tinyfish', 'TinyFish', 'TinyFish',
+      'https://docs.tinyfish.ai/', 'TinyFish: docs',
+      '"Web infrastructure for AI agents" (search/fetch/browser/agent stack, plus hosted "Mino" agent). No technical signal found.'),
+    infra('airtop', 'Airtop', 'Airtop',
+      'https://docs.airtop.ai/guides/getting-started/what-is-airtop', 'Airtop: what is Airtop',
+      'Cloud CDP-based browser platform (Playwright/Puppeteer/Selenium compatible) with an integrated 100M+ IP residential proxy network — traffic can originate from arbitrary residential IPs by design, defeating IP-based detection. No UA/header signal found.'),
+    infra('anchor-browser', 'Anchor Browser', 'Anchor Browser',
+      'https://docs.anchorbrowser.io/', 'Anchor Browser: docs',
+      'Cloud CDP-based browser infrastructure with a paid "extra stealth mode" (residential proxies + fingerprint spoofing) as a product feature. No stable default UA/header/IP signal found.'),
+    infra('kernel', 'Kernel', 'Kernel (onkernel.com)',
+      'https://www.onkernel.com/', 'Kernel: browsers-as-a-service',
+      'Browser automation infrastructure, accessible via the third-party agent-browser CLI abstraction alongside Browserbase/Browserless/AgentCore. That integration exposes an opt-in KERNEL_STEALTH flag (default false) — confirms stealth is available but not default, still no fixed fingerprint to key a rule on.'),
+    infra('scrapybara', 'Scrapybara', 'Scrapybara',
+      'https://docs.scrapybara.com/introduction', 'Scrapybara: introduction',
+      'Provides cloud virtual desktop/browser sandboxes for computer-use models (Claude Computer Use, OpenAI CUA) to control. No UA/header/IP/fingerprint signal found; underlying browser stack undisclosed.'),
+    mkProfile({
+      id: 'agent-browser', name: 'agent-browser', vendor: 'Vercel Labs', aliases: [],
+      category: 'framework', execution: 'local', status: 'unprofiled',
+      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+      sources: [mkSource('official-repo', 'verified-official', 'https://github.com/vercel-labs/agent-browser', 'Vercel Labs: agent-browser CLI', '2026-09-01')],
+      notes: 'Open-source CLI that multiplexes across multiple backend providers (AgentCore, Browser Use, Browserbase, Browserless, Kernel) and engines (Chrome, Lightpanda) — it is an abstraction layer, not infrastructure with its own network identity. Whatever fingerprint appears belongs to the underlying provider, not to agent-browser itself. Detecting one of the underlying providers does not imply agent-browser (or any specific product) was the caller.',
+      rules: []
+    }),
+    infra('lav', 'LaV', 'unknown',
+      'https://github.com/lavague-ai/LaVague', 'Unresolved — closest candidate match: LaVague (unconfirmed)',
+      'Could not confidently identify what "LaV" refers to. The closest candidate found is LaVague (lavague-ai/LaVague), an open-source Selenium/Playwright-based web agent framework, but "LaV" is not an abbreviation that project uses anywhere, and no other candidate named exactly "LaV" was found. Registered as unprofiled with this ambiguity stated explicitly rather than guessing. Missing evidence: clarification of what product/tool "LaV" actually names.')
+  );
+})();
+
+
+//# sourceURL=src/registry/infrastructure.ts
+
+(function () {
+  'use strict';
+  function unprofiled(id        , name        , vendor        , aliases          , execution                , sourceUrl        , sourceTitle        , notes        ) {
+    return mkProfile({
+      id, name, vendor, aliases, category: 'product-agent'         , execution, status: 'unprofiled'         ,
+      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+      sources: [mkSource('official-docs', 'verified-official', sourceUrl, sourceTitle, '2026-09-01')],
+      notes, rules: []
+    });
+  }
+
+  // Instinct: keep the one existing local labeled capture as a distinct local-sample profile with
+  // honest, very-low confidence — a single capture must never drive strong attribution on its own.
+  const instinctCapture = mkSource('labeled-capture', 'anecdotal',
+    'internal://labeled-captures/instinct-2026-09', 'Internal labeled capture (one session, September 2026)', '2026-09-01');
+  registerProfiles(mkProfile({
+    id: 'instinct-local', name: 'Instinct', vendor: 'Instinct',
+    aliases: [],
+    category: 'product-agent', execution: 'unknown', status: 'local-sample',
+    minimumEvidence: 4, lastReviewedAt: '2026-09-17',
+    sources: [
+      mkSource('official-docs', 'verified-official', 'https://instinct.com/', 'Instinct: official site', '2026-09-01'),
+      instinctCapture
+    ],
+    notes: 'Instinct is a real, viral, invite-only consumer AI assistant (TechCrunch coverage confirms it exists and raises privacy concerns), but no official or third-party public technical signature (UA/header/IP/extension) has been found anywhere. The values below come from exactly ONE internal labeled capture and must be treated as a low-confidence, version-scoped local sample only — raising minimumEvidence to require most of them together, and every rule is capped at low confidence, so this profile can never alone produce strong attribution from a single shared value like screen size or CPU count.',
+    rules: [
+      mkRule('environment.ua', 'includes', 'Windows NT 10.0', 6, 'Windows 10 UA (single local capture)',
+        'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
+      mkRule('environment.ua', 'includes', 'Chrome/152.', 8, 'Chrome 152 (single local capture, will drift with Chrome releases)',
+        'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
+      mkRule('environment.screen.size', 'eq', '1280x720', 8, 'screen 1280×720 (single local capture)',
+        'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
+      mkRule('environment.hardware.logicalCores', 'eq', 2, 8, '2 logical cores (single local capture)',
+        'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
+      mkRule('environment.timezone.zone', 'eq', 'America/Chicago', 6, 'Chicago timezone (single local capture)',
+        'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
+      mkRule('environment.rendering.fonts.Roboto', 'truthy', true, 4, 'Roboto available (single local capture, very weak alone)',
+        'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' })
+    ]
+  }));
+
+  registerProfiles(mkProfile({
+    id: 'town-townie', name: 'Town / Townie', vendor: 'Town, Inc. / Val Town', aliases: ['Townie'],
+    category: 'product-agent', execution: 'unknown', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [
+      mkSource('official-docs', 'verified-official', 'https://www.town.com/', 'Town: official site', '2026-09-01'),
+      mkSource('official-docs', 'verified-official', 'https://docs.val.town/guides/prompting/townie/', 'Val Town: Townie docs', '2026-09-01')
+    ],
+    notes: 'Two unrelated real products share this name: Town.com (a16z/Forerunner-backed personal AI assistant) and Val Town\'s in-app coding agent "Townie" (unrelated company, not a browser-navigating agent). Neither publishes a UA/header/IP/extension signature. Confirms the task\'s prior finding that no stable public client-side signature is known. Missing evidence: clarification of which "Town" product the task means, and any labeled capture of either.',
+    rules: []
+  }));
+
+  registerProfiles(unprofiled('hark-handoff', 'Hark Handoff', 'Hark', [], 'unknown',
+    'https://hark.com/articles/introducing-hark-handoff', 'Hark: Introducing Handoff',
+    'Real, notable product from Hark (Brett Adcock) positioned as a fast computer-use/browser-use agent. Press coverage (VentureBeat, TechCrunch) describes capability, not a technical signature. No UA/header/IP/fingerprint published.'));
+
+  registerProfiles(unprofiled('lindy-autopilot', 'Lindy Autopilot', 'Lindy AI', [], 'cloud',
+    'https://docs.lindy.ai/fundamentals/lindy-101/ai-agents', 'Lindy: AI agents docs',
+    '"Autopilot" is a feature within Lindy 3.0, not a standalone product. Lindy agents primarily act via API/integrations and a no-code workflow builder rather than driving a visibly fingerprintable client browser. No UA/header/IP signal published.'));
+
+  registerProfiles(mkProfile({
+    id: 'polar', name: 'Polar', vendor: 'Polar Browser Inc.', aliases: ['Polar Browser'],
+    category: 'product-agent', execution: 'local', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [mkSource('official-docs', 'verified-official', 'https://polarbrowser.com/', 'Polar Browser: official site', '2026-09-01')],
+    notes: 'Name collision warning: "Polar" also refers to an unrelated billing/monetization platform (polar.sh) and to unrelated "Polar Analytics" ecommerce tooling. This profile is specifically Polar Browser (polarbrowser.com), an AI browser agent for knowledge work founded by an ex-Perplexity/Comet engineer. No UA/header/IP/fingerprint signal published.',
+    rules: []
+  }));
+
+  registerProfiles(mkProfile({
+    id: 'aera', name: 'Aera', vendor: 'independent ("Aera Browser", getaera.app)', aliases: ['Aera Browser'],
+    category: 'product-agent', execution: 'local', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [mkSource('official-docs', 'verified-official', 'https://getaera.app/', 'Aera Browser: official site', '2026-09-01')],
+    notes: 'Name collision warning: "Aera Technology" (aeratechnology.com) is a separate, established enterprise decision-intelligence platform unrelated to browser agents. This profile is specifically the smaller desktop browser-automation app at getaera.app. No UA/header/IP/fingerprint signal published for either.',
+    rules: []
+  }));
+
+  registerProfiles(unprofiled('aside', 'Aside', 'Aside', [], 'local',
+    'https://aside.com/', 'Aside: official site',
+    'Real, Y Combinator-backed product ("a browser rebuilt for people and agents"). No UA/header/IP/extension/fingerprint signal published in press or docs surfaced.'));
+
+  registerProfiles(mkProfile({
+    id: 'browseros-neo', name: 'BrowserOS / Neo', vendor: 'BrowserOS (browseros-ai)', aliases: ['Neo'],
+    category: 'product-agent', execution: 'local', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [mkSource('official-repo', 'verified-official', 'https://github.com/browseros-ai/BrowserOS', 'BrowserOS: GitHub repository', '2026-09-01')],
+    notes: 'Real, open-source Chromium fork. Being source-available means a custom UA token could in principle be derived directly from source, but no one has published one and this task instance did not do so (inventing one from an untested source read would violate the no-speculative-rules requirement). Missing evidence: a source-level check of BrowserOS\'s UA override (if any) plus a labeled network capture.',
+    rules: []
+  }));
+
+  registerProfiles(mkProfile({
+    id: 'strawberry-browser', name: 'Strawberry', vendor: 'Strawberry (Sweden)', aliases: ['Strawberry Browser'],
+    category: 'product-agent', execution: 'local', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [mkSource('official-docs', 'verified-official', 'https://strawberrybrowser.com/', 'Strawberry Browser: official site', '2026-09-01')],
+    notes: 'Distinct from OpenAI\'s internal "Strawberry" codename for the o1 reasoning model (unrelated). This profile is the Swedish AI browser-for-work product at strawberrybrowser.com. No UA/header/IP/fingerprint signal published.',
+    rules: []
+  }));
+
+  registerProfiles(mkProfile({
+    id: 'meteor-browser', name: 'Meteor', vendor: 'browse.dev (YC S25)', aliases: [],
+    category: 'product-agent', execution: 'local', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [mkSource('official-docs', 'verified-official', 'https://www.browse.dev/', 'browse.dev / Meteor: Y Combinator listing', '2026-09-01')],
+    notes: 'Name collision warning: unrelated to the Meteor.js/Galaxy web framework and to an unrelated meteor.com.co ERP/WhatsApp business-agent product. This profile is the YC S25 AI-native browser by browse.dev. No UA/header/IP/fingerprint signal published.',
+    rules: []
+  }));
+})();
+
+
+//# sourceURL=src/registry/longtail-a.ts
+
+(function () {
+  'use strict';
+  function unprofiled(id        , name        , vendor        , aliases          , execution                , sourceUrl        , sourceTitle        , notes        ) {
+    return mkProfile({
+      id, name, vendor, aliases, category: 'product-agent'         , execution, status: 'unprofiled'         ,
+      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+      sources: [mkSource('official-docs', 'verified-official', sourceUrl, sourceTitle, '2026-09-01')],
+      notes, rules: []
+    });
+  }
+
+  registerProfiles(unprofiled('opera-neon', 'Opera Neon', 'Opera Limited', [], 'local',
+    'https://www.operaneon.com/', 'Opera: Neon official site',
+    'Real, officially shipped Opera product (agentic AI browser, released Sept 2025). Chromium-based, so it follows Opera\'s generic `OPR/` UA convention, but no Neon-specific distinguishing UA token, header, IP range, or extension ID was found in Opera\'s own docs/FAQ. Worth a follow-up direct network inspection of a live Neon build.'));
+
+  registerProfiles(unprofiled('fellou', 'Fellou', 'Fellou AI', [], 'local',
+    'https://fellou.ai/', 'Fellou: official site',
+    'Real product marketed as "the world\'s first agentic browser," including an "Eko" agent framework. No published UA/header/IP/extension ID/fingerprint in official docs or third-party writeups surfaced. Worth a follow-up direct network trace of a live Fellou session.'));
+
+  registerProfiles(unprofiled('dia-browser', 'Dia', 'The Browser Company', [], 'local',
+    'https://www.diabrowser.com/', 'Dia: official site',
+    'Real, well-known official product (beta since June 2025), Arc-derived/Chromium-based. No official UA string, header, or extension ID published in Dia\'s own help/security docs or in press coverage surfaced. Likely carries a standard Chromium-family UA with no distinct "Dia/" token documented.'));
+
+  registerProfiles(unprofiled('openclaw', 'OpenClaw', 'OpenClaw (open-source)', ['Clawdbot', 'Moltbot'], 'local',
+    'https://openclaw.ai/', 'OpenClaw: official site',
+    'Real, open-source general local/agentic assistant framework (formerly named Clawdbot/Moltbot). It is not specifically a browser client — no published UA/header/IP/extension signature for browser-driving behavior specifically.'));
+
+  registerProfiles(unprofiled('moclaw', 'MoClaw', 'MoClaw', [], 'cloud',
+    'https://moclaw.ai/', 'MoClaw: official site',
+    'Real product, "cloud AI computer for autonomous AI agents." Despite the naming similarity, no evidence was found linking it to OpenClaw as the same product — treat as unrelated. No UA/header/IP/fingerprint signal published.'));
+
+  registerProfiles(mkProfile({
+    id: 'multion', name: 'MultiOn', vendor: 'MultiOn / AGI, Inc.', aliases: [],
+    category: 'product-agent', execution: 'extension', status: 'research-profile',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [
+      mkSource('official-repo', 'verified-official', 'https://chrome-stats.com/d/ddmjhdbknfidiopmbaceghhhbgbpenmm', 'MultiOn Chrome — Chrome Web Store listing (via chrome-stats.com)', '2026-09-01'),
+      mkSource('official-docs', 'verified-official', 'https://docs.multion.ai/learn/browser-extension', 'MultiOn: browser extension docs', '2026-09-01')
+    ],
+    notes: 'The one long-tail item with an actual reproducible artifact: a published Chrome extension with stable ID ddmjhdbknfidiopmbaceghhhbgbpenmm. However, this detector\'s page-context collectors cannot enumerate installed extension IDs (that requires probing web-accessible extension resources, which is fragile and was not implemented here) — no rule is registered rather than inventing an unreachable one. Founder Div Garg announced stepping back from the company in Dec 2024 (remaining as advisor); the extension/docs still appeared live as of this research pass, but the product may be unmaintained. Missing evidence: a web-accessible-resource probe collector plus a labeled capture, before a rule can be added honestly.',
+    rules: []
+  }));
+
+  registerProfiles(unprofiled('simular-sai', 'Simular SAI', 'Simular', ['Sai', 'Agent-S'], 'local',
+    'https://www.simular.ai/', 'Simular: official site',
+    'Real product, open-source-backed (Agent-S/Agent-S2/Agent-S3 on GitHub), commercial product "Sai." It is a computer-use agent operating at the OS/UI level rather than as a distinct browser client with its own UA — no published UA/header/IP/extension signature.'));
+
+  registerProfiles(mkProfile({
+    id: 'clark', name: 'Clark', vendor: 'Clark Labs Inc.', aliases: [],
+    category: 'product-agent', execution: 'local', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [mkSource('official-repo', 'verified-official', 'https://github.com/clark-labs-inc/clark-browser', 'Clark Labs: clark-browser repository', '2026-09-01')],
+    notes: 'Real product. Its underlying "clark-browser" is explicitly marketed as "fully stealth chromium for AI agents" — i.e. designed to actively avoid leaving a distinguishing fingerprint. Absence of a signature here is intentional by the vendor\'s own design, not merely undocumented; do not attempt to infer one.',
+    rules: []
+  }));
+
+  registerProfiles(unprofiled('bytebot', 'Bytebot', 'Bytebot (YC-backed, open source)', [], 'local',
+    'https://www.bytebot.ai/', 'Bytebot: official site',
+    'Real, open-source product: a self-hosted containerized Ubuntu/XFCE virtual desktop running stock Firefox, controlled via its own REST API. It does not standardize or publish a browser UA/header/fingerprint of its own — whatever signature exists would be that of the stock Firefox build inside the container, not something Bytebot documents.'));
+
+  registerProfiles(mkProfile({
+    id: 'hermes', name: 'Hermes', vendor: 'ambiguous — see notes', aliases: [],
+    category: 'product-agent', execution: 'unknown', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [mkSource('official-docs', 'verified-official', 'https://hermes-agent.nousresearch.com/', 'Nous Research: Hermes Agent', '2026-09-01')],
+    notes: 'Genuinely ambiguous name: candidates include Nous Research\'s open-source "Hermes Agent" (general AI agent with browser automation as one feature, not itself a browser), assorted lower-quality SEO-branded "hermes-agent" sites of uncertain provenance, and Meta\'s unrelated Hermes JavaScript engine. No UA/header/IP/fingerprint signal found for any candidate. Do not key any rule on the bare string "Hermes" — it is too likely to collide with unrelated software.',
+    rules: []
+  }));
+})();
+
+
+//# sourceURL=src/registry/longtail-b.ts
+
+(function () {
+  'use strict';
+  const fpAgent = mkSource('academic-research', 'research-paper-claim',
+    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
+  const officialDocs = mkSource('official-docs', 'verified-official',
+    'https://manus.im/docs/features/browser-operator', 'Manus: Browser Operator docs', '2026-09-01');
+  const officialBlog = mkSource('official-docs', 'verified-official',
+    'https://manus.im/blog/manus-browser-operator', 'Manus: Browser Operator announcement', '2026-06-01');
+  const webStore = mkSource('official-repo', 'verified-official',
+    'https://chromewebstore.google.com/detail/manus-ai-browser-operator/cecngibhkljoiafhjfmcgbmikfogdiko', 'Manus AI Browser Operator — Chrome Web Store listing', '2026-09-01');
+  const unofficialRegistry = mkSource('third-party-analysis', 'anecdotal',
+    'https://knownagents.com', 'Third-party bot registry: unverified Manus UA/geolocation claim', '2026-09-01');
+
+  registerProfiles(mkProfile({
+    id: 'manus', name: 'Manus', vendor: 'Butterfly Effect AI',
+    aliases: ['Manus Operator', 'Manus Browser Operator', 'Browser Operator'],
+    category: 'product-agent', execution: 'hybrid', status: 'research-profile',
+    minimumEvidence: 3, lastReviewedAt: '2026-09-17',
+    sources: [fpAgent, officialDocs, officialBlog, webStore],
+    notes: '"Manus Operator" / "Browser Operator" is a feature inside Manus (Connectors tab), not a separate product — registered as a single profile with both names as aliases per task instructions to avoid a false product/framework split. Chrome extension ID cecngibhkljoiafhjfmcgbmikfogdiko is official. Do NOT use the "Manus-User/1.0" UA string or "traffic from Maldives" claims — both come from an unverified third-party registry, not Manus/Butterfly Effect docs.',
+    rules: [
+      mkRule('environment.platform', 'regex', 'Linux|x86_64', 10, 'Linux-like platform (FP-Agent: 96.6% of sandboxed tasks)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.screen.size', 'eq', '1280x1100', 16, 'screen 1280×1100 (FP-Agent dataset snapshot, low entropy = fairly stable but sandbox-controlled)',
+        'browser-fingerprint', 'medium', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.hardware.memoryGB', 'eq', 4, 12, '4 GB device memory (FP-Agent sandbox snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.hardware.logicalCores', 'eq', 6, 12, '6 logical cores (FP-Agent sandbox snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.touch.maxPoints', 'eq', 10, 10, '10 touch points (FP-Agent sandbox snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.timezone.zone', 'oneOf', ['UTC', 'Etc/UTC'], 8, 'UTC timezone (FP-Agent sandbox snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.rendering.fontCount', 'eq', 0, 8, 'no detected fonts (FP-Agent sandbox snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('behavior.correctionKeyRatio', 'gte', 0.05, 14, 'notable backspace/delete ratio, often before filling a field (FP-Agent behavioral finding)',
+        'behavioral', 'medium', fpAgent)
+    ]
+  }));
+})();
+
+
+//# sourceURL=src/registry/manus.ts
+
+(function () {
+  'use strict';
+  const rfc9421 = mkSource('official-docs', 'verified-official',
+    'https://developers.openai.com/api/docs/guides/ip-addresses', 'OpenAI API IP addresses & agent allowlisting', '2026-09-01');
+  const cfConfirm = mkSource('third-party-analysis', 'verified-official',
+    'https://blog.cloudflare.com/web-bot-auth/', 'Cloudflare: Web Bot Auth (quotes OpenAI confirming Operator request signing)', '2026-08-01');
+  const uaCapture = mkSource('third-party-analysis', 'anecdotal',
+    'https://simonwillison.net/2025/Aug/4/chatgpt-agents-user-agent/', 'Simon Willison: single capture of ChatGPT Agent User-Agent', '2025-08-04');
+  const fpAgent = mkSource('academic-research', 'research-paper-claim',
+    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
+  const botsDocs = mkSource('official-docs', 'verified-official',
+    'https://developers.openai.com/api/docs/bots', 'OpenAI: crawlers and bots (GPTBot, OAI-SearchBot, OAI-AdsBot, ChatGPT-User)', '2026-09-01');
+
+  registerProfiles(mkProfile({
+    id: 'chatgpt-agent', name: 'ChatGPT Agent / ChatGPT Work', vendor: 'OpenAI',
+    aliases: ['ChatGPT Agent', 'ChatGPT Work', 'Operator', 'Computer-Using Agent (consumer product)'],
+    category: 'product-agent', execution: 'cloud', status: 'research-profile',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-17',
+    sources: [rfc9421, cfConfirm, uaCapture, fpAgent, botsDocs],
+    notes: 'OpenAI does not publish a fifth, distinct UA token/IP list specifically for the newer agentic-browsing mode beyond GPTBot/OAI-SearchBot/OAI-AdsBot/ChatGPT-User. RFC 9421 signing of Operator/agent requests is independently confirmed by Cloudflare, and is the strongest signal here — but it requires server-side signature verification; the header existing alone proves nothing.',
+    headerMarker: { pattern: 'chatgpt|openai|gptbot', confidence: 'low', source: botsDocs },
+    rules: [
+      mkRule('server.headers.signature-agent', 'includes', 'chatgpt.com', 30, 'Signature-Agent references chatgpt.com',
+        'server-heuristic', 'medium', rfc9421, { requiresServerEvidence: true, knownConflicts: ['Signature-Agent is a plain header and can be spoofed; only a verified signature (webBotAuth.verified) is trustworthy.'] }),
+      mkRule('server.headers.signature-input', 'truthy', true, 15, 'RFC 9421 Signature-Input header present',
+        'server-heuristic', 'medium', rfc9421, { requiresServerEvidence: true }),
+      mkRule('environment.ua', 'includes', 'Chrome/138.0.0.0', 8, 'UA matches one third-party ChatGPT Agent capture (Aug 2025, may already be stale)',
+        'browser-fingerprint', 'low', uaCapture, { reviewBy: '2026-12-01' }),
+      mkRule('behavior.pasteCount', 'gte', 1, 18, 'text pasted rather than typed (FP-Agent: statistically significant vs. human baseline)',
+        'behavioral', 'medium', fpAgent),
+      mkRule('behavior.ctrlVOnMac', 'truthy', true, 20, 'Ctrl+V paste while reporting macOS (FP-Agent: platform/paste-shortcut mismatch)',
+        'behavioral', 'medium', fpAgent),
+      mkRule('environment.screen.size', 'eq', '1280x960', 10, 'screen 1280×960 (FP-Agent dataset snapshot, fragile)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.hardware.logicalCores', 'eq', 13, 10, '13 logical cores (FP-Agent dataset snapshot, fragile)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' })
+    ]
+  }));
+
+  registerProfiles(mkProfile({
+    id: 'openai-atlas-agent', name: 'OpenAI Atlas Agent', vendor: 'OpenAI',
+    aliases: ['ChatGPT Atlas agent mode', 'Atlas Agent'],
+    category: 'product-agent', execution: 'hybrid', status: 'research-profile',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-17',
+    sources: [fpAgent],
+    notes: 'Atlas was reported shut down/folded back into ChatGPT around July 2026 (TechCrunch). Fingerprint claims below are FP-Agent dataset snapshots from before that point and should be treated as historical, not necessarily reproducible on current OpenAI products. No official UA, header, or IP signal was found specific to Atlas.',
+    rules: [
+      mkRule('behavior.pasteCount', 'gte', 1, 22, 'text pasted (FP-Agent: grouped with ChatGPT Agent and Comet as paste-driven)',
+        'behavioral', 'medium', fpAgent, { affectedVersion: 'pre-shutdown, ~2026-07', reviewBy: '2026-12-01' }),
+      mkRule('environment.platform', 'regex', 'Mac', 8, 'macOS platform (FP-Agent dataset snapshot)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.screen.size', 'eq', '1440x900', 8, 'screen 1440×900 (shared with Browser Use/Claude on macOS per FP-Agent — low discriminating power)',
+        'browser-fingerprint', 'low', fpAgent, { knownConflicts: ['browser-use', 'claude-in-chrome'], reviewBy: '2026-12-01' }),
+      mkRule('behavior.pointerMoves', 'eq', 0, 10, 'no pointer movement observed',
+        'behavioral', 'low', fpAgent)
+    ]
+  }));
+})();
+
+
+//# sourceURL=src/registry/openai.ts
+
+(function () {
+  'use strict';
+  const fpAgent = mkSource('academic-research', 'research-paper-claim',
+    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
+  const botsDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.perplexity.ai/guides/bots', 'Perplexity: official crawlers (PerplexityBot, Perplexity-User)', '2026-09-01');
+  const cloudflareStealth = mkSource('security-docs', 'verified-official',
+    'https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/', 'Cloudflare: Perplexity stealth crawling findings', '2026-08-01');
+  const computerBlog = mkSource('official-docs', 'verified-official',
+    'https://www.perplexity.ai/hub/blog/introducing-perplexity-computer', 'Perplexity: Introducing Perplexity Computer', '2026-02-27');
+
+  registerProfiles(mkProfile({
+    id: 'perplexity-comet', name: 'Perplexity Comet', vendor: 'Perplexity AI',
+    aliases: ['Comet'],
+    category: 'product-agent', execution: 'hybrid', status: 'research-profile',
+    minimumEvidence: 3, lastReviewedAt: '2026-09-17',
+    sources: [fpAgent, botsDocs, cloudflareStealth],
+    notes: 'Perplexity\'s official crawler docs name only PerplexityBot and Perplexity-User — Comet itself has no documented UA/header/IP. Cloudflare has separately found Perplexity using undeclared/stealth crawlers that do not match its published UA, which further undermines trusting any Perplexity-origin UA string at face value. The paste-driven-input finding is FP-Agent\'s one statistically validated (Mann-Whitney U, p<0.01) cross-agent claim; treat font/hardware fields as fragile dataset snapshots.',
+    rules: [
+      mkRule('behavior.pasteCount', 'gte', 1, 24, 'text pasted rather than typed (FP-Agent: statistically significant, shared with ChatGPT Agent/Atlas)',
+        'behavioral', 'medium', fpAgent),
+      mkRule('environment.platform', 'regex', 'Mac', 6, 'macOS platform (weak alone, common)',
+        'browser-fingerprint', 'low', fpAgent),
+      mkRule('environment.rendering.fonts.Gill Sans', 'truthy', true, 8, 'Gill Sans available on both macOS and Windows (FP-Agent: unlike Claude/Browser Use which report it macOS-only)',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('behavior.trustedEvents', 'gte', 2, 6, 'trusted interaction events observed (baseline signal, not discriminating alone)',
+        'behavioral', 'low', fpAgent)
+    ]
+  }));
+
+  registerProfiles(mkProfile({
+    id: 'perplexity-computer', name: 'Perplexity Computer', vendor: 'Perplexity AI',
+    aliases: ['Perplexity Personal Computer', 'Computer for Slack', 'Computer for Pro'],
+    category: 'product-agent', execution: 'cloud', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
+    sources: [computerBlog],
+    notes: 'Confirmed real, distinct product from Comet (TechCrunch, official blog), announced ~2026-02-27, runs entirely cloud-side across many models. Not among the agents studied by FP-Agent or any other source found — no UA, header, IP, fingerprint, or behavioral signal is currently known. Missing evidence: any labeled capture of Perplexity Computer network or behavioral traffic.',
+    rules: []
+  }));
+})();
+
+
+//# sourceURL=src/registry/perplexity.ts
 
 (function (root                   ) {
   'use strict';
@@ -586,6 +1186,7 @@
 (function (root                   ) {
   'use strict';
   const AD = root.AgentDetector;
+
   function compare(actual         , rule               )          {
     switch (rule.op) {
       case 'eq': return actual === rule.value;
@@ -599,74 +1200,153 @@
       default: return false;
     }
   }
+
+  /**
+   * Independent-category requirement: strong heuristic attribution needs evidence spanning more than
+   * one evidence layer, not just several rules stacked in the same layer (e.g. five browser-fingerprint
+   * clues are still one kind of clue). Counted from MATCHED rules only.
+   */
+  function matchedLayerCount(matched                 )         {
+    return new Set(matched.map(m => m.layer)).size;
+  }
+
   AD.scoreProfile = function (profile, data) {
-    const available = profile.rules.filter(rule => AD.get(data, rule.path) !== undefined && AD.get(data, rule.path) !== null);
-    const matched = available.filter(rule => compare(AD.get(data, rule.path), rule));
-    const earned = matched.reduce((sum, rule) => sum + rule.weight, 0);
+    const serverPresent = !!data.server;
+    const available = profile.rules.filter(rule => {
+      if (rule.requiresServerEvidence && !serverPresent) return false;
+      const value = AD.get(data, rule.path);
+      return value !== undefined && value !== null;
+    });
+    const matchedRules = available.filter(rule => compare(AD.get(data, rule.path), rule));
+    const conflictingRules = available.filter(rule => !compare(AD.get(data, rule.path), rule));
+    const missingRules = profile.rules.filter(rule => !available.includes(rule));
+
+    const toMatch = (rule               )                => ({
+      label: rule.label, layer: rule.layer, weight: rule.weight, value: AD.get(data, rule.path), path: rule.path, confidence: rule.confidence
+    });
+    const matched = matchedRules.map(toMatch);
+    const conflicting = conflictingRules.map(toMatch);
+    const missing = missingRules.map(rule => rule.label);
+
     const possible = profile.rules.reduce((sum, rule) => sum + rule.weight, 0) || 1;
+    const earnedWeight = matched.reduce((sum, m) => sum + m.weight, 0);
+    const conflictPenalty = conflicting.reduce((sum, m) => sum + m.weight, 0) * 0.5;
+    const netWeight = Math.max(0, earnedWeight - conflictPenalty);
     const coverage = available.reduce((sum, rule) => sum + rule.weight, 0) / possible;
-    const raw = Math.round(100 * earned / possible);
-    const score = matched.length >= profile.minMatched ? raw : Math.min(raw, 24);
-    return { id: profile.id, name: profile.name, vendor: profile.vendor, source: profile.source, status: profile.status, score, coverage: Math.round(coverage * 100), matched: matched.map(rule => ({ label: rule.label, path: rule.path, weight: rule.weight, value: AD.get(data, rule.path) })), availableRules: available.length, totalRules: profile.rules.length };
+    const raw = Math.round(100 * netWeight / possible);
+
+    // One ordinary property (a single matched rule, or evidence confined to one layer) must never
+    // create strong attribution: cap the score unless the profile's own minimumEvidence is met AND
+    // matched evidence spans more than one independent evidence layer.
+    const meetsMinimum = matched.length >= profile.minimumEvidence;
+    const independentLayers = matchedLayerCount(matched) >= 2;
+    const score = meetsMinimum && independentLayers ? raw : Math.min(raw, 24);
+
+    return {
+      id: profile.id, name: profile.name, vendor: profile.vendor, category: profile.category, execution: profile.execution,
+      status: profile.status, score, coverage: Math.round(coverage * 100),
+      matched, missing, conflicting,
+      availableRules: available.length, totalRules: profile.rules.length,
+      sources: profile.sources, verified: false, notes: profile.notes
+    };
   };
+
   function mergedHeaders(server                       , http                     )                         {
     return { ...http?.headers, ...AD.normalizeHeaders(server?.headers) };
   }
   function unquote(value        )         { return value.replace(/^\s*"|"\s*$/g, ''); }
-  function addHeaderAttribution(candidates                  , headers                        )                   {
+
+  /**
+   * A header marker is a narrowly-sourced, documented regex — never a fuzzy match against the profile's
+   * own name/aliases. It raises heuristic attribution but is explicitly never treated as verified: a
+   * client-observable header can be spoofed by anyone, verification must happen server-side (RFC 9421 /
+   * Web Bot Auth signature checks), which is handled separately via `server.webBotAuth`.
+   */
+  function applyHeaderMarkers(candidates                  , profiles                , headers                        )                   {
     const text = `${headers['user-agent'] ?? ''} ${headers['signature-agent'] ?? ''}`;
     const signed = !!headers['signature-agent'] && !!headers['signature-input'] && !!headers.signature;
-    const markers                          = [
-      ['chatgpt-agent', /chatgpt|openai|gptbot/i],
-      ['claude-for-chrome', /claude|anthropic/i],
-      ['comet', /perplexity|comet/i],
-      ['instinct-local', /instinct/i]
-    ];
     return candidates.map(candidate => {
-      const marker = markers.find(([id, pattern]) => id === candidate.id && pattern.test(text));
-      if (!marker) return candidate;
-      return {
-        ...candidate, score: Math.max(candidate.score, signed ? 75 : 55), coverage: Math.max(candidate.coverage, signed ? 65 : 40),
-        matched: [...candidate.matched, { label: signed ? 'provider marker with unverified HTTP signature headers' : 'provider marker in HTTP headers', weight: signed ? 50 : 30, value: marker[1].exec(text)?.[0] ?? text }],
-        availableRules: candidate.availableRules + 1, totalRules: candidate.totalRules + 1
+      const profile = profiles.find(p => p.id === candidate.id);
+      const marker = profile?.headerMarker;
+      if (!marker || !new RegExp(marker.pattern, 'i').test(text)) return candidate;
+      const weight = signed ? 50 : marker.confidence === 'high' ? 32 : marker.confidence === 'medium' ? 22 : 12;
+      const matchLabel                = {
+        label: signed ? 'documented header marker with unverified HTTP signature headers present' : 'documented header marker observed in HTTP headers',
+        layer: 'server-heuristic', weight, value: new RegExp(marker.pattern, 'i').exec(text)?.[0] ?? text, confidence: marker.confidence
       };
+      const matched = [...candidate.matched, matchLabel];
+      const bumped = Math.max(candidate.score, matchedLayerCount(matched) >= 2 ? Math.min(90, weight + candidate.score) : Math.min(24, weight));
+      return { ...candidate, score: bumped, matched, availableRules: candidate.availableRules + 1, totalRules: candidate.totalRules + 1 };
     }).sort((a, b) => b.score - a.score);
   }
+
   AD.detect = function ({ environment, behavior, server, http }) {
     const automation = { webdriver: environment.automation.webdriver, traces: environment.automation.globals.length, rootAttributes: environment.automation.rootAttributes.length };
     const headers = mergedHeaders(server, http);
-    let automationScore = 0; const automationEvidence           = [];
-    const add = (points        , label        ) => { automationScore += points; automationEvidence.push(label); };
-    if (automation.webdriver) add(55, 'navigator.webdriver=true');
-    if (automation.traces) add(35, `${automation.traces} automation global(s)`);
-    if (automation.rootAttributes) add(25, 'automation attribute on <html>');
-    if (behavior.trustedEvents >= 4 && behavior.pointerMoves === 0 && (behavior.keydownCount || behavior.clickCount)) add(12, 'interaction without pointer movement');
-    if (behavior.keydownCount >= 6 && behavior.interKeyStdMs !== null && behavior.interKeyStdMs < 5) add(22, 'near-uniform typing cadence');
-    if (behavior.pasteCount) add(8, 'paste-driven input');
-    if (behavior.changeWithoutTyping) add(24, 'field changed without typing/paste events');
+    let automationScore = 0;
+    const automationEvidence                  = [];
+    const add = (points        , label        , layer               ) => { automationScore += points; automationEvidence.push({ label, layer, weight: points, value: true }); };
+
+    if (automation.webdriver) add(55, 'navigator.webdriver=true', 'browser-fingerprint');
+    if (automation.traces) add(35, `${automation.traces} automation global(s)`, 'browser-fingerprint');
+    if (automation.rootAttributes) add(25, 'automation attribute on <html>', 'browser-fingerprint');
+    if (behavior.trustedEvents >= 4 && behavior.pointerMoves === 0 && (behavior.keydownCount || behavior.clickCount)) add(12, 'interaction without pointer movement', 'behavioral');
+    if (behavior.keydownCount >= 6 && behavior.interKeyStdMs !== null && behavior.interKeyStdMs < 5) add(22, 'near-uniform typing cadence', 'behavioral');
+    if (behavior.pasteCount) add(8, 'paste-driven input', 'behavioral');
+    if (behavior.changeWithoutTyping) add(24, 'field changed without typing/paste events', 'behavioral');
+
     const headerUa = headers['user-agent'];
     const botHeaderPattern = /headless|playwright|puppeteer|selenium|phantom|chatgpt|openai|gptbot|claude|anthropic|perplexity|comet|grok|instinct|\bbot\b|crawler|spider/i;
-    if (headerUa && botHeaderPattern.test(headerUa)) add(45, 'bot/agent marker in HTTP User-Agent');
-    if (headers['signature-agent']) add(35, 'Signature-Agent HTTP header observed (unverified)');
-    if (headers['signature-input'] && headers.signature) add(20, 'HTTP Message Signature headers observed (unverified)');
-    if (headerUa && environment.ua && !headerUa.split(' || ').includes(environment.ua)) add(18, 'HTTP and JavaScript User-Agent mismatch');
+    if (headerUa && botHeaderPattern.test(headerUa)) add(45, 'bot/agent marker in HTTP User-Agent', 'server-heuristic');
+    if (headers['signature-agent']) add(35, 'Signature-Agent HTTP header observed (unverified)', 'server-heuristic');
+    if (headers['signature-input'] && headers.signature) add(20, 'HTTP Message Signature headers observed (unverified)', 'server-heuristic');
+    if (headerUa && environment.ua && !headerUa.split(' || ').includes(environment.ua)) add(18, 'HTTP and JavaScript User-Agent mismatch', 'server-heuristic');
     const headerPlatform = headers['sec-ch-ua-platform'];
-    if (headerPlatform && environment.clientHints?.platform && !headerPlatform.split(' || ').some(value => unquote(value) === environment.clientHints.platform)) add(12, 'HTTP and JavaScript Client Hint platform mismatch');
+    if (headerPlatform && environment.clientHints?.platform && !headerPlatform.split(' || ').some(value => unquote(value) === environment.clientHints.platform)) add(12, 'HTTP and JavaScript Client Hint platform mismatch', 'server-heuristic');
     const headerLanguage = headers['accept-language'];
-    if (headerLanguage && environment.languages?.primary && !headerLanguage.toLowerCase().includes(environment.languages.primary.toLowerCase())) add(8, 'HTTP and JavaScript language mismatch');
+    if (headerLanguage && environment.languages?.primary && !headerLanguage.toLowerCase().includes(environment.languages.primary.toLowerCase())) add(8, 'HTTP and JavaScript language mismatch', 'server-heuristic');
+
+    // Client-provided claims about server verification are never trusted directly: `webBotAuth.verified`
+    // is only honored because it is documented to be set by a trusted server integration, never by
+    // client JS. A same-origin JSON endpoint (or imported capture) is the closest this static page can
+    // get to "server-side" without running one itself.
     const auth = server?.webBotAuth;
-    const verified = auth?.verified === true && typeof auth.agentId === 'string' ? auth.agentId : null;
-    let candidates = AD.signatures.map(profile => AD.scoreProfile(profile, { environment, behavior, server, http, automation, headers })).sort((a, b) => b.score - a.score);
-    candidates = addHeaderAttribution(candidates, headers);
-    if (verified) {
-      const name = auth?.agentName || verified;
-      candidates = [{ id: verified, name, vendor: auth?.vendor || 'verified signer', source: 'verified Web Bot Auth', status: 'verified', score: 100, coverage: 100, matched: [{ label: 'cryptographically verified request signature', value: true, weight: 100 }], availableRules: 1, totalRules: 1 }, ...candidates.filter(c => c.id !== verified)];
-      automationScore = Math.max(automationScore, 95); automationEvidence.unshift('verified Web Bot Auth identity');
+    const verifiedAgentId = auth?.verified === true && typeof auth.agentId === 'string' ? auth.agentId : null;
+
+    let candidates = AD.registry.map(profile => AD.scoreProfile(profile, { environment, behavior, server, http, automation, headers })).sort((a, b) => b.score - a.score);
+    candidates = applyHeaderMarkers(candidates, AD.registry, headers);
+
+    if (verifiedAgentId) {
+      const name = auth?.agentName || verifiedAgentId;
+      const known = AD.registry.find(p => p.id === verifiedAgentId);
+      const verifiedCandidate                 = {
+        id: verifiedAgentId, name, vendor: auth?.vendor || known?.vendor || 'verified signer',
+        category: known?.category ?? 'product-agent', execution: known?.execution ?? 'unknown',
+        status: 'verified', score: 100, coverage: 100,
+        matched: [{ label: 'cryptographically verified request signature', layer: 'verified-server-identity', value: true, weight: 100, confidence: 'high' }],
+        missing: [], conflicting: [], availableRules: 1, totalRules: 1, sources: known?.sources ?? [], verified: true
+      };
+      candidates = [verifiedCandidate, ...candidates.filter(c => c.id !== verifiedAgentId)];
+      automationScore = Math.max(automationScore, 95);
+      automationEvidence.unshift({ label: 'verified Web Bot Auth identity', layer: 'verified-server-identity', weight: 95, value: true });
     }
+
     automationScore = Math.min(100, automationScore);
     const top = candidates[0] ?? null;
-    const attribution                                          = verified ? 'verified' : (top?.score ?? 0) >= 70 ? 'strong heuristic' : (top?.score ?? 0) >= 45 ? 'possible' : (top?.score ?? 0) >= 25 ? 'weak lead' : 'unknown';
-    return { automation: { score: automationScore, label: automationScore >= 70 ? 'automation likely' : automationScore >= 35 ? 'automation possible' : 'no strong automation evidence', evidence: automationEvidence }, attribution: { label: attribution, top: attribution === 'unknown' ? null : top, candidates: candidates.slice(0, 6) } };
+    const status                                           =
+      verifiedAgentId ? 'verified' :
+      (top?.score ?? 0) >= 70 ? 'strong' :
+      (top?.score ?? 0) >= 45 ? 'possible' :
+      (top?.score ?? 0) >= 25 ? 'weak' : 'unknown';
+
+    return {
+      automation: {
+        score: automationScore,
+        label: automationScore >= 70 ? 'likely' : automationScore >= 35 ? 'possible' : 'not-enough-evidence',
+        evidence: automationEvidence
+      },
+      attribution: { status, top: status === 'unknown' ? null : top, candidates: candidates.slice(0, 8) }
+    };
   };
 })(globalThis);
 
@@ -686,17 +1366,53 @@
     const entities                         = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
     return String(value).replace(/[&<>"']/g, character => entities[character] ?? character);
   }
+  function statusLabel(status                          )         {
+    switch (status) {
+      case 'verified': return 'Verified server identity';
+      case 'research-profile': return 'Research profile (heuristic)';
+      case 'local-sample': return 'Local sample (heuristic, single capture)';
+      case 'generic-only': return 'Generic automation only';
+      case 'unprofiled': return 'Unprofiled — no public signature';
+      case 'verified-signature': return 'Verified signature';
+      default: return status;
+    }
+  }
+  function sourceLine(source                )         {
+    return `<li><a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.title)}</a> <small>(${esc(source.kind)}, ${esc(source.reliability)}, observed ${esc(source.observedAt)})</small></li>`;
+  }
   function candidateHtml(candidate                , index        )         {
-    const matches = candidate.matched.map(m => `<li>${esc(m.label)} <small>(${esc(JSON.stringify(m.value))})</small></li>`).join('') || '<li>No matching public rules</li>';
-    return `<article class="candidate"><div class="rank">${index + 1}</div><div class="candidate-main"><div class="candidate-head"><strong>${esc(candidate.name)}</strong><span>${candidate.score}%</span></div><div class="meter"><i style="width:${candidate.score}%"></i></div><p>${esc(candidate.status)} · rule coverage ${candidate.coverage}% · ${esc(candidate.source)}</p><details><summary>Evidence (${candidate.matched.length})</summary><ul>${matches}</ul></details></div></article>`;
+    const badge = candidate.verified
+      ? '<span class="badge badge-verified">Verified</span>'
+      : '<span class="badge badge-heuristic">Heuristic</span>';
+    const matches = candidate.matched.map(m =>
+      `<li>${esc(m.label)} <small>(${esc(m.layer)}, ${esc(m.confidence ?? 'n/a')} confidence — ${esc(JSON.stringify(m.value))})</small></li>`
+    ).join('') || '<li>No matching public rules</li>';
+    const conflicts = candidate.conflicting.length
+      ? `<details class="conflicts"><summary>Conflicting evidence (${candidate.conflicting.length})</summary><ul>${candidate.conflicting.map(m => `<li>${esc(m.label)} <small>(${esc(m.layer)})</small></li>`).join('')}</ul></details>`
+      : '';
+    const missing = candidate.missing.length
+      ? `<details><summary>Missing evidence (${candidate.missing.length})</summary><ul>${candidate.missing.map(m => `<li>${esc(m)}</li>`).join('')}</ul></details>`
+      : '';
+    const sources = candidate.sources.length
+      ? `<details><summary>Sources (${candidate.sources.length})</summary><ul>${candidate.sources.map(sourceLine).join('')}</ul></details>`
+      : '';
+    const coverageLabel = candidate.totalRules > 0
+      ? `profile coverage ${candidate.availableRules}/${candidate.totalRules} rules (${candidate.coverage}%)`
+      : 'no scoring rules registered for this profile';
+    const notes = candidate.notes ? `<p class="notes">${esc(candidate.notes)}</p>` : '';
+    return `<article class="candidate"><div class="rank">${index + 1}</div><div class="candidate-main"><div class="candidate-head"><strong>${esc(candidate.name)}</strong>${badge}<span>${candidate.score}%</span></div><div class="meter"><i style="width:${candidate.score}%"></i></div><p>${esc(statusLabel(candidate.status))} · ${esc(candidate.category)} · ${esc(coverageLabel)}</p>${notes}<details><summary>Matched evidence (${candidate.matched.length})</summary><ul>${matches}</ul></details>${conflicts}${missing}${sources}</div></article>`;
   }
   AD.render = function () {
     if (!AD.state.snapshot) return;
     const behavior = AD.behaviorFeatures(), env = AD.state.snapshot.environment;
     AD.state.result = AD.detect({ environment: env, behavior, server: AD.state.server, http: AD.state.http });
     const result = AD.state.result, top = result.attribution.top;
+    const verified = result.attribution.status === 'verified';
     $('agentName').textContent = top?.name || 'Unknown agent';
-    $('agentMeta').textContent = top ? `${result.attribution.label} · ${top.score}% profile match` : 'No profile has enough matching evidence';
+    $('agentMeta').textContent = top
+      ? `${result.attribution.status} attribution${verified ? '' : ' (heuristic — never treat as certain identity)'} · ${top.score}% profile match`
+      : 'No profile has enough matching evidence';
+    $('agentName').classList.toggle('verified-name', verified);
     $('automationScore').textContent = `${result.automation.score}%`;
     $('automationLabel').textContent = result.automation.label;
     $('candidateList').innerHTML = result.attribution.candidates.map(candidateHtml).join('');
@@ -710,7 +1426,28 @@
     const snapshot = AD.state.snapshot;
     if (!snapshot) throw new Error('Environment snapshot is not ready');
     const behavior = AD.behaviorFeatures();
-    return { schemaVersion: 4, detectorVersion: AD.VERSION, startedAt: AD.state.startedAt, exportedAt: new Date().toISOString(), page: { origin: location.origin, path: location.pathname }, environment: snapshot.environment, behavior, server: AD.state.server, http: AD.state.http, detection: AD.detect({ environment: snapshot.environment, behavior, server: AD.state.server, http: AD.state.http }), limitations: ['Attribution is heuristic unless server-side identity is cryptographically verified', 'Browser values, events, and HTTP headers can be spoofed or normalized by intermediaries', 'Research profiles drift as agents update', 'A low score does not prove a human visitor'] };
+    const detection = AD.detect({ environment: snapshot.environment, behavior, server: AD.state.server, http: AD.state.http });
+    return {
+      schemaVersion: 5,
+      detectorVersion: AD.VERSION,
+      registryVersion: AD.REGISTRY_VERSION,
+      startedAt: AD.state.startedAt,
+      exportedAt: new Date().toISOString(),
+      page: { origin: location.origin, path: location.pathname },
+      environment: snapshot.environment,
+      behavior,
+      server: AD.state.server,
+      http: AD.state.http,
+      detection,
+      profileVersions: AD.registry.map(p => ({ id: p.id, status: p.status, lastReviewedAt: p.lastReviewedAt })),
+      limitations: [
+        'Attribution is heuristic unless attribution.status is "verified" via a server-checked Web Bot Auth / RFC 9421 signature',
+        'Client-reported webBotAuth.verified claims are never trusted directly — only a server that performed the cryptographic check should set this',
+        'Browser values, events, and HTTP headers can be spoofed or normalized by intermediaries',
+        'Research profiles drift as agents update; see each candidate\'s reviewBy/lastReviewedAt dates',
+        'A low or zero score does not prove a human visitor, and a high heuristic score never proves a specific agent'
+      ]
+    };
   }
   async function collect()                {
     const rerun = $                   ('rerun');
