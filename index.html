@@ -12,7 +12,7 @@
     <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">05 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-17T12:59:53.771Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -230,7 +230,15 @@
                                                                                                     
                                    
      
-                                                                                         
+     
+                                                                                               
+                                                                                                   
+                                                                                                
+                                                                                                  
+                                                                                                    
+                                      
+     
+                                                                                                                    
  
 
                          
@@ -575,7 +583,7 @@ function registerProfiles(...profiles                )       {
     minimumEvidence: 1, lastReviewedAt: '2026-09-17',
     sources: [novaActRepo],
     notes: 'The one framework here with an explicit, vendor-documented self-identification convention: the README recommends developers "look for NovaAct in the user agent string." This is opt-in and overridable by the developer (not enforced), so absence of the token is not evidence against Nova Act, only its presence (when found) is a genuine documented marker.',
-    headerMarker: { pattern: 'novaact', confidence: 'high', source: novaActRepo },
+    headerMarker: { pattern: 'novaact', confidence: 'high', source: novaActRepo, selfIdentifying: true },
     rules: [
       mkRule('environment.ua', 'includes', 'NovaAct', 30, 'UA contains vendor-documented "NovaAct" self-identification token',
         'browser-fingerprint', 'high', novaActRepo)
@@ -905,7 +913,7 @@ function registerProfiles(...profiles                )       {
     minimumEvidence: 2, lastReviewedAt: '2026-09-17',
     sources: [rfc9421, cfConfirm, uaCapture, fpAgent, botsDocs],
     notes: 'OpenAI does not publish a fifth, distinct UA token/IP list specifically for the newer agentic-browsing mode beyond GPTBot/OAI-SearchBot/OAI-AdsBot/ChatGPT-User. RFC 9421 signing of Operator/agent requests is independently confirmed by Cloudflare, and is the strongest signal here — but it requires server-side signature verification; the header existing alone proves nothing. The two header rules below read from the merged header view (`server.headers` and/or the public HTTP-echo `http.headers`) since either collection path observes the same plain, spoofable header — neither path constitutes server-side verification, which only `server.webBotAuth.verified` can confer.',
-    headerMarker: { pattern: 'chatgpt|openai|gptbot', confidence: 'low', source: botsDocs },
+    headerMarker: { pattern: 'chatgpt|openai|gptbot', confidence: 'high', source: botsDocs, selfIdentifying: true },
     rules: [
       mkRule('headers.signature-agent', 'includes', 'chatgpt.com', 30, 'Signature-Agent references chatgpt.com',
         'server-heuristic', 'medium', rfc9421, { knownConflicts: ['Signature-Agent is a plain header and can be spoofed; only a verified signature (webBotAuth.verified) is trustworthy.'] }),
@@ -1284,6 +1292,7 @@ function registerProfiles(...profiles                )       {
       const profile = profiles.find(p => p.id === candidate.id);
       const marker = profile?.headerMarker;
       if (!marker || !new RegExp(marker.pattern, 'i').test(text)) return candidate;
+      const selfIdSingleLayerCap = marker.selfIdentifying ? 48 : 24;
       const weight = signed ? 50 : marker.confidence === 'high' ? 32 : marker.confidence === 'medium' ? 22 : 12;
       const matchLabel                = {
         label: signed ? 'documented header marker with unverified HTTP signature headers present' : 'documented header marker observed in HTTP headers',
@@ -1291,7 +1300,7 @@ function registerProfiles(...profiles                )       {
       };
       const matched = [...candidate.matched, matchLabel];
       const bumped = Math.max(candidate.score, matchedLayerCount(matched) >= 2 ? Math.min(90, weight + candidate.score) :
-        hasWellFormedWebBotAuthSignature(matched, headers) ? Math.min(64, weight + candidate.score) : Math.min(24, weight));
+        hasWellFormedWebBotAuthSignature(matched, headers) ? Math.min(64, weight + candidate.score) : Math.min(selfIdSingleLayerCap, weight));
       return { ...candidate, score: bumped, matched, availableRules: candidate.availableRules + 1, totalRules: candidate.totalRules + 1 };
     }).sort((a, b) => b.score - a.score);
   }
