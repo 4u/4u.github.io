@@ -3,13 +3,14 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Browser Agent Detector</title><style>:root{color-scheme:dark;--bg:#0a0d12;--panel:#111722;--panel2:#171f2d;--line:#293449;--text:#eef3fb;--muted:#9aa8bd;--accent:#71e6be;--accent2:#89a7ff;--danger:#ffb36b;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#17213a 0,transparent 32rem),var(--bg);color:var(--text)}header,main,footer{width:min(1100px,calc(100% - 32px));margin:auto}header{display:flex;justify-content:space-between;gap:32px;align-items:end;padding:72px 0 40px;border-bottom:1px solid var(--line)}h1{font-size:clamp(2.5rem,7vw,5.8rem);line-height:.95;letter-spacing:-.06em;margin:.2rem 0 1.2rem;max-width:780px}h2{font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.035em;margin:.25rem 0}.eyebrow{color:var(--accent);font:600 .72rem/1.2 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}.lede{color:var(--muted);font-size:1.1rem;max-width:650px}.actions,.server-controls{display:flex;gap:10px;flex-wrap:wrap}button,.file,input{border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--text);padding:.75rem 1rem;font:inherit}button,.file{cursor:pointer}button:hover,.file:hover{border-color:var(--accent)}button.primary{background:var(--accent);color:#07120f;border-color:var(--accent);font-weight:700}button:disabled{opacity:.5;cursor:wait}.file input{display:none}main{display:grid;gap:18px;padding:24px 0}section{background:linear-gradient(145deg,rgba(23,31,45,.92),rgba(14,19,28,.94));border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,36px);box-shadow:0 20px 50px #0004}.verdict{display:grid;grid-template-columns:1fr auto;align-items:center;border-color:#3c6c61}.status,.pill{display:inline-flex;border:1px solid #315e54;color:var(--accent);border-radius:999px;padding:.2rem .65rem;font-size:.75rem}.verdict h2{font-size:clamp(2.2rem,6vw,4.6rem)}.verdict p,.section-head>p,.candidate p,footer{color:var(--muted)}.automation{min-width:190px;padding:20px;border-left:1px solid var(--line);display:grid}.automation strong{font-size:3rem;color:var(--accent)}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:18px}.section-head>p{max-width:430px}.candidates{display:grid;gap:10px}.candidate{display:grid;grid-template-columns:42px 1fr;gap:14px;background:#0c111a;border:1px solid var(--line);padding:16px;border-radius:10px}.rank{font:700 1.6rem ui-monospace;color:#53617a}.candidate-head{display:flex;justify-content:space-between;gap:15px}.candidate-head span{font:700 1rem ui-monospace;color:var(--accent)}.meter{height:4px;background:#222d3f;margin:8px 0}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}.candidate p{margin:.2rem 0;font-size:.82rem}details{margin-top:12px}summary{cursor:pointer;color:#bfcaDC}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto;background:#090d14;padding:16px;border-radius:8px;color:#b9c9df;font:12px/1.55 ui-monospace,monospace}.probe{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end;margin:20px 0}.probe label{display:grid;gap:6px;color:var(--muted)}.scrollbox{height:110px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:10px;background:#090d14}.scrollbox div{height:180px;background:linear-gradient(var(--accent2),transparent);opacity:.18}.server-controls input{flex:1;min-width:230px}code{color:var(--accent);background:#0b1119;padding:.15rem .35rem;border-radius:4px}footer{padding:30px 0 60px}a{color:var(--accent2)}small{color:var(--muted)}@media(max-width:700px){header{align-items:start;padding-top:42px}.verdict,.probe{grid-template-columns:1fr}.automation{border-left:0;border-top:1px solid var(--line)}.section-head{display:block}header{display:block}header .actions{margin-top:20px}}
 </style></head>
 <body>
-  <header><div><p class="eyebrow">Browser Agent Detector / v0.2</p><h1>Who opened this page?</h1><p class="lede">A transparent, extensible guess based on browser fingerprints, interaction patterns, and optional server evidence.</p></div><div class="actions" data-ignore-events><button id="rerun">Run again</button><button id="export" class="primary">Export JSON</button></div></header>
+  <header><div><p class="eyebrow">Browser Agent Detector / v0.3</p><h1>Who opened this page?</h1><p class="lede">A transparent, extensible guess based on browser fingerprints, HTTP headers, interaction patterns, and optional server evidence.</p></div><div class="actions" data-ignore-events><button id="rerun">Run again</button><button id="export" class="primary">Export JSON</button></div></header>
   <main>
     <section class="verdict"><div><span id="status" class="status">Starting…</span><h2 id="agentName">Collecting…</h2><p id="agentMeta">Reading available client signals</p></div><div class="automation"><small>Automation likelihood</small><strong id="automationScore">—</strong><span id="automationLabel">Waiting</span></div></section>
     <section><div class="section-head"><div><p class="eyebrow">01 / Attribution</p><h2>Candidate agents</h2></div><p>Scores are profile matches, not probabilities. A verified request signature overrides heuristics.</p></div><div id="candidateList" class="candidates"></div></section>
     <section><div class="section-head"><div><p class="eyebrow">02 / Behavioral probe</p><h2>Give the visitor a tiny task</h2></div><span id="eventCount" class="pill">0 events observed</span></div><p>Ask the visitor to type <code>agent test 123</code>, click the target, and scroll the panel. Text itself is never stored; only event types, timing, coordinates, and modifier keys.</p><div class="probe"><label>Test field<input id="testInput" autocomplete="off" placeholder="Type agent test 123"></label><button id="testButton">Click target</button><div class="scrollbox" tabindex="0"><p>Scroll this panel ↓</p><div></div><p>End of panel</p></div></div><div class="actions" data-ignore-events><button id="clear">Clear observed events</button></div><details><summary>Behavior features</summary><pre id="behaviorJson">Waiting…</pre></details></section>
-    <section><div class="section-head"><div><p class="eyebrow">03 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Client JavaScript cannot see raw request headers, IP/ASN, JA4, or verify Web Bot Auth. Point this page at a same-origin JSON endpoint, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
-    <section><div class="section-head"><div><p class="eyebrow">04 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
+    <section><div class="section-head"><div><p class="eyebrow">03 / HTTP headers</p><h2>Public echo checks</h2></div><button id="httpButton">Run HTTP header checks</button></div><p>Cross-origin requests reveal the headers actually sent by this browser. Echo services receive the request headers and source IP; the detector keeps only reflected headers and discards echoed IP data.</p><details open><summary>Observed request headers</summary><pre id="httpJson">HTTP header checks have not finished.</pre></details></section>
+    <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
+    <section><div class="section-head"><div><p class="eyebrow">05 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
   </main>
   <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p></footer>
   <script>                                                      
@@ -139,6 +140,25 @@
                          
  
 
+                          
+                  
+              
+                                                               
+                      
+                    
+                                   
+                 
+ 
+
+                        
+                     
+                                    
+                                  
+                             
+                        
+                             
+ 
+
                                                                                                
 
                          
@@ -188,6 +208,7 @@
                                    
                              
                                 
+                            
  
 
                          
@@ -195,6 +216,7 @@
                           
                     
                                 
+                            
                                  
                                                 
  
@@ -212,9 +234,11 @@
                                              
                                                      
                                                                         
+                                             
+                                                           
                                 
                                                                
-                                                                                                                        
+                                                                                                                                                         
                                                  
                  
  
@@ -227,8 +251,8 @@
 (function (root                   ) {
   'use strict';
   const AD = root.AgentDetector = root.AgentDetector || {}                    ;
-  AD.VERSION = '0.2.0';
-  AD.state = { snapshot: null, events: [], startedAt: new Date().toISOString(), server: null, result: null };
+  AD.VERSION = '0.3.0';
+  AD.state = { snapshot: null, events: [], startedAt: new Date().toISOString(), server: null, http: null, result: null };
   AD.get = (obj         , path        ) => path.split('.').reduce         ((value, key) => {
     if (value === null || typeof value !== 'object') return undefined;
     return (value                           )[key];
@@ -248,6 +272,16 @@
     return sorted[low] + (sorted[high] - sorted[low]) * (at - low);
   };
   AD.safe =    (fn         , fallback           = null) => { try { return fn(); } catch { return fallback; } };
+  AD.normalizeHeaders = value => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+    const entries = Object.entries(value                           ).flatMap(([name, raw]) => {
+      const normalizedName = name.toLowerCase();
+      if (Array.isArray(raw)) return [[normalizedName, raw.map(String).join(', ')]]                           ;
+      if (['string', 'number', 'boolean'].includes(typeof raw)) return [[normalizedName, String(raw)]]                           ;
+      return [];
+    });
+    return Object.fromEntries(entries);
+  };
   AD.download = (name, data) => {
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([data], { type: 'application/json' }));
@@ -452,6 +486,42 @@
     } catch (error) { return { ok: false, elapsedMs: AD.round(performance.now() - started, 1), endpoint: url.pathname, error: error instanceof Error ? error.message : String(error) }; }
     finally { clearTimeout(timer); }
   };
+  const echoServices = [
+    ['HTTPBingo', 'https://httpbingo.org/get'],
+    ['HTTPBin.org', 'https://httpbin.org/anything'],
+    ['HTTPBin.io', 'https://httpbin.io/anything'],
+    ['HTTPBin.dev', 'https://httpbin.dev/headers'],
+    ['HTTPBin.dev Client Hints', 'https://httpbin.dev/headers-sec-ch']
+  ]         ;
+  function echoedHeaders(body         )                         {
+    if (!body || typeof body !== 'object') return {};
+    const record = body                           ;
+    return AD.normalizeHeaders(record.headers ?? record.Headers);
+  }
+  AD.fetchHttpEvidence = async function () {
+    const services = await Promise.all(echoServices.map(async ([service, url])                          => {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 8000), started = performance.now();
+      try {
+        const response = await fetch(url, { mode: 'cors', credentials: 'omit', cache: 'no-store', redirect: 'follow', referrerPolicy: 'no-referrer', signal: controller.signal, headers: { accept: 'application/json' } });
+        if (!response.ok) return { service, url, status: 'http-error', httpStatus: response.status, elapsedMs: AD.round(performance.now() - started, 1) ?? 0 };
+        const headers = echoedHeaders(await response.json());
+        return { service, url, status: 'success', httpStatus: response.status, elapsedMs: AD.round(performance.now() - started, 1) ?? 0, headers };
+      } catch (error) {
+        return { service, url, status: controller.signal.aborted ? 'timeout' : 'fetch-error', elapsedMs: AD.round(performance.now() - started, 1) ?? 0, error: error instanceof Error ? error.message : String(error) };
+      } finally { clearTimeout(timer); }
+    }));
+    const combined = new Map                     ();
+    for (const result of services) for (const [name, value] of Object.entries(result.headers ?? {})) {
+      if (!combined.has(name)) combined.set(name, new Set());
+      combined.get(name)?.add(value);
+    }
+    return {
+      observedAt: new Date().toISOString(), requestKind: 'cross-origin-fetch',
+      headers: Object.fromEntries([...combined].map(([name, values]) => [name, [...values].join(' || ')])),
+      successfulServices: services.filter(result => result.status === 'success').length,
+      totalServices: services.length, services
+    };
+  };
 })(globalThis);
 
 
@@ -539,8 +609,32 @@
     const score = matched.length >= profile.minMatched ? raw : Math.min(raw, 24);
     return { id: profile.id, name: profile.name, vendor: profile.vendor, source: profile.source, status: profile.status, score, coverage: Math.round(coverage * 100), matched: matched.map(rule => ({ label: rule.label, path: rule.path, weight: rule.weight, value: AD.get(data, rule.path) })), availableRules: available.length, totalRules: profile.rules.length };
   };
-  AD.detect = function ({ environment, behavior, server }) {
+  function mergedHeaders(server                       , http                     )                         {
+    return { ...http?.headers, ...AD.normalizeHeaders(server?.headers) };
+  }
+  function unquote(value        )         { return value.replace(/^\s*"|"\s*$/g, ''); }
+  function addHeaderAttribution(candidates                  , headers                        )                   {
+    const text = `${headers['user-agent'] ?? ''} ${headers['signature-agent'] ?? ''}`;
+    const signed = !!headers['signature-agent'] && !!headers['signature-input'] && !!headers.signature;
+    const markers                          = [
+      ['chatgpt-agent', /chatgpt|openai|gptbot/i],
+      ['claude-for-chrome', /claude|anthropic/i],
+      ['comet', /perplexity|comet/i],
+      ['instinct-local', /instinct/i]
+    ];
+    return candidates.map(candidate => {
+      const marker = markers.find(([id, pattern]) => id === candidate.id && pattern.test(text));
+      if (!marker) return candidate;
+      return {
+        ...candidate, score: Math.max(candidate.score, signed ? 75 : 55), coverage: Math.max(candidate.coverage, signed ? 65 : 40),
+        matched: [...candidate.matched, { label: signed ? 'provider marker with unverified HTTP signature headers' : 'provider marker in HTTP headers', weight: signed ? 50 : 30, value: marker[1].exec(text)?.[0] ?? text }],
+        availableRules: candidate.availableRules + 1, totalRules: candidate.totalRules + 1
+      };
+    }).sort((a, b) => b.score - a.score);
+  }
+  AD.detect = function ({ environment, behavior, server, http }) {
     const automation = { webdriver: environment.automation.webdriver, traces: environment.automation.globals.length, rootAttributes: environment.automation.rootAttributes.length };
+    const headers = mergedHeaders(server, http);
     let automationScore = 0; const automationEvidence           = [];
     const add = (points        , label        ) => { automationScore += points; automationEvidence.push(label); };
     if (automation.webdriver) add(55, 'navigator.webdriver=true');
@@ -550,9 +644,20 @@
     if (behavior.keydownCount >= 6 && behavior.interKeyStdMs !== null && behavior.interKeyStdMs < 5) add(22, 'near-uniform typing cadence');
     if (behavior.pasteCount) add(8, 'paste-driven input');
     if (behavior.changeWithoutTyping) add(24, 'field changed without typing/paste events');
+    const headerUa = headers['user-agent'];
+    const botHeaderPattern = /headless|playwright|puppeteer|selenium|phantom|chatgpt|openai|gptbot|claude|anthropic|perplexity|comet|grok|instinct|\bbot\b|crawler|spider/i;
+    if (headerUa && botHeaderPattern.test(headerUa)) add(45, 'bot/agent marker in HTTP User-Agent');
+    if (headers['signature-agent']) add(35, 'Signature-Agent HTTP header observed (unverified)');
+    if (headers['signature-input'] && headers.signature) add(20, 'HTTP Message Signature headers observed (unverified)');
+    if (headerUa && environment.ua && !headerUa.split(' || ').includes(environment.ua)) add(18, 'HTTP and JavaScript User-Agent mismatch');
+    const headerPlatform = headers['sec-ch-ua-platform'];
+    if (headerPlatform && environment.clientHints?.platform && !headerPlatform.split(' || ').some(value => unquote(value) === environment.clientHints.platform)) add(12, 'HTTP and JavaScript Client Hint platform mismatch');
+    const headerLanguage = headers['accept-language'];
+    if (headerLanguage && environment.languages?.primary && !headerLanguage.toLowerCase().includes(environment.languages.primary.toLowerCase())) add(8, 'HTTP and JavaScript language mismatch');
     const auth = server?.webBotAuth;
     const verified = auth?.verified === true && typeof auth.agentId === 'string' ? auth.agentId : null;
-    let candidates = AD.signatures.map(profile => AD.scoreProfile(profile, { environment, behavior, server, automation })).sort((a, b) => b.score - a.score);
+    let candidates = AD.signatures.map(profile => AD.scoreProfile(profile, { environment, behavior, server, http, automation, headers })).sort((a, b) => b.score - a.score);
+    candidates = addHeaderAttribution(candidates, headers);
     if (verified) {
       const name = auth?.agentName || verified;
       candidates = [{ id: verified, name, vendor: auth?.vendor || 'verified signer', source: 'verified Web Bot Auth', status: 'verified', score: 100, coverage: 100, matched: [{ label: 'cryptographically verified request signature', value: true, weight: 100 }], availableRules: 1, totalRules: 1 }, ...candidates.filter(c => c.id !== verified)];
@@ -588,7 +693,7 @@
   AD.render = function () {
     if (!AD.state.snapshot) return;
     const behavior = AD.behaviorFeatures(), env = AD.state.snapshot.environment;
-    AD.state.result = AD.detect({ environment: env, behavior, server: AD.state.server });
+    AD.state.result = AD.detect({ environment: env, behavior, server: AD.state.server, http: AD.state.http });
     const result = AD.state.result, top = result.attribution.top;
     $('agentName').textContent = top?.name || 'Unknown agent';
     $('agentMeta').textContent = top ? `${result.attribution.label} · ${top.score}% profile match` : 'No profile has enough matching evidence';
@@ -599,12 +704,13 @@
     $('environmentJson').textContent = JSON.stringify(env, null, 2);
     $('eventCount').textContent = `${behavior.trustedEvents} trusted events observed`;
     $('serverJson').textContent = AD.state.server ? JSON.stringify(AD.state.server, null, 2) : 'No server evidence loaded.';
+    $('httpJson').textContent = AD.state.http ? JSON.stringify(AD.state.http, null, 2) : 'HTTP header checks have not finished.';
   };
   function report()                          {
     const snapshot = AD.state.snapshot;
     if (!snapshot) throw new Error('Environment snapshot is not ready');
     const behavior = AD.behaviorFeatures();
-    return { schemaVersion: 3, detectorVersion: AD.VERSION, startedAt: AD.state.startedAt, exportedAt: new Date().toISOString(), page: { origin: location.origin, path: location.pathname }, environment: snapshot.environment, behavior, server: AD.state.server, detection: AD.detect({ environment: snapshot.environment, behavior, server: AD.state.server }), limitations: ['Attribution is heuristic unless server-side identity is cryptographically verified', 'Browser values and events can be spoofed', 'Research profiles drift as agents update', 'A low score does not prove a human visitor'] };
+    return { schemaVersion: 4, detectorVersion: AD.VERSION, startedAt: AD.state.startedAt, exportedAt: new Date().toISOString(), page: { origin: location.origin, path: location.pathname }, environment: snapshot.environment, behavior, server: AD.state.server, http: AD.state.http, detection: AD.detect({ environment: snapshot.environment, behavior, server: AD.state.server, http: AD.state.http }), limitations: ['Attribution is heuristic unless server-side identity is cryptographically verified', 'Browser values, events, and HTTP headers can be spoofed or normalized by intermediaries', 'Research profiles drift as agents update', 'A low score does not prove a human visitor'] };
   }
   async function collect()                {
     const rerun = $                   ('rerun');
@@ -612,6 +718,11 @@
     try { AD.state.snapshot = { environment: await AD.collectEnvironment() }; $('status').textContent = 'Live analysis'; AD.render(); }
     catch (error) { $('status').textContent = `Collection error: ${errorMessage(error)}`; }
     finally { rerun.disabled = false; }
+  }
+  async function collectHttp()                {
+    const button = $                   ('httpButton'); button.disabled = true; button.textContent = 'Checking headers…';
+    AD.state.http = await AD.fetchHttpEvidence(); AD.render();
+    button.disabled = false; button.textContent = 'Run HTTP header checks';
   }
   document.addEventListener('DOMContentLoaded', () => {
     AD.startBehaviorObserver();
@@ -623,11 +734,12 @@
       AD.state.server = await AD.fetchServerEvidence($                  ('serverEndpoint').value.trim()); AD.render();
       button.disabled = false; button.textContent = 'Load server evidence';
     };
+    $('httpButton').onclick = collectHttp;
     $                  ('importServer').onchange = async event => {
       const file = (event.currentTarget                    ).files?.[0]; if (!file) return;
       try { AD.state.server = JSON.parse(await file.text())                  ; AD.render(); } catch (error) { $('serverJson').textContent = `Invalid JSON: ${errorMessage(error)}`; }
     };
-    collect();
+    collect(); collectHttp();
   });
 })(globalThis);
 
