@@ -12,7 +12,7 @@
     <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">05 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-18T11:36:53.159Z</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-18T14:56:23.490Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -96,6 +96,26 @@
                 
                            
                         
+ 
+
+                                       
+               
+                        
+                         
+                            
+                              
+ 
+
+                          
+               
+                
+                 
+                                    
+                                 
+                                
+           
+                        
+                                           
  
 
                             
@@ -316,6 +336,7 @@
                                                            
                                 
                                                                
+                                   
                                                                                                                                                        
                                                  
                  
@@ -686,6 +707,10 @@ function registerProfiles(...profiles                )       {
     'internal://labeled-captures/instinct-2026-09-18b', 'Internal labeled capture, third independent session (2026-09-18, same scripted task; page had no dropdown/checkbox so that step was skipped)', '2026-09-18');
   const instinctCapture4 = mkSource('labeled-capture', 'anecdotal',
     'internal://labeled-captures/instinct-2026-09-18c', 'Internal labeled capture, fourth independent session (2026-09-18, revised scripted task with explicit mouse-wheel-scroll and hover-before-click steps; page again had no dropdown/checkbox so that step was skipped)', '2026-09-18');
+  const instinctCapture5 = mkSource('labeled-capture', 'anecdotal',
+    'internal://labeled-captures/instinct-2026-09-17', 'Internal labeled capture, fifth independent session (2026-09-17, passive load only, no scripted interaction — behavior all zero/null)', '2026-09-17');
+  const instinctCapture6 = mkSource('labeled-capture', 'anecdotal',
+    'internal://labeled-captures/instinct-2026-09-17b', 'Internal labeled capture, sixth independent session (2026-09-17, passive load only, no scripted interaction — behavior all zero/null)', '2026-09-17');
   registerProfiles(mkProfile({
     id: 'instinct-local', name: 'Instinct', vendor: 'Instinct',
     aliases: [],
@@ -693,9 +718,9 @@ function registerProfiles(...profiles                )       {
     minimumEvidence: 4, lastReviewedAt: '2026-09-18',
     sources: [
       mkSource('official-docs', 'verified-official', 'https://instinct.com/', 'Instinct: official site', '2026-09-01'),
-      instinctCapture, instinctCapture2, instinctCapture3, instinctCapture4
+      instinctCapture, instinctCapture2, instinctCapture3, instinctCapture4, instinctCapture5, instinctCapture6
     ],
-    notes: 'Instinct is a real, viral, invite-only consumer AI assistant (TechCrunch coverage confirms it exists and raises privacy concerns), but no official or third-party public technical signature (UA/header/IP/extension) has been found anywhere. The values below come from exactly FOUR internal labeled captures (same tester, 2026-09-01 and three sessions on 2026-09-18) and must still be treated as a low-confidence, version-scoped sample only — every rule is capped at low confidence, so no single common value (screen size, CPU count) can alone drive attribution. Fingerprint values were largely reproduced across all four captures (Windows UA, 1280×720, 2 cores, Roboto); the Chrome build number keeps drifting (152 → 153), the drift already anticipated by that rule\'s own label. The timezone value flipped once (America/Indianapolis in capture 3) but reproduced America/Chicago in captures 1, 2, and 4 (3 of 4) — most consistent with a rotating proxy/VPN egress location that usually lands in the same pool rather than a stable Instinct artifact, so the `America/Chicago` rule should still be read as a weak, only-mostly-stable signal, not a real signature. A behavioral pattern held across captures 2 and 3 but broke in capture 4: `behavior.pointerMoves` was 0 in the first two behavioral sessions but 4 in the fourth (despite an explicit hover-before-click step meant to provoke it), so "no pointer movement" is NOT a reliable Instinct artifact and must not be read as one. `behavior.wheelCount`, by contrast, has now been 0 in all THREE behavioral sessions (243, 249, and 249 trusted events respectively) — including capture 4, whose script explicitly instructed "use the mouse scroll wheel, not the keyboard" — which is a more interesting anecdote precisely because it survived an explicit attempt to falsify it. Neither is turned into a scoring rule: both are also commonly true for a genuine human session (e.g. a short page needing no scroll, or keyboard-only use), and combined with this profile\'s 6 common browser-fingerprint values, adding either as a second evidence layer would let the independent-layer gate (`docs/architecture.md`) push attribution to \'strong\' from nothing but ordinary, individually-weak properties — exactly what that gate exists to prevent, as verified by hand-testing the built engine against empty/no-interaction fixture data (it reached "strong"/score 89 on zero real interaction). A real rule would need a comparison this detector cannot make client-side (e.g. "no wheel events despite N seconds of active session and no scrollbar drag," gated on actual interaction volume) — worth revisiting if the collector grows that capability. Click coordinate spread was also NOT stable across sessions (std ~131/80 in capture 2 vs. ~0/0.5 in captures 3 and 4), so that was not turned into a rule either. Typing itself looked ordinary throughout (variable inter-key timing, no paste) and was not turned into a rule.',
+    notes: 'Instinct is a real, viral, invite-only consumer AI assistant (TechCrunch coverage confirms it exists and raises privacy concerns), but no official or third-party public technical signature (UA/header/IP/extension) has been found anywhere. The values below come from exactly SIX internal labeled captures (same tester, 2026-09-01, two passive sessions on 2026-09-17, and three scripted-interaction sessions on 2026-09-18) and must still be treated as a low-confidence, version-scoped sample only — every rule is capped at low confidence, so no single common value (screen size, CPU count) can alone drive attribution. Fingerprint values were largely reproduced across all six captures (Windows UA, 1280×720, 2 cores, Roboto); the Chrome build number keeps drifting (152 → 153), the drift already anticipated by that rule\'s own label. The timezone value has now shown THREE distinct zones across six captures: America/Chicago (4 of 6, including both passive-load-only sessions with no interaction — one of the two passive sessions, capture 5, actually showed America/New_York instead), America/Indianapolis (1 of 6), and America/New_York (1 of 6) — a US timezone changing across otherwise-identical sessions from the same tester is far more consistent with a rotating proxy/VPN egress pool than a stable Instinct artifact, so the `America/Chicago` rule should be read as a weak, majority-only signal, not a real signature. A behavioral pattern held across captures 2 and 3 but broke in capture 4: `behavior.pointerMoves` was 0 in the first two behavioral sessions but 4 in the fourth (despite an explicit hover-before-click step meant to provoke it), so "no pointer movement" is NOT a reliable Instinct artifact and must not be read as one. `behavior.wheelCount`, by contrast, has now been 0 in all THREE scripted-interaction sessions (243, 249, and 249 trusted events respectively) — including capture 4, whose script explicitly instructed "use the mouse scroll wheel, not the keyboard" — which is a more interesting anecdote precisely because it survived an explicit attempt to falsify it. (Captures 5 and 6 had zero interaction of any kind — trustedEvents: 0 — so they say nothing about behavior either way and are fingerprint-only data points.) Neither behavioral pattern is turned into a scoring rule: both are also commonly true for a genuine human session (e.g. a short page needing no scroll, or keyboard-only use), and combined with this profile\'s 6 common browser-fingerprint values, adding either as a second evidence layer would let the independent-layer gate (`docs/architecture.md`) push attribution to \'strong\' from nothing but ordinary, individually-weak properties — exactly what that gate exists to prevent, as verified by hand-testing the built engine against empty/no-interaction fixture data (it reached "strong"/score 89 on zero real interaction). A real rule would need a comparison this detector cannot make client-side (e.g. "no wheel events despite N seconds of active session and no scrollbar drag," gated on actual interaction volume) — worth revisiting if the collector grows that capability. Click coordinate spread was also NOT stable across sessions (std ~131/80 in capture 2 vs. ~0/0.5 in captures 3 and 4), so that was not turned into a rule either. Typing itself looked ordinary throughout (variable inter-key timing, no paste) and was not turned into a rule.',
     rules: [
       mkRule('environment.ua', 'includes', 'Windows NT 10.0', 6, 'Windows 10 UA (single local capture)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
@@ -1180,6 +1205,23 @@ function registerProfiles(...profiles                )       {
       clearTimeout(AD.state.behaviorTimer); AD.state.behaviorTimer = setTimeout(() => AD.render(), 180);
     }, { capture: true, passive: true }));
   };
+  AD.performanceLog = function () {
+    const nav = performance.getEntriesByType('navigation')[0]                                           ;
+    const resources = performance.getEntriesByType('resource')                               ;
+    return {
+      navigation: nav ? {
+        url: nav.name, type: nav.type,
+        domInteractiveMs: AD.round(nav.domInteractive, 1), domCompleteMs: AD.round(nav.domComplete, 1),
+        transferSize: nav.transferSize || null
+      } : null,
+      resourceCount: resources.length,
+      resources: resources.slice(0, 100).map(r => ({
+        name: r.name, initiatorType: r.initiatorType,
+        startMs: AD.round(r.startTime, 1), durationMs: AD.round(r.duration, 1),
+        transferSize: r.transferSize || null
+      }))
+    };
+  };
   AD.behaviorFeatures = function (events = AD.state.events) {
     const trusted = events.filter(e => e.trusted), keydowns = trusted.filter(e => e.type === 'keydown'), clicks = trusted.filter(e => e.type === 'click'), moves = trusted.filter(e => e.type === 'pointermove');
     const times = trusted.map(e => e.t), intervals = times.slice(1).map((t, i) => t - times[i]).filter(v => v >= 0 && v < 30000);
@@ -1495,7 +1537,7 @@ function registerProfiles(...profiles                )       {
     const behavior = AD.behaviorFeatures();
     const detection = AD.detect({ environment: snapshot.environment, behavior, server: AD.state.server, http: AD.state.http });
     return {
-      schemaVersion: 5,
+      schemaVersion: 6,
       detectorVersion: AD.VERSION,
       registryVersion: AD.REGISTRY_VERSION,
       startedAt: AD.state.startedAt,
@@ -1503,6 +1545,7 @@ function registerProfiles(...profiles                )       {
       page: { origin: location.origin, path: location.pathname },
       environment: snapshot.environment,
       behavior,
+      performance: AD.performanceLog(),
       server: AD.state.server,
       http: AD.state.http,
       detection,
@@ -1512,7 +1555,8 @@ function registerProfiles(...profiles                )       {
         'Client-reported webBotAuth.verified claims are never trusted directly — only a server that performed the cryptographic check should set this',
         'Browser values, events, and HTTP headers can be spoofed or normalized by intermediaries',
         'Research profiles drift as agents update; see each candidate\'s reviewBy/lastReviewedAt dates',
-        'A low or zero score does not prove a human visitor, and a high heuristic score never proves a specific agent'
+        'A low or zero score does not prove a human visitor, and a high heuristic score never proves a specific agent',
+        'The performance log is drawn from the Resource Timing API (same-origin/CORS-exposed assets only) and reflects only this page\'s own network activity, not a full HAR capture'
       ]
     };
   }
