@@ -12,7 +12,7 @@
     <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">05 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-18T14:56:23.490Z</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-21T10:43:52.705Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -50,7 +50,7 @@
                                                      
                
                                                                                                                      
-                                                                                
+                                                                                                                 
     
                                                                                                          
                                                                            
@@ -492,9 +492,29 @@ function registerProfiles(...profiles                )       {
       'https://support.microsoft.com/en-us/topic/copilot-actions-in-edge-5ed5e17e-42df-40a3-984a-20420eba86e2', 'Microsoft: Copilot Actions in Edge',
       'Official, native Edge feature — like Gemini Auto Browse, runs inside the user\'s own real Edge session, so it carries the ordinary Edge UA rather than a distinct one. A third-party bot-management vendor (HUMAN Security) treats "Copilot Actions" as a distinct traffic category worth flagging, but its detection method was not disclosed publicly. No client-observable technical signature is currently known.'),
 
-    unprofiled('grok-agent', 'Grok Agent / Grok Bot', 'xAI', [], 'unknown',
-      'https://docs.x.ai/overview', 'xAI: docs overview',
-      'No official xAI documentation of a UA token, IP range, or Web Bot Auth support was found for a "Grok Agent"/"GrokAgent" browsing product. Third-party AI-bot directory sites list a GrokBot entry, but these are unofficial aggregators, not xAI-published — the task\'s prior note about a possible "GrokAgent" UA token could not be confirmed from an official source and should not be trusted as a rule until it is. Three internal labeled captures (`internal://labeled-captures/grok-agent-2026-09`, same tester, three separate sessions) all showed the HTTP-echo client IP (from `x-forwarded-for`, not the CDN-fronted `origin` field) resolving to Google Cloud (AS396982, `*.bc.googleusercontent.com`, three distinct /32s within that ASN), unlike every other captured agent in this registry (which showed ordinary residential/mobile ISPs or Cloudflare edge IPs). This is not turned into a rule: xAI has never published this as an official IP range, n=3 from one tester is not independent corroboration (see `docs/collecting-labeled-sessions.md`), and cloud-hosted egress alone doesn\'t discriminate an agent from a human using a VPN or cloud desktop — but it\'s recorded here as an honest anecdotal lead worth re-checking if more captures come in.'),
+    (() => {
+      const grokCorpus = mkSource('labeled-capture', 'anecdotal',
+        'internal://labeled-captures/grok-agent-2026-09', 'Internal labeled captures: 3 sessions same tester (2026-09-16) + 2 genuinely separate sessions same tester (2026-09-17, distinct trace IDs/timings, environment otherwise frozen)', '2026-09-01');
+      return mkProfile({
+        id: 'grok-agent', name: 'Grok Agent / Grok Bot', vendor: 'xAI', aliases: [],
+        category: 'framework', execution: 'unknown', status: 'research-profile',
+        minimumEvidence: 3, lastReviewedAt: '2026-09-21',
+        sources: [mkSource('official-docs', 'verified-official', 'https://docs.x.ai/overview', 'xAI: docs overview', '2026-09-01'), grokCorpus],
+        notes: 'No official xAI documentation of a UA token, IP range, or Web Bot Auth support was found for a "Grok Agent"/"GrokAgent" browsing product. Five internal labeled captures across two schema versions and two separate days all agree completely: `navigator.webdriver=true`, `HeadlessChrome/148.0.0.0` self-identifying in the UA, SwiftShader/Vulkan software WebGL rendering, screen 800×600 with 2 cores/2GB RAM, timezone UTC, and zero interaction events (0 duration, all behavioral fields null/zero). The HTTP-echo client IP (`x-forwarded-for`, not the CDN-fronted `origin` field) resolved to Google Cloud (34.x, AS396982-range) in every capture. Rules below are scored as `framework`, not `product-agent`, and every one of them is a generic headless-Chromium-on-GCP signature — shared with any Playwright/Puppeteer job hosted on Google Cloud, not xAI-specific. Do not read a match against this profile as "this is Grok"; read it as "this is unattended headless Chromium infrastructure, and Grok is one known consumer of that shape." A distinguishing marker (a Grok-specific header, a narrower ASN, a Web Bot Auth key) would be needed to promote this past framework-class evidence, and none has been found.',
+        rules: [
+          mkRule('automation.webdriver', 'truthy', true, 22, 'WebDriver/automation flag exposed (headless Chromium)',
+            'browser-fingerprint', 'medium', grokCorpus),
+          mkRule('environment.ua', 'includes', 'HeadlessChrome/148', 20, 'HeadlessChrome/148 in UA — self-identifying, but this is a generic Chromium build token, not an xAI-specific one',
+            'browser-fingerprint', 'medium', grokCorpus, { reviewBy: '2026-12-01' }),
+          mkRule('environment.rendering.softwareRenderer', 'truthy', true, 12, 'SwiftShader software WebGL renderer (no real GPU) — generic headless-on-cloud signature',
+            'browser-fingerprint', 'low', grokCorpus),
+          mkRule('environment.screen.size', 'eq', '800x600', 10, 'screen 800×600, container default — generic headless signature, not xAI-specific',
+            'browser-fingerprint', 'low', grokCorpus, { reviewBy: '2026-12-01' }),
+          mkRule('environment.timezone.zone', 'eq', 'UTC', 6, 'UTC timezone — unconfigured container default, common to any cloud headless job',
+            'browser-fingerprint', 'low', grokCorpus)
+        ]
+      });
+    })(),
 
     unprofiled('meta-muse', 'Meta Muse', 'Meta', [], 'cloud',
       'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/', 'Meta: Introducing Muse',
@@ -711,29 +731,45 @@ function registerProfiles(...profiles                )       {
     'internal://labeled-captures/instinct-2026-09-17', 'Internal labeled capture, fifth independent session (2026-09-17, passive load only, no scripted interaction — behavior all zero/null)', '2026-09-17');
   const instinctCapture6 = mkSource('labeled-capture', 'anecdotal',
     'internal://labeled-captures/instinct-2026-09-17b', 'Internal labeled capture, sixth independent session (2026-09-17, passive load only, no scripted interaction — behavior all zero/null)', '2026-09-17');
+  const instinctCapture7 = mkSource('labeled-capture', 'anecdotal',
+    'internal://labeled-captures/instinct-2026-09-18d', 'Internal labeled capture, seventh independent session (2026-09-18, different tester "krasnov", scripted interaction: typing, clicking; timezone showed Europe/Madrid)', '2026-09-18');
+  const instinctCorpusV2 = mkSource('third-party-analysis', 'anecdotal',
+    'internal://labeled-captures/instinct-cross-version-2026-09-21', 'Internal cross-version pattern analysis: 8 captures spanning schema v2/v5/v6, 2026-09-07 through 2026-09-18, plus one Linux/GTX1650 outlier capture', '2026-09-21');
   registerProfiles(mkProfile({
     id: 'instinct-local', name: 'Instinct', vendor: 'Instinct',
     aliases: [],
     category: 'product-agent', execution: 'unknown', status: 'local-sample',
-    minimumEvidence: 4, lastReviewedAt: '2026-09-18',
+    minimumEvidence: 4, lastReviewedAt: '2026-09-21',
     sources: [
       mkSource('official-docs', 'verified-official', 'https://instinct.com/', 'Instinct: official site', '2026-09-01'),
-      instinctCapture, instinctCapture2, instinctCapture3, instinctCapture4, instinctCapture5, instinctCapture6
+      instinctCapture, instinctCapture2, instinctCapture3, instinctCapture4, instinctCapture5, instinctCapture6, instinctCapture7, instinctCorpusV2
     ],
-    notes: 'Instinct is a real, viral, invite-only consumer AI assistant (TechCrunch coverage confirms it exists and raises privacy concerns), but no official or third-party public technical signature (UA/header/IP/extension) has been found anywhere. The values below come from exactly SIX internal labeled captures (same tester, 2026-09-01, two passive sessions on 2026-09-17, and three scripted-interaction sessions on 2026-09-18) and must still be treated as a low-confidence, version-scoped sample only — every rule is capped at low confidence, so no single common value (screen size, CPU count) can alone drive attribution. Fingerprint values were largely reproduced across all six captures (Windows UA, 1280×720, 2 cores, Roboto); the Chrome build number keeps drifting (152 → 153), the drift already anticipated by that rule\'s own label. The timezone value has now shown THREE distinct zones across six captures: America/Chicago (4 of 6, including both passive-load-only sessions with no interaction — one of the two passive sessions, capture 5, actually showed America/New_York instead), America/Indianapolis (1 of 6), and America/New_York (1 of 6) — a US timezone changing across otherwise-identical sessions from the same tester is far more consistent with a rotating proxy/VPN egress pool than a stable Instinct artifact, so the `America/Chicago` rule should be read as a weak, majority-only signal, not a real signature. A behavioral pattern held across captures 2 and 3 but broke in capture 4: `behavior.pointerMoves` was 0 in the first two behavioral sessions but 4 in the fourth (despite an explicit hover-before-click step meant to provoke it), so "no pointer movement" is NOT a reliable Instinct artifact and must not be read as one. `behavior.wheelCount`, by contrast, has now been 0 in all THREE scripted-interaction sessions (243, 249, and 249 trusted events respectively) — including capture 4, whose script explicitly instructed "use the mouse scroll wheel, not the keyboard" — which is a more interesting anecdote precisely because it survived an explicit attempt to falsify it. (Captures 5 and 6 had zero interaction of any kind — trustedEvents: 0 — so they say nothing about behavior either way and are fingerprint-only data points.) Neither behavioral pattern is turned into a scoring rule: both are also commonly true for a genuine human session (e.g. a short page needing no scroll, or keyboard-only use), and combined with this profile\'s 6 common browser-fingerprint values, adding either as a second evidence layer would let the independent-layer gate (`docs/architecture.md`) push attribution to \'strong\' from nothing but ordinary, individually-weak properties — exactly what that gate exists to prevent, as verified by hand-testing the built engine against empty/no-interaction fixture data (it reached "strong"/score 89 on zero real interaction). A real rule would need a comparison this detector cannot make client-side (e.g. "no wheel events despite N seconds of active session and no scrollbar drag," gated on actual interaction volume) — worth revisiting if the collector grows that capability. Click coordinate spread was also NOT stable across sessions (std ~131/80 in capture 2 vs. ~0/0.5 in captures 3 and 4), so that was not turned into a rule either. Typing itself looked ordinary throughout (variable inter-key timing, no paste) and was not turned into a rule.',
+    notes: 'Instinct is a real, viral, invite-only consumer AI assistant (TechCrunch coverage confirms it exists and raises privacy concerns), but no official or third-party public technical signature (UA/header/IP/extension) has been found anywhere. The values below come from internal labeled captures only and must still be treated as a low-confidence, version-scoped sample — every fingerprint rule below is capped at low confidence, so no single common value (screen size, CPU count) can alone drive attribution. Fingerprint values were largely reproduced across eight of nine captures (Windows UA, 1280×720, 2 cores, Roboto, identical GPU renderer/canvas/audio fingerprint) spanning 2026-09-07 through 2026-09-18 and two schema versions — this "cluster A" fingerprint is stable across two different testers and 11 days, which reads as a single fixed VM/container image behind these sessions, not necessarily as a stable Instinct product artifact (a driver/Chrome update on the same infra would break the match without Instinct itself changing). A ninth capture (`agent-inspector-krasnov.json`, Linux x86_64, 8 cores, NVIDIA GTX 1650, screen 1280×800) does not match this cluster on OS, core count, or GPU at all — either Instinct has a second execution environment or that capture is mislabeled; not folded into any rule below pending resolution. The timezone value has shown FOUR distinct zones across the cluster-A captures (America/Chicago, America/Indianapolis, America/New_York, Europe/Madrid) while the fingerprint stayed frozen — the inverse of a real user, who has a stable IP/location and a drifting fingerprint — so `America/Chicago` is read as a weak, majority-only signal (proxy/VPN egress), not a product artifact; the frozen-fingerprint-vs-rotating-egress correlation itself is exactly the kind of comparison this client-side detector cannot make (no IP evidence is collected), so it stays a documented lead rather than a rule. `behavior.pointerMoves` and `behavior.wheelCount` were tested and rejected as rules: pointerMoves went from 0 to 4 across otherwise-similar sessions, and wheelCount==0, while present in every scripted-interaction capture, is also the corpus-wide norm across every other agent AND both human baselines in this registry\'s own labeled data — neither discriminates. Click coordinate spread was likewise unstable across sessions and was not turned into a rule. Two NEW behavioral patterns instead survive across every capture that has typing: (1) `behavior.inputCount` runs almost exactly double `behavior.keydownCount` in all five typing captures (ratios 2.00, 2.00, 2.00, 2.02, 2.02 — never a clean 2n, so treat as approximate, not exact), consistent with a synthetic key event plus a separate direct value write per character; (2) `behavior.intervalP10Ms` sits at 0.4–0.6ms in every one of those same five captures, a ~10x gap below every other capture in the registry\'s corpus (human baselines: 3.9–7.6ms) and physically implausible for real input hardware. Both are added below as low-confidence behavioral rules. Caveat that matters: this registry currently holds NO human capture that actually typed into a form (both `user/*` baselines show `keydownCount: 0`), so the human-vs-agent contrast for these two rules is assumed from cross-agent/cross-product comparison, not measured against a same-task human baseline — revisit if one is collected. Window geometry is the strongest new signal: `viewport.outer` (1288×763) is wider AND taller than `viewport.inner`/`screen` (1280×720) in every one of the eight cluster-A captures, including the oldest (2026-09-07) — a real OS-hosted browser window can never be larger than the screen it sits on, and headful Chrome normally loses 60-130px of inner height to its own window chrome, neither of which holds here. This is scored generically at the engine level (`environment.automation.windowLargerThanScreen`, not a profile-specific rule) since it is a structural anomaly independent of any Instinct-specific fingerprint, but it is the single most load-bearing finding for this profile and should be weighted accordingly when reviewing automation-score output for Instinct-like traffic.',
     rules: [
-      mkRule('environment.ua', 'includes', 'Windows NT 10.0', 6, 'Windows 10 UA (single local capture)',
+      mkRule('environment.ua', 'includes', 'Windows NT 10.0', 6, 'Windows 10 UA (cluster-A captures)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
-      mkRule('environment.ua', 'includes', 'Chrome/153.', 8, 'Chrome 153 (was 152 in the first capture; build number drifts with Chrome releases, so this rule itself will go stale — treat as a floating value, not a fixed artifact)',
+      mkRule('environment.ua', 'includes', 'Chrome/153.', 8, 'Chrome 153 (was 152 in the oldest capture; build number drifts with Chrome releases, so this rule itself will go stale — treat as a floating value, not a fixed artifact)',
         'browser-fingerprint', 'low', instinctCapture4, { reviewBy: '2026-12-01' }),
-      mkRule('environment.screen.size', 'eq', '1280x720', 8, 'screen 1280×720 (single local capture)',
+      mkRule('environment.screen.size', 'eq', '1280x720', 8, 'screen 1280×720 (cluster-A captures)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
-      mkRule('environment.hardware.logicalCores', 'eq', 2, 8, '2 logical cores (single local capture)',
+      mkRule('environment.hardware.logicalCores', 'eq', 2, 8, '2 logical cores (cluster-A captures)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
-      mkRule('environment.timezone.zone', 'eq', 'America/Chicago', 6, 'Chicago timezone (unstable across sessions — likely proxy/VPN egress, not a product artifact)',
+      mkRule('environment.timezone.zone', 'eq', 'America/Chicago', 6, 'Chicago timezone (unstable across sessions and now seen across two continents — likely proxy/VPN egress, not a product artifact)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
-      mkRule('environment.rendering.fonts.Roboto', 'truthy', true, 4, 'Roboto available (single local capture, very weak alone)',
-        'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' })
+      mkRule('environment.rendering.fonts.Roboto', 'truthy', true, 4, 'Roboto available (weak alone)',
+        'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
+      mkRule('environment.rendering.renderer', 'eq', 'ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti (0x00002489) Direct3D11 vs_5_0 ps_5_0, D3D11)', 10,
+        'identical GPU renderer string across cluster-A captures, including a different tester (capture 7) and a capture 11 days apart — points to a shared fixed VM/GPU image, not necessarily a stable Instinct artifact; will break on any driver/image update',
+        'browser-fingerprint', 'low', instinctCapture7, { reviewBy: '2026-12-01' }),
+      mkRule('environment.rendering.canvasTail', 'eq', 'JgDZXsIi0FgIWAI3FrKns10be5MhYAncZFDbC1kETj4ClsAnH1Nr0SLQZAhYAjcZ1PZCFoGTj4Al8MnH1Fo8nRFo4tgtgZsYcHs5i8DJROD/AQAA///OIj7rAAAABklEQVQDAJicy6zN8QL3AAAAAElFTkSuQmCC', 10,
+        'identical canvas fingerprint tail across cluster-A captures — same-image signal, will break on a Chrome/Skia version change',
+        'browser-fingerprint', 'low', instinctCapture7, { reviewBy: '2026-12-01' }),
+      mkRule('environment.rendering.audioMagnitude', 'eq', 88.985451, 10,
+        'identical Web Audio fingerprint magnitude across cluster-A captures — same-image signal, will break on an audio-stack or image update',
+        'browser-fingerprint', 'low', instinctCapture7, { reviewBy: '2026-12-01' }),
+      mkRule('behavior.intervalP10Ms', 'lte', 0.6, 10,
+        'sub-millisecond p10 event interval (0.4-0.6ms across all five typing captures) — ~10x below every other capture in this registry\'s corpus and implausible for physical input hardware; no same-task human baseline exists yet to confirm the contrast',
+        'behavioral', 'low', instinctCorpusV2, { reviewBy: '2026-12-01' })
     ]
   }));
 
@@ -1105,6 +1141,10 @@ function registerProfiles(...profiles                )       {
     // Page domain) — a real user's OS window chrome always reports nonzero outerWidth/outerHeight.
     const zeroOuterWindow = outerWidth === 0 && outerHeight === 0;
     const pluginsEmpty = /Chrome|Chromium/.test(ua) && (navigator.plugins?.length ?? 0) === 0;
+    // A real OS-hosted browser window can never be wider or taller than the display it sits on —
+    // its outer chrome is drawn inside the screen bounds by definition. A virtual display sized
+    // exactly to the viewport (rather than a window placed on a desktop) can violate this.
+    const windowLargerThanScreen = (outerWidth > 0 || outerHeight > 0) && (outerWidth > screen.width || outerHeight > screen.height);
     const environment                      = {
       collectedAt: new Date().toISOString(), ua, platform: navigator.platform, vendor: navigator.vendor,
       isChrome: /Chrome|Chromium/.test(ua), clientHints: { brands: navigator.userAgentData?.brands || null, mobile: navigator.userAgentData?.mobile ?? null, platform: navigator.userAgentData?.platform || null, highEntropy },
@@ -1119,7 +1159,7 @@ function registerProfiles(...profiles                )       {
       automation: {
         webdriver: navigator.webdriver === true, webdriverDescriptor, globals,
         rootAttributes: ['webdriver', 'selenium', 'driver'].filter(x => document.documentElement.hasAttribute(x)),
-        webdriverTampered, zeroOuterWindow, pluginsEmpty
+        webdriverTampered, zeroOuterWindow, pluginsEmpty, windowLargerThanScreen
       },
       rendering: { ...gl, ...detectedFonts, canvasTail: AD.safe(canvasHash), audioMagnitude: await audio() },
       page: { origin: location.origin, path: location.pathname, secure: isSecureContext, framed: top !== self },
@@ -1381,12 +1421,15 @@ function registerProfiles(...profiles                )       {
     if (automation.rootAttributes) add(25, 'automation attribute on <html>', 'browser-fingerprint');
     if (environment.automation.webdriverTampered) add(30, 'navigator.webdriver getter is non-native or an own property (patched to hide automation)', 'browser-fingerprint');
     if (environment.automation.zeroOuterWindow) add(20, 'zero-size outer window (typical of CDP-driven Chrome)', 'browser-fingerprint');
+    if (environment.automation.windowLargerThanScreen) add(25, 'browser outer window is larger than the screen (impossible for a window placed on a real desktop; typical of a virtual display sized to the viewport)', 'browser-fingerprint');
     if (environment.automation.pluginsEmpty) add(10, 'empty plugin list on a Chrome/Chromium UA (typical of a bare CDP session)', 'browser-fingerprint');
     if (environment.rendering.softwareRenderer) add(15, 'software WebGL renderer (SwiftShader/llvmpipe, common in headless/CDP environments)', 'browser-fingerprint');
     if (behavior.trustedEvents >= 4 && behavior.pointerMoves === 0 && (behavior.keydownCount || behavior.clickCount)) add(12, 'interaction without pointer movement', 'behavioral');
     if (behavior.keydownCount >= 6 && behavior.interKeyStdMs !== null && behavior.interKeyStdMs < 5) add(22, 'near-uniform typing cadence', 'behavioral');
     if (behavior.pasteCount) add(8, 'paste-driven input', 'behavioral');
     if (behavior.changeWithoutTyping) add(24, 'field changed without typing/paste events', 'behavioral');
+    if (behavior.keydownCount >= 6 && behavior.inputCount >= behavior.keydownCount * 1.7) add(18, 'roughly two input events per keystroke (consistent with a synthetic key event plus a direct value write, e.g. driving a field through CDP while also dispatching keys)', 'behavioral');
+    if (behavior.keydownCount >= 6 && behavior.intervalP10Ms !== null && behavior.intervalP10Ms < 1) add(20, 'sub-millisecond gaps between consecutive events (physical input hardware cannot deliver events this close together)', 'behavioral');
 
     const headerUa = headers['user-agent'];
     const botHeaderPattern = /headless|playwright|puppeteer|selenium|phantom|chatgpt|openai|gptbot|claude|anthropic|perplexity|comet|grok|instinct|\bbot\b|crawler|spider/i;
