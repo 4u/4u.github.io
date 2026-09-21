@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Browser Agent Detector</title><style>:root{color-scheme:dark;--bg:#0a0d12;--panel:#111722;--panel2:#171f2d;--line:#293449;--text:#eef3fb;--muted:#9aa8bd;--accent:#71e6be;--accent2:#89a7ff;--danger:#ffb36b;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#17213a 0,transparent 32rem),var(--bg);color:var(--text)}header,main,footer{width:min(1100px,calc(100% - 32px));margin:auto}header{display:flex;justify-content:space-between;gap:32px;align-items:end;padding:72px 0 40px;border-bottom:1px solid var(--line)}h1{font-size:clamp(2.5rem,7vw,5.8rem);line-height:.95;letter-spacing:-.06em;margin:.2rem 0 1.2rem;max-width:780px}h2{font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.035em;margin:.25rem 0}.eyebrow{color:var(--accent);font:600 .72rem/1.2 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}.lede{color:var(--muted);font-size:1.1rem;max-width:650px}.actions,.server-controls{display:flex;gap:10px;flex-wrap:wrap}button,.file,input{border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--text);padding:.75rem 1rem;font:inherit}button,.file{cursor:pointer}button:hover,.file:hover{border-color:var(--accent)}button.primary{background:var(--accent);color:#07120f;border-color:var(--accent);font-weight:700}button:disabled{opacity:.5;cursor:wait}.file input{display:none}main{display:grid;gap:18px;padding:24px 0}section{background:linear-gradient(145deg,rgba(23,31,45,.92),rgba(14,19,28,.94));border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,36px);box-shadow:0 20px 50px #0004}.verdict{display:grid;grid-template-columns:1fr auto;align-items:center;border-color:#3c6c61}.status,.pill{display:inline-flex;border:1px solid #315e54;color:var(--accent);border-radius:999px;padding:.2rem .65rem;font-size:.75rem}.verdict h2{font-size:clamp(2.2rem,6vw,4.6rem)}.verdict p,.section-head>p,.candidate p,footer{color:var(--muted)}.automation{min-width:190px;padding:20px;border-left:1px solid var(--line);display:grid}.automation strong{font-size:3rem;color:var(--accent)}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:18px}.section-head>p{max-width:430px}.candidates{display:grid;gap:10px}.candidate{display:grid;grid-template-columns:42px 1fr;gap:14px;background:#0c111a;border:1px solid var(--line);padding:16px;border-radius:10px}.rank{font:700 1.6rem ui-monospace;color:#53617a}.candidate-head{display:flex;justify-content:space-between;gap:15px}.candidate-head span{font:700 1rem ui-monospace;color:var(--accent)}.badge{font:600 .68rem/1.2 ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:.15rem .5rem;border:1px solid var(--line)}.badge-verified{color:#07120f;background:var(--accent);border-color:var(--accent)}.badge-heuristic{color:var(--danger);border-color:var(--danger)}.verified-name{color:var(--accent)}.notes{font-style:italic}.conflicts summary{color:var(--danger)}.meter{height:4px;background:#222d3f;margin:8px 0}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}.candidate p{margin:.2rem 0;font-size:.82rem}details{margin-top:12px}summary{cursor:pointer;color:#bfcaDC}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto;background:#090d14;padding:16px;border-radius:8px;color:#b9c9df;font:12px/1.55 ui-monospace,monospace}.probe{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end;margin:20px 0}.probe label{display:grid;gap:6px;color:var(--muted)}.scrollbox{height:110px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:10px;background:#090d14}.scrollbox div{height:180px;background:linear-gradient(var(--accent2),transparent);opacity:.18}.server-controls input{flex:1;min-width:230px}code{color:var(--accent);background:#0b1119;padding:.15rem .35rem;border-radius:4px}footer{padding:30px 0 60px}a{color:var(--accent2)}small{color:var(--muted)}@media(max-width:700px){header{align-items:start;padding-top:42px}.verdict,.probe{grid-template-columns:1fr}.automation{border-left:0;border-top:1px solid var(--line)}.section-head{display:block}header{display:block}header .actions{margin-top:20px}}
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Browser Agent Detector</title><style>:root{color-scheme:dark;--bg:#0a0d12;--panel:#111722;--panel2:#171f2d;--line:#293449;--text:#eef3fb;--muted:#9aa8bd;--accent:#71e6be;--accent2:#89a7ff;--danger:#ffb36b;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#17213a 0,transparent 32rem),var(--bg);color:var(--text)}header,main,footer{width:min(1100px,calc(100% - 32px));margin:auto}header{display:flex;justify-content:space-between;gap:32px;align-items:end;padding:72px 0 40px;border-bottom:1px solid var(--line)}h1{font-size:clamp(2.5rem,7vw,5.8rem);line-height:.95;letter-spacing:-.06em;margin:.2rem 0 1.2rem;max-width:780px}h2{font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.035em;margin:.25rem 0}.eyebrow{color:var(--accent);font:600 .72rem/1.2 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}.lede{color:var(--muted);font-size:1.1rem;max-width:650px}.actions,.server-controls{display:flex;gap:10px;flex-wrap:wrap}button,.file,input{border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--text);padding:.75rem 1rem;font:inherit}button,.file{cursor:pointer}button:hover,.file:hover{border-color:var(--accent)}button.primary{background:var(--accent);color:#07120f;border-color:var(--accent);font-weight:700}button:disabled{opacity:.5;cursor:wait}.file input{display:none}main{display:grid;gap:18px;padding:24px 0}section{background:linear-gradient(145deg,rgba(23,31,45,.92),rgba(14,19,28,.94));border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,36px);box-shadow:0 20px 50px #0004}.verdict{display:grid;grid-template-columns:1fr auto;align-items:center;border-color:#3c6c61}.status,.pill{display:inline-flex;border:1px solid #315e54;color:var(--accent);border-radius:999px;padding:.2rem .65rem;font-size:.75rem}.verdict h2{font-size:clamp(2.2rem,6vw,4.6rem)}.verdict p,.section-head>p,.candidate p,footer{color:var(--muted)}.automation{min-width:190px;padding:20px;border-left:1px solid var(--line);display:grid}.automation strong{font-size:3rem;color:var(--accent)}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:18px}.section-head>p{max-width:430px}.candidates{display:grid;gap:10px}.candidate{display:grid;grid-template-columns:42px 1fr;gap:14px;background:#0c111a;border:1px solid var(--line);padding:16px;border-radius:10px}.rank{font:700 1.6rem ui-monospace;color:#53617a}.candidate-head{display:flex;justify-content:space-between;gap:15px}.candidate-head span{font:700 1rem ui-monospace;color:var(--accent)}.badge{font:600 .68rem/1.2 ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:.15rem .5rem;border:1px solid var(--line)}.badge-verified{color:#07120f;background:var(--accent);border-color:var(--accent)}.badge-heuristic{color:var(--danger);border-color:var(--danger)}.verified-name{color:var(--accent)}.notes{font-style:italic}.conflicts summary{color:var(--danger)}.meter{height:4px;background:#222d3f;margin:8px 0}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}.candidate p{margin:.2rem 0;font-size:.82rem}details{margin-top:12px}summary{cursor:pointer;color:#bfcaDC}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto;background:#090d14;padding:16px;border-radius:8px;color:#b9c9df;font:12px/1.55 ui-monospace,monospace}.probe{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end;margin:20px 0}.probe label{display:grid;gap:6px;color:var(--muted)}.scrollbox{height:110px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:10px;background:#090d14}.scrollbox div{height:180px;background:linear-gradient(var(--accent2),transparent);opacity:.18}.server-controls input{flex:1;min-width:230px}code{color:var(--accent);background:#0b1119;padding:.15rem .35rem;border-radius:4px}footer{padding:30px 0 60px}a{color:var(--accent2)}small{color:var(--muted)}.rules{display:grid;gap:10px}.rule-profile{background:#0c111a;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:0}.rule-profile summary{color:var(--text);font-weight:600}.rule-profile summary small{color:var(--muted);font-weight:400}.rules-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.82rem}.rules-table th,.rules-table td{text-align:left;padding:.4rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}.rules-table th{color:var(--muted);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}.rules-table td:first-child{color:var(--accent);font:700 .85rem ui-monospace,monospace;white-space:nowrap}
+@media(max-width:700px){header{align-items:start;padding-top:42px}.verdict,.probe{grid-template-columns:1fr}.automation{border-left:0;border-top:1px solid var(--line)}.section-head{display:block}header{display:block}header .actions{margin-top:20px}.rules-table{display:block;overflow-x:auto}}
 </style></head>
 <body>
   <header><div><p class="eyebrow">Browser Agent Detector / v0.3</p><h1>Who opened this page?</h1><p class="lede">A transparent, extensible guess based on browser fingerprints, HTTP headers, interaction patterns, and optional server evidence.</p></div><div class="actions" data-ignore-events><button id="rerun">Run again</button><button id="export" class="primary">Export JSON</button></div></header>
@@ -11,8 +12,9 @@
     <section><div class="section-head"><div><p class="eyebrow">03 / HTTP headers</p><h2>Public echo checks</h2></div><button id="httpButton">Run HTTP header checks</button></div><p>Cross-origin requests reveal the headers actually sent by this browser. Echo services receive the request headers and source IP; the detector keeps only reflected headers and discards echoed IP data.</p><details open><summary>Observed request headers</summary><pre id="httpJson">HTTP header checks have not finished.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">05 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
+    <section><div class="section-head"><div><p class="eyebrow">06 / Rules</p><h2>Every rule this detector can fire</h2></div><p>Generated straight from the running code — automation signals plus every registered agent profile's scoring rules and their point weights.</p></div><div id="rulesPanel" class="rules">Waiting…</div></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-21T10:43:52.705Z</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-21T23:46:50.517Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -50,7 +52,7 @@
                                                      
                
                                                                                                                      
-                                                                                                                 
+                                                                                                                                                
     
                                                                                                          
                                                                            
@@ -318,11 +320,33 @@
                                                 
  
 
+/** Inputs available to a hardcoded automation rule's `check`/`label` functions. */
+                                 
+                                                                             
+                                   
+                             
+                                  
+ 
+
+/**
+ * A hardcoded (non-registry) automation signal — environment/behavior/header checks that apply
+ * regardless of vendor attribution. Kept as data (rather than inline `if` statements) so the full
+ * rule set can be introspected and rendered, e.g. for the in-app Rules explainer.
+ */
+                          
+             
+                       
+                 
+                                             
+                                            
+ 
+
                             
                   
                            
                        
                            
+                                    
                                            
                                                           
                                         
@@ -350,7 +374,7 @@
 (function (root                   ) {
   'use strict';
   const AD = root.AgentDetector = root.AgentDetector || {}                    ;
-  AD.VERSION = '0.3.0';
+  AD.VERSION = '0.4.0';
   AD.state = { snapshot: null, events: [], startedAt: new Date().toISOString(), server: null, http: null, result: null };
   AD.get = (obj         , path        ) => path.split('.').reduce         ((value, key) => {
     if (value === null || typeof value !== 'object') return undefined;
@@ -387,7 +411,7 @@
     a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   };
   AD.registry = [];
-  AD.REGISTRY_VERSION = '2026-09-17';
+  AD.REGISTRY_VERSION = '2026-09-22';
 })(globalThis);
 
 /** Shared authoring helpers for registry files. Kept out of AgentDetectorApi since they are build-time-only. */
@@ -418,531 +442,132 @@ function registerProfiles(...profiles                )       {
 
 //# sourceURL=src/core.ts
 
+/**
+ * Product agents tracked outside the Web Bot Auth cohort (see `web-bot-auth.ts` for signed agents).
+ *
+ * None of these publishes a cryptographic identity, so attribution here is always heuristic and the
+ * honest default is `unprofiled` — registered so the product exists in the registry and its research
+ * state is recorded, with `minimumEvidence: 99` so an empty profile can never win attribution.
+ * A profile graduates to `research-profile`/`local-sample` only when a source or labeled capture
+ * supplies a value; inventing a UA token or fingerprint from a product name is specifically what this
+ * registry must not do.
+ */
 (function () {
   'use strict';
-  const fpAgent = mkSource('academic-research', 'research-paper-claim',
-    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
-  const supportArticle = mkSource('official-docs', 'verified-official',
-    'https://support.claude.com/en/articles/12012173', 'Anthropic support: Claude in Chrome permissions/architecture', '2026-08-01');
-  const reverseEngGist = mkSource('third-party-analysis', 'anecdotal',
-    'https://gist.github.com/sshh12/e352c053627ccbe1636781f73d6d715b', 'Claude for Chrome Extension Internals v1.0.56 (unofficial reverse-engineering)', '2026-08-01', 'extension v1.0.56');
-  const coworkBlog = mkSource('official-docs', 'verified-official',
-    'https://claude.com/blog/cowork-built-in-browser', 'Anthropic: Claude Cowork built-in browser', '2026-08-01');
-  const webStore = mkSource('official-repo', 'verified-official',
-    'https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn', 'Claude in Chrome — Chrome Web Store listing', '2026-09-01');
-
-  registerProfiles(mkProfile({
-    id: 'claude-in-chrome', name: 'Claude in Chrome / Claude for Chrome', vendor: 'Anthropic',
-    aliases: ['Claude for Chrome', 'Claude in Chrome'],
-    category: 'product-agent', execution: 'extension', status: 'research-profile',
-    minimumEvidence: 2, lastReviewedAt: '2026-09-17',
-    sources: [fpAgent, supportArticle, reverseEngGist, webStore],
-    notes: 'Extension ID fcoeoabgfenejglbffodgkkbkcdhcgfn is official (Chrome Web Store). The "field changed without typing events / near-zero inter-key latency" behavior is FP-Agent\'s documented methodology finding (programmatic fill via a single `change` event), not an Anthropic disclosure — Anthropic can change the fill implementation at any time, so treat as version-scoped. DOM/CDP details below come from a single unverified third-party gist and are anecdotal-only.',
-    rules: [
-      mkRule('behavior.changeWithoutTyping', 'truthy', true, 26, 'field changed with no keydown/keyup or paste events (FP-Agent: programmatic fill via change event only)',
-        'behavioral', 'medium', fpAgent, { reviewBy: '2026-12-01' }),
-      mkRule('behavior.interKeyMeanMs', 'lte', 1, 22, 'sub-millisecond inter-key latency when keystroke mode is used (FP-Agent measurement)',
-        'behavioral', 'low', fpAgent, { reviewBy: '2026-12-01' }),
-      mkRule('environment.rendering.fonts.Gill Sans', 'truthy', true, 6, 'Gill Sans reported only on macOS (FP-Agent dataset snapshot, weak alone)',
-        'browser-fingerprint', 'low', fpAgent, { knownConflicts: ['comet reports Gill Sans on Windows too, so this alone does not discriminate Claude vs Comet on macOS'], reviewBy: '2026-12-01' }),
-      mkRule('environment.isChrome', 'truthy', true, 4, 'Chromium browser (required, not discriminating alone)',
-        'browser-fingerprint', 'low', supportArticle)
-    ]
-  }));
-
-  registerProfiles(mkProfile({
-    id: 'claude-cowork-browser', name: 'Claude Cowork Browser', vendor: 'Anthropic',
-    aliases: ['Claude Cowork', 'Cowork built-in browser'],
-    category: 'product-agent', execution: 'local', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [coworkBlog],
-    notes: 'Real, officially announced product (merged into Claude chat ~2026-09-16). No official or reproducible UA string, header, IP range, browser fingerprint, or behavioral signature has been published or observed for Cowork\'s built-in browser specifically — FP-Agent studied the separate Claude for Chrome extension, not Cowork. Missing evidence: any labeled capture of Cowork browser network/behavioral traffic. Collect: HTTP headers from a Cowork session hitting a controlled endpoint, and a behavioral capture of its typing/scrolling pattern.',
-    rules: []
-  }));
-})();
-
-
-//# sourceURL=src/registry/anthropic.ts
-
-(function () {
-  'use strict';
-  function unprofiled(id        , name        , vendor        , aliases          , execution                , sourceUrl        , sourceTitle        , notes        ) {
+  function unprofiled(
+    id        , name        , vendor        , aliases          , execution                ,
+    source                , notes        , extraSources                   = []
+  ) {
     return mkProfile({
       id, name, vendor, aliases, category: 'product-agent'         , execution, status: 'unprofiled'         ,
-      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-      sources: [mkSource('official-docs', 'verified-official', sourceUrl, sourceTitle, '2026-09-01')],
-      notes, rules: []
+      minimumEvidence: 99, lastReviewedAt: '2026-09-22',
+      sources: [source, ...extraSources], notes, rules: []
     });
   }
 
-  registerProfiles(
-    unprofiled('genspark-super-agent', 'Genspark Super Agent', 'Genspark', ['Genspark AI Browser'], 'hybrid',
-      'https://www.genspark.ai/helpcenter/super-agent', 'Genspark: Super Agent help center',
-      'Real, officially documented autonomous agent plus a standalone "AI Browser" app. No published UA/header/IP/extension ID/fingerprint. One third-party security test (LayerX, via Skywork.ai) found its browser let over 90% of tested malicious pages execute vs. Chrome — a security-posture finding, not a detection signature.'),
-
-    unprofiled('gemini-in-chrome', 'Gemini in Chrome / Gemini Auto Browse', 'Google', ['Gemini Auto Browse'], 'local',
-      'https://support.google.com/chrome/answer/16821166', 'Google: Gemini in Chrome support',
-      'Official, native Chrome feature — Gemini drives the user\'s own real Chrome session rather than a separate client. Structurally very hard to detect via UA/IP by design, since traffic is indistinguishable from ordinary first-party Chrome use. No technical signature published or expected.'),
-
-    unprofiled('microsoft-copilot-tasks', 'Microsoft Copilot Tasks', 'Microsoft', [], 'cloud',
-      'https://support.microsoft.com/en-us/microsoft-copilot/using-copilot-tasks', 'Microsoft: Copilot Tasks support',
-      'Official Microsoft 365 Copilot feature (announced Feb 2026) that turns conversational answers into background/scheduled actions, largely via connectors/plugins rather than a literal driven browser client. No UA/header/IP/fingerprint published.'),
-
-    unprofiled('edge-copilot-actions', 'Microsoft Edge Copilot Actions', 'Microsoft', ['Browse with Copilot'], 'local',
-      'https://support.microsoft.com/en-us/topic/copilot-actions-in-edge-5ed5e17e-42df-40a3-984a-20420eba86e2', 'Microsoft: Copilot Actions in Edge',
-      'Official, native Edge feature — like Gemini Auto Browse, runs inside the user\'s own real Edge session, so it carries the ordinary Edge UA rather than a distinct one. A third-party bot-management vendor (HUMAN Security) treats "Copilot Actions" as a distinct traffic category worth flagging, but its detection method was not disclosed publicly. No client-observable technical signature is currently known.'),
-
-    (() => {
-      const grokCorpus = mkSource('labeled-capture', 'anecdotal',
-        'internal://labeled-captures/grok-agent-2026-09', 'Internal labeled captures: 3 sessions same tester (2026-09-16) + 2 genuinely separate sessions same tester (2026-09-17, distinct trace IDs/timings, environment otherwise frozen)', '2026-09-01');
-      return mkProfile({
-        id: 'grok-agent', name: 'Grok Agent / Grok Bot', vendor: 'xAI', aliases: [],
-        category: 'framework', execution: 'unknown', status: 'research-profile',
-        minimumEvidence: 3, lastReviewedAt: '2026-09-21',
-        sources: [mkSource('official-docs', 'verified-official', 'https://docs.x.ai/overview', 'xAI: docs overview', '2026-09-01'), grokCorpus],
-        notes: 'No official xAI documentation of a UA token, IP range, or Web Bot Auth support was found for a "Grok Agent"/"GrokAgent" browsing product. Five internal labeled captures across two schema versions and two separate days all agree completely: `navigator.webdriver=true`, `HeadlessChrome/148.0.0.0` self-identifying in the UA, SwiftShader/Vulkan software WebGL rendering, screen 800×600 with 2 cores/2GB RAM, timezone UTC, and zero interaction events (0 duration, all behavioral fields null/zero). The HTTP-echo client IP (`x-forwarded-for`, not the CDN-fronted `origin` field) resolved to Google Cloud (34.x, AS396982-range) in every capture. Rules below are scored as `framework`, not `product-agent`, and every one of them is a generic headless-Chromium-on-GCP signature — shared with any Playwright/Puppeteer job hosted on Google Cloud, not xAI-specific. Do not read a match against this profile as "this is Grok"; read it as "this is unattended headless Chromium infrastructure, and Grok is one known consumer of that shape." A distinguishing marker (a Grok-specific header, a narrower ASN, a Web Bot Auth key) would be needed to promote this past framework-class evidence, and none has been found.',
-        rules: [
-          mkRule('automation.webdriver', 'truthy', true, 22, 'WebDriver/automation flag exposed (headless Chromium)',
-            'browser-fingerprint', 'medium', grokCorpus),
-          mkRule('environment.ua', 'includes', 'HeadlessChrome/148', 20, 'HeadlessChrome/148 in UA — self-identifying, but this is a generic Chromium build token, not an xAI-specific one',
-            'browser-fingerprint', 'medium', grokCorpus, { reviewBy: '2026-12-01' }),
-          mkRule('environment.rendering.softwareRenderer', 'truthy', true, 12, 'SwiftShader software WebGL renderer (no real GPU) — generic headless-on-cloud signature',
-            'browser-fingerprint', 'low', grokCorpus),
-          mkRule('environment.screen.size', 'eq', '800x600', 10, 'screen 800×600, container default — generic headless signature, not xAI-specific',
-            'browser-fingerprint', 'low', grokCorpus, { reviewBy: '2026-12-01' }),
-          mkRule('environment.timezone.zone', 'eq', 'UTC', 6, 'UTC timezone — unconfigured container default, common to any cloud headless job',
-            'browser-fingerprint', 'low', grokCorpus)
-        ]
-      });
-    })(),
-
-    unprofiled('meta-muse', 'Meta Muse', 'Meta', [], 'cloud',
-      'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/', 'Meta: Introducing Muse',
-      'Official product (launched 2026-09-08), runs inside an isolated per-user "Muse Secure VM" with an embedded browser and an on-machine "Sentinel" agent gating outbound traffic. Meta\'s own announcement confirms the architecture but discloses no UA/header/IP/fingerprint for the embedded browser. This directly confirms — rather than refutes — the task\'s prior finding that no stable public client-side signature exists for Muse.')
-  );
-})();
-
-
-//# sourceURL=src/registry/big-tech.ts
-
-(function () {
-  'use strict';
-  const fpAgent = mkSource('academic-research', 'research-paper-claim',
-    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
-
-  // --- Browser Use ---
-  const browserUseRepo = mkSource('official-repo', 'verified-official',
-    'https://github.com/browser-use/browser-use', 'Browser Use: GitHub repository', '2026-09-01');
-  const browserUseDocs = mkSource('official-docs', 'verified-official',
-    'https://docs.browser-use.com/customize/browser/all-parameters', 'Browser Use: browser configuration parameters', '2026-09-01');
-  registerProfiles(mkProfile({
-    id: 'browser-use', name: 'Browser Use', vendor: 'Browser Use, Inc.',
-    aliases: [],
-    category: 'framework', execution: 'hybrid', status: 'research-profile',
-    minimumEvidence: 2, lastReviewedAt: '2026-09-17',
-    sources: [browserUseRepo, browserUseDocs, fpAgent],
-    notes: 'Open-source + hosted cloud CDP-based automation framework (Playwright underneath). `user_agent` is an explicitly documented, overridable parameter with no fixed official default, so any UA-based rule would be fragile by design. Detecting Browser Use does not prove which product initiated the session — it is infrastructure, not a user-facing agent.',
-    rules: [
-      mkRule('behavior.keydownCount', 'gte', 5, 20, 'character-by-character keystroke input via CDP dispatchKeyEvent (FP-Agent measurement)',
-        'behavioral', 'medium', fpAgent),
-      mkRule('automation.webdriver', 'truthy', true, 22, 'WebDriver/automation flag exposed (CDP-driven Chromium)',
-        'browser-fingerprint', 'medium', browserUseRepo),
-      mkRule('environment.screen.size', 'eq', '1440x900', 6, 'screen 1440×900 (FP-Agent dataset snapshot; shared with Atlas/Claude on macOS — weak alone)',
-        'browser-fingerprint', 'low', fpAgent, { knownConflicts: ['openai-atlas-agent', 'claude-in-chrome'], reviewBy: '2026-12-01' })
-    ]
-  }));
-
-  // --- Skyvern ---
-  const skyvernRepo = mkSource('official-repo', 'verified-official',
-    'https://github.com/Skyvern-AI/skyvern', 'Skyvern: GitHub repository (Playwright extension)', '2026-09-01');
-  registerProfiles(mkProfile({
-    id: 'skyvern', name: 'Skyvern', vendor: 'Skyvern-AI',
-    aliases: [],
-    category: 'framework', execution: 'local', status: 'research-profile',
-    minimumEvidence: 3, lastReviewedAt: '2026-09-17',
-    sources: [skyvernRepo, fpAgent],
-    notes: 'Official README describes Skyvern as a Playwright extension. FP-Agent fingerprint values below are pinned to Skyvern v0.2.23 and likely stale for current releases — reviewBy dates reflect that. Framework detection does not identify which product built on Skyvern initiated the session.',
-    rules: [
-      mkRule('environment.screen.size', 'eq', '1920x1080', 14, 'screen 1920×1080 (FP-Agent v0.2.23 snapshot, differs from macOS-baseline agents)',
-        'browser-fingerprint', 'low', fpAgent, { affectedVersion: '0.2.23', reviewBy: '2026-12-01' }),
-      mkRule('environment.timezone.zone', 'eq', 'America/New_York', 10, 'America/New_York timezone (FP-Agent v0.2.23 snapshot)',
-        'browser-fingerprint', 'low', fpAgent, { affectedVersion: '0.2.23', reviewBy: '2026-12-01' }),
-      mkRule('environment.media.hdr', 'falsy', false, 6, 'HDR unavailable (FP-Agent v0.2.23 snapshot)',
-        'browser-fingerprint', 'low', fpAgent, { affectedVersion: '0.2.23', reviewBy: '2026-12-01' }),
-      mkRule('environment.plugins.count', 'eq', 0, 8, 'empty plugin list (FP-Agent v0.2.23 snapshot)',
-        'browser-fingerprint', 'low', fpAgent, { affectedVersion: '0.2.23', reviewBy: '2026-12-01' }),
-      mkRule('behavior.keydownCount', 'gte', 5, 10, 'final-chunk keystroke input pattern (FP-Agent: types bulk programmatically, final ~20 chars via keystrokes)',
-        'behavioral', 'medium', fpAgent, { affectedVersion: '0.2.23' })
-    ]
-  }));
-
-  // --- Browserbase / Stagehand ---
-  const browserbaseDocs = mkSource('official-docs', 'verified-official',
-    'https://docs.browserbase.com/platform/identity/vpn', 'Browserbase: identity/VPN and proxy allowlisting docs', '2026-09-01');
-  registerProfiles(mkProfile({
-    id: 'browserbase-stagehand', name: 'Browserbase / Stagehand', vendor: 'Browserbase, Inc.',
-    aliases: ['Stagehand'],
-    category: 'browser-infrastructure', execution: 'cloud', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [browserbaseDocs],
-    notes: 'Browserbase does not publish its own outbound IP ranges — its docs describe the inverse (you bring your own proxy and Browserbase routes through it). No official UA, header, or fingerprint signal was found; FP-Agent does not study raw browser-infra providers. Missing evidence: any labeled capture of Browserbase-hosted session traffic.',
-    rules: []
-  }));
-
-  // --- Playwright MCP ---
-  const playwrightMcpRepo = mkSource('official-repo', 'verified-official',
-    'https://github.com/microsoft/playwright-mcp', 'Microsoft: Playwright MCP repository', '2026-09-01');
-  registerProfiles(mkProfile({
-    id: 'playwright-mcp', name: 'Playwright MCP', vendor: 'Microsoft',
-    aliases: [],
-    category: 'framework', execution: 'hybrid', status: 'generic-only',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [playwrightMcpRepo],
-    notes: 'Self-hosted, fully operator-configurable (UA, headers via --cdp-header, browser channel). No fixed default UA or header exists to key a rule on — the project itself makes no stealth/detectability claims. What is detectable is generic CDP-driven Chromium automation (navigator.webdriver, missing window.chrome internals), which is already covered by the automation-likelihood scoring, not by a product-specific profile.',
-    rules: []
-  }));
-
-  // --- Computer Use APIs (Anthropic + OpenAI) ---
-  const anthropicCu = mkSource('official-docs', 'verified-official',
-    'https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool', 'Anthropic: computer use tool docs', '2026-08-01', 'computer_toolset_20260801');
-  const openaiCua = mkSource('official-docs', 'verified-official',
-    'https://developers.openai.com/api/docs/guides/tools-computer-use', 'OpenAI: computer-use-preview tool docs', '2026-08-01');
-  registerProfiles(mkProfile({
-    id: 'computer-use-apis', name: 'Computer Use APIs', vendor: 'Anthropic / OpenAI',
-    aliases: ['Anthropic computer use tool', 'OpenAI computer-use-preview', 'CUA'],
-    category: 'framework', execution: 'unknown', status: 'generic-only',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [anthropicCu, openaiCua],
-    notes: 'Both vendors host the execution environment on the DEVELOPER\'s infrastructure for the raw API tool ("your application runs every call in an environment you control" — Anthropic). There is therefore no single vendor-controlled fingerprint/IP/UA for the API tool itself; only the separately-profiled consumer products (chatgpt-agent) carry vendor-controlled signals. Detecting a generic computer-use harness (Xvfb/Docker screenshot loop) does not identify which vendor\'s model is driving it.',
-    rules: []
-  }));
-
-  // --- Amazon Nova Act ---
-  const novaActRepo = mkSource('official-repo', 'verified-official',
-    'https://github.com/aws/nova-act', 'AWS: Amazon Nova Act SDK README', '2026-09-01');
-  registerProfiles(mkProfile({
-    id: 'amazon-nova-act', name: 'Amazon Nova Act', vendor: 'AWS/Amazon',
-    aliases: [],
-    category: 'framework', execution: 'hybrid', status: 'research-profile',
-    minimumEvidence: 1, lastReviewedAt: '2026-09-17',
-    sources: [novaActRepo],
-    notes: 'The one framework here with an explicit, vendor-documented self-identification convention: the README recommends developers "look for NovaAct in the user agent string." This is opt-in and overridable by the developer (not enforced), so absence of the token is not evidence against Nova Act, only its presence (when found) is a genuine documented marker.',
-    headerMarker: { pattern: 'novaact', confidence: 'high', source: novaActRepo, selfIdentifying: true },
-    rules: [
-      mkRule('environment.ua', 'includes', 'NovaAct', 30, 'UA contains vendor-documented "NovaAct" self-identification token',
-        'browser-fingerprint', 'high', novaActRepo)
-    ]
-  }));
-})();
-
-
-//# sourceURL=src/registry/frameworks.ts
-
-(function () {
-  'use strict';
-  /**
-   * Cross-cutting caveat for this whole file: most cloud browser-infra vendors explicitly sell
-   * "stealth"/anti-detection/residential-proxy features as a product differentiator, meaning any
-   * default fingerprint they might otherwise expose is intentionally configurable/maskable by their
-   * own customers. None of the vendors below has a documented, stable, non-overridable client signal
-   * strong enough for a scoring rule — each is registered so it exists in the registry and is honestly
-   * marked, per the task's explicit instruction not to invent detection rules.
-   */
-  function infra(id        , name        , vendor        , url        , title        , notes        , aliases           = [], execution                 = 'cloud') {
-    return mkProfile({
-      id, name, vendor, aliases,
-      category: 'browser-infrastructure'         , execution, status: 'unprofiled'         ,
-      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-      sources: [mkSource('official-docs', 'verified-official', url, title, '2026-09-01')],
-      notes, rules: []
-    });
-  }
-
-  registerProfiles(
-    infra('cloudflare-kitesurf', 'Cloudflare Kitesurf', 'Cloudflare',
-      'https://blog.cloudflare.com/kitesurf/', 'Cloudflare: Kitesurf agent-first browser runtime',
-      'Agent-first browser engine on Workers/V8 isolates, not full Chromium. Documented limitation: cannot pass TLS-fingerprint bot-challenge negotiation like real Chromium can — useful only as a negative signal (traffic claiming Kitesurf while passing TLS-fingerprint checks would be suspicious), not a positive one. No UA/header/IP published. Not confirmed to use Web Bot Auth despite Cloudflare authoring that spec separately.'),
-    infra('firecrawl', 'Firecrawl', 'Firecrawl (Mendable)',
-      'https://github.com/mendableai/firecrawl', 'Firecrawl: advanced scraping guide',
-      'Documents a robots.txt matching token "FirecrawlAgent", but its own docs and an unresolved GitHub issue (#656) confirm this is NOT guaranteed to equal the literal User-Agent header sent on requests. No fixed outbound IP range (one static IP documented is for inbound API calls, not outbound crawling). Too unreliable for a rule.'),
-    infra('steel', 'Steel', 'Steel',
-      'https://steel.dev/blog/stealth-browser', 'Steel: Stealth Browser architecture',
-      'Open-source Chromium-fork browser infrastructure; newer "Stealth Browser" patches fingerprint surfaces at the source level specifically to defeat fingerprinting. No default UA/header/IP published.'),
-    infra('hyperbrowser', 'Hyperbrowser', 'Hyperbrowser',
-      'https://docs.hyperbrowser.ai/get-started/quickstart/ai-agents/browser-use', 'Hyperbrowser: docs',
-      'Cloud browser API for AI agents; no technical signal (UA/header/IP/fingerprint) found in official docs.'),
-    infra('browserless', 'Browserless', 'Browserless',
-      'https://www.browserless.io/blog/bot-detection', 'Browserless: bot detection blog',
-      'Managed CDP/Playwright/Puppeteer browser API. Documents User-Agent setting/masking as a client-configurable option (not a fixed default), and sells anti-bot-detection features — meaning no stable default fingerprint exists to key a rule on.'),
-    infra('tinyfish', 'TinyFish', 'TinyFish',
-      'https://docs.tinyfish.ai/', 'TinyFish: docs',
-      '"Web infrastructure for AI agents" (search/fetch/browser/agent stack, plus hosted "Mino" agent). No technical signal found.'),
-    infra('airtop', 'Airtop', 'Airtop',
-      'https://docs.airtop.ai/guides/getting-started/what-is-airtop', 'Airtop: what is Airtop',
-      'Cloud CDP-based browser platform (Playwright/Puppeteer/Selenium compatible) with an integrated 100M+ IP residential proxy network — traffic can originate from arbitrary residential IPs by design, defeating IP-based detection. No UA/header signal found.'),
-    infra('anchor-browser', 'Anchor Browser', 'Anchor Browser',
-      'https://docs.anchorbrowser.io/', 'Anchor Browser: docs',
-      'Cloud CDP-based browser infrastructure with a paid "extra stealth mode" (residential proxies + fingerprint spoofing) as a product feature. No stable default UA/header/IP signal found.'),
-    infra('kernel', 'Kernel', 'Kernel (onkernel.com)',
-      'https://www.onkernel.com/', 'Kernel: browsers-as-a-service',
-      'Browser automation infrastructure, accessible via the third-party agent-browser CLI abstraction alongside Browserbase/Browserless/AgentCore. That integration exposes an opt-in KERNEL_STEALTH flag (default false) — confirms stealth is available but not default, still no fixed fingerprint to key a rule on.'),
-    infra('scrapybara', 'Scrapybara', 'Scrapybara',
-      'https://docs.scrapybara.com/introduction', 'Scrapybara: introduction',
-      'Provides cloud virtual desktop/browser sandboxes for computer-use models (Claude Computer Use, OpenAI CUA) to control. No UA/header/IP/fingerprint signal found; underlying browser stack undisclosed.'),
-    mkProfile({
-      id: 'agent-browser', name: 'agent-browser', vendor: 'Vercel Labs', aliases: [],
-      category: 'framework', execution: 'local', status: 'unprofiled',
-      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-      sources: [mkSource('official-repo', 'verified-official', 'https://github.com/vercel-labs/agent-browser', 'Vercel Labs: agent-browser CLI', '2026-09-01')],
-      notes: 'Open-source CLI that multiplexes across multiple backend providers (AgentCore, Browser Use, Browserbase, Browserless, Kernel) and engines (Chrome, Lightpanda) — it is an abstraction layer, not infrastructure with its own network identity. Whatever fingerprint appears belongs to the underlying provider, not to agent-browser itself. Detecting one of the underlying providers does not imply agent-browser (or any specific product) was the caller.',
-      rules: []
-    }),
-    infra('lav', 'LaV', 'unknown',
-      'https://github.com/lavague-ai/LaVague', 'Unresolved — closest candidate match: LaVague (unconfirmed)',
-      'Could not confidently identify what "LaV" refers to. The closest candidate found is LaVague (lavague-ai/LaVague), an open-source Selenium/Playwright-based web agent framework, but "LaV" is not an abbreviation that project uses anywhere, and no other candidate named exactly "LaV" was found. Registered as unprofiled with this ambiguity stated explicitly rather than guessing. Missing evidence: clarification of what product/tool "LaV" actually names.')
-  );
-})();
-
-
-//# sourceURL=src/registry/infrastructure.ts
-
-(function () {
-  'use strict';
-  function unprofiled(id        , name        , vendor        , aliases          , execution                , sourceUrl        , sourceTitle        , notes        ) {
-    return mkProfile({
-      id, name, vendor, aliases, category: 'product-agent'         , execution, status: 'unprofiled'         ,
-      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-      sources: [mkSource('official-docs', 'verified-official', sourceUrl, sourceTitle, '2026-09-01')],
-      notes, rules: []
-    });
-  }
-
-  // Instinct: keep the one existing local labeled capture as a distinct local-sample profile with
-  // honest, very-low confidence — a single capture must never drive strong attribution on its own.
+  // --- Instinct -----------------------------------------------------------------------------------
+  // Nine internal labeled captures. Every rule stays `low` confidence: a single fixed VM image behind
+  // the sessions explains the frozen fingerprint at least as well as a stable Instinct artifact does.
   const instinctCapture = mkSource('labeled-capture', 'anecdotal',
     'internal://labeled-captures/instinct-2026-09', 'Internal labeled capture (one session, September 2026)', '2026-09-01');
-  const instinctCapture2 = mkSource('labeled-capture', 'anecdotal',
-    'internal://labeled-captures/instinct-2026-09-18', 'Internal labeled capture, second independent session (2026-09-18, scripted interaction: typing, clicking, scrolling)', '2026-09-18');
-  const instinctCapture3 = mkSource('labeled-capture', 'anecdotal',
-    'internal://labeled-captures/instinct-2026-09-18b', 'Internal labeled capture, third independent session (2026-09-18, same scripted task; page had no dropdown/checkbox so that step was skipped)', '2026-09-18');
   const instinctCapture4 = mkSource('labeled-capture', 'anecdotal',
-    'internal://labeled-captures/instinct-2026-09-18c', 'Internal labeled capture, fourth independent session (2026-09-18, revised scripted task with explicit mouse-wheel-scroll and hover-before-click steps; page again had no dropdown/checkbox so that step was skipped)', '2026-09-18');
-  const instinctCapture5 = mkSource('labeled-capture', 'anecdotal',
-    'internal://labeled-captures/instinct-2026-09-17', 'Internal labeled capture, fifth independent session (2026-09-17, passive load only, no scripted interaction — behavior all zero/null)', '2026-09-17');
-  const instinctCapture6 = mkSource('labeled-capture', 'anecdotal',
-    'internal://labeled-captures/instinct-2026-09-17b', 'Internal labeled capture, sixth independent session (2026-09-17, passive load only, no scripted interaction — behavior all zero/null)', '2026-09-17');
+    'internal://labeled-captures/instinct-2026-09-18c', 'Internal labeled capture, fourth independent session (2026-09-18, revised scripted task with explicit mouse-wheel-scroll and hover-before-click steps)', '2026-09-18');
   const instinctCapture7 = mkSource('labeled-capture', 'anecdotal',
-    'internal://labeled-captures/instinct-2026-09-18d', 'Internal labeled capture, seventh independent session (2026-09-18, different tester "krasnov", scripted interaction: typing, clicking; timezone showed Europe/Madrid)', '2026-09-18');
+    'internal://labeled-captures/instinct-2026-09-18d', 'Internal labeled capture, seventh independent session (2026-09-18, different tester "krasnov", scripted typing/clicking; timezone showed Europe/Madrid)', '2026-09-18');
   const instinctCorpusV2 = mkSource('third-party-analysis', 'anecdotal',
     'internal://labeled-captures/instinct-cross-version-2026-09-21', 'Internal cross-version pattern analysis: 8 captures spanning schema v2/v5/v6, 2026-09-07 through 2026-09-18, plus one Linux/GTX1650 outlier capture', '2026-09-21');
+
   registerProfiles(mkProfile({
-    id: 'instinct-local', name: 'Instinct', vendor: 'Instinct',
-    aliases: [],
+    id: 'instinct', name: 'Instinct', vendor: 'Instinct', aliases: [],
     category: 'product-agent', execution: 'unknown', status: 'local-sample',
-    minimumEvidence: 4, lastReviewedAt: '2026-09-21',
+    minimumEvidence: 4, lastReviewedAt: '2026-09-22',
     sources: [
       mkSource('official-docs', 'verified-official', 'https://instinct.com/', 'Instinct: official site', '2026-09-01'),
-      instinctCapture, instinctCapture2, instinctCapture3, instinctCapture4, instinctCapture5, instinctCapture6, instinctCapture7, instinctCorpusV2
+      instinctCapture, instinctCapture4, instinctCapture7, instinctCorpusV2
     ],
-    notes: 'Instinct is a real, viral, invite-only consumer AI assistant (TechCrunch coverage confirms it exists and raises privacy concerns), but no official or third-party public technical signature (UA/header/IP/extension) has been found anywhere. The values below come from internal labeled captures only and must still be treated as a low-confidence, version-scoped sample — every fingerprint rule below is capped at low confidence, so no single common value (screen size, CPU count) can alone drive attribution. Fingerprint values were largely reproduced across eight of nine captures (Windows UA, 1280×720, 2 cores, Roboto, identical GPU renderer/canvas/audio fingerprint) spanning 2026-09-07 through 2026-09-18 and two schema versions — this "cluster A" fingerprint is stable across two different testers and 11 days, which reads as a single fixed VM/container image behind these sessions, not necessarily as a stable Instinct product artifact (a driver/Chrome update on the same infra would break the match without Instinct itself changing). A ninth capture (`agent-inspector-krasnov.json`, Linux x86_64, 8 cores, NVIDIA GTX 1650, screen 1280×800) does not match this cluster on OS, core count, or GPU at all — either Instinct has a second execution environment or that capture is mislabeled; not folded into any rule below pending resolution. The timezone value has shown FOUR distinct zones across the cluster-A captures (America/Chicago, America/Indianapolis, America/New_York, Europe/Madrid) while the fingerprint stayed frozen — the inverse of a real user, who has a stable IP/location and a drifting fingerprint — so `America/Chicago` is read as a weak, majority-only signal (proxy/VPN egress), not a product artifact; the frozen-fingerprint-vs-rotating-egress correlation itself is exactly the kind of comparison this client-side detector cannot make (no IP evidence is collected), so it stays a documented lead rather than a rule. `behavior.pointerMoves` and `behavior.wheelCount` were tested and rejected as rules: pointerMoves went from 0 to 4 across otherwise-similar sessions, and wheelCount==0, while present in every scripted-interaction capture, is also the corpus-wide norm across every other agent AND both human baselines in this registry\'s own labeled data — neither discriminates. Click coordinate spread was likewise unstable across sessions and was not turned into a rule. Two NEW behavioral patterns instead survive across every capture that has typing: (1) `behavior.inputCount` runs almost exactly double `behavior.keydownCount` in all five typing captures (ratios 2.00, 2.00, 2.00, 2.02, 2.02 — never a clean 2n, so treat as approximate, not exact), consistent with a synthetic key event plus a separate direct value write per character; (2) `behavior.intervalP10Ms` sits at 0.4–0.6ms in every one of those same five captures, a ~10x gap below every other capture in the registry\'s corpus (human baselines: 3.9–7.6ms) and physically implausible for real input hardware. Both are added below as low-confidence behavioral rules. Caveat that matters: this registry currently holds NO human capture that actually typed into a form (both `user/*` baselines show `keydownCount: 0`), so the human-vs-agent contrast for these two rules is assumed from cross-agent/cross-product comparison, not measured against a same-task human baseline — revisit if one is collected. Window geometry is the strongest new signal: `viewport.outer` (1288×763) is wider AND taller than `viewport.inner`/`screen` (1280×720) in every one of the eight cluster-A captures, including the oldest (2026-09-07) — a real OS-hosted browser window can never be larger than the screen it sits on, and headful Chrome normally loses 60-130px of inner height to its own window chrome, neither of which holds here. This is scored generically at the engine level (`environment.automation.windowLargerThanScreen`, not a profile-specific rule) since it is a structural anomaly independent of any Instinct-specific fingerprint, but it is the single most load-bearing finding for this profile and should be weighted accordingly when reviewing automation-score output for Instinct-like traffic.',
+    notes: 'Instinct is a real, invite-only consumer AI assistant, but no public technical signature (UA/header/IP/extension) exists anywhere — every value below comes from internal labeled captures and is therefore version-scoped and low-confidence by construction. Eight of nine captures reproduce one "cluster A" fingerprint (Windows UA, 1280×720, 2 cores, Roboto, identical GPU renderer and audio fingerprint) across two testers, two schema versions, and 11 days. Read that as a single fixed VM/container image behind these sessions rather than a durable Instinct artifact: a driver or Chrome update on that same infra breaks the match without Instinct changing anything. A ninth capture (Linux x86_64, 8 cores, GTX 1650, 1280×800) matches the cluster on nothing — either a second execution environment or a mislabeled capture; deliberately not folded into any rule. The timezone showed FOUR distinct zones across cluster-A captures (America/Chicago, America/Indianapolis, America/New_York, Europe/Madrid) while the fingerprint stayed frozen — the inverse of a real user, whose location is stable and fingerprint drifts — so the Chicago rule is a weak majority-only signal (proxy/VPN egress). That frozen-fingerprint-vs-rotating-egress correlation is itself the strongest lead here, but it needs IP evidence this client-side detector does not collect, so it stays a documented lead rather than a rule. Tested and REJECTED as rules, recorded so they are not re-litigated: `pointerMoves` (went 0→4 across similar sessions), `wheelCount == 0` (corpus-wide norm across every other agent AND both human baselines), and click-coordinate spread (unstable across sessions). Window geometry is the single most load-bearing finding: `viewport.outer` (1288×763) exceeds both `viewport.inner` and `screen` (1280×720) in all eight cluster-A captures — impossible for an OS-hosted window, and headful Chrome normally loses 60–130px of inner height to its own chrome. That is scored generically in `engine.ts` (`environment.automation.windowLargerThanScreen`), not here, since it is a structural anomaly independent of any Instinct fingerprint. Known open issue: `reports/DETECTOR-open-issues.md` §3 finds `intervalMeanMs`/interval series computed over a filtered subsample in three Instinct captures, which undermines the p10 rule below — re-verify once the collector is fixed. Also note §7: no human capture in this corpus has typed into a form (both baselines show keydownCount 0), so the sub-millisecond contrast is assumed from cross-agent comparison, not measured against a same-task human baseline. MEASURED DETECTION RATE against the nine captures in `reports/instinct/` (replayed by `tests/scoring.test.mjs`): the seven sessions WITH interaction all attribute to Instinct at `strong` (scores 89-100) across two evidence layers; the two passive-load sessions (`agent-detection-me*.json`, keydownCount 0) score 24 and stay `unknown`. That split is the independent-layer cap working as intended, not a defect: a passive load leaves only browser-fingerprint evidence, and the frozen cluster-A fingerprint alone must not carry attribution — the behavioral rules are what supply the second layer. Practical consequence for collecting captures: a passive page load is not enough to identify Instinct, so any future capture intended to confirm this profile must include scripted typing. Note also that both passive captures predate `windowLargerThanScreen` (the field reads null), so they miss the generic geometry signal too — backfilling it by hand raises automation from 0 to 25 but still does not reach attribution, confirming the cap rather than the collector is the binding constraint.',
     rules: [
       mkRule('environment.ua', 'includes', 'Windows NT 10.0', 6, 'Windows 10 UA (cluster-A captures)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
-      mkRule('environment.ua', 'includes', 'Chrome/153.', 8, 'Chrome 153 (was 152 in the oldest capture; build number drifts with Chrome releases, so this rule itself will go stale — treat as a floating value, not a fixed artifact)',
+      mkRule('environment.ua', 'includes', 'Chrome/153.', 8, 'Chrome 153 (was 152 in the oldest capture; drifts with Chrome releases, so this rule goes stale by design — a floating value, not a fixed artifact)',
         'browser-fingerprint', 'low', instinctCapture4, { reviewBy: '2026-12-01' }),
       mkRule('environment.screen.size', 'eq', '1280x720', 8, 'screen 1280×720 (cluster-A captures)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
       mkRule('environment.hardware.logicalCores', 'eq', 2, 8, '2 logical cores (cluster-A captures)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
-      mkRule('environment.timezone.zone', 'eq', 'America/Chicago', 6, 'Chicago timezone (unstable across sessions and now seen across two continents — likely proxy/VPN egress, not a product artifact)',
+      mkRule('environment.timezone.zone', 'eq', 'America/Chicago', 6, 'Chicago timezone (unstable across sessions and seen across two continents — likely proxy/VPN egress, not a product artifact)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
-      mkRule('environment.rendering.fonts.Roboto', 'truthy', true, 4, 'Roboto available (weak alone)',
+      mkRule('environment.rendering.fonts.Roboto', 'truthy', true, 4, 'Roboto available (very weak alone; and see DETECTOR-open-issues.md §1 — the font probe currently returns true unconditionally on schema v5/v6, so this rule cannot discriminate until that is fixed)',
         'browser-fingerprint', 'low', instinctCapture, { reviewBy: '2026-12-01' }),
       mkRule('environment.rendering.renderer', 'eq', 'ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti (0x00002489) Direct3D11 vs_5_0 ps_5_0, D3D11)', 10,
-        'identical GPU renderer string across cluster-A captures, including a different tester (capture 7) and a capture 11 days apart — points to a shared fixed VM/GPU image, not necessarily a stable Instinct artifact; will break on any driver/image update',
+        'identical GPU renderer string across cluster-A captures including a different tester and a capture 11 days apart — points to a shared fixed VM/GPU image, not necessarily a stable Instinct artifact; breaks on any driver/image update',
         'browser-fingerprint', 'low', instinctCapture7, { reviewBy: '2026-12-01' }),
+      // canvasTail and audioMagnitude are retained at their original weights but re-labelled: per
+      // DETECTOR-open-issues.md §4 they are GPU-FAMILY fingerprints, not machine identifiers (7 and 3
+      // distinct values across 19 reports; Muse's canvasTail matches a human baseline byte-for-byte).
+      // They corroborate the cluster-A image; they must never be read as identifying a machine.
       mkRule('environment.rendering.canvasTail', 'eq', 'JgDZXsIi0FgIWAI3FrKns10be5MhYAncZFDbC1kETj4ClsAnH1Nr0SLQZAhYAjcZ1PZCFoGTj4Al8MnH1Fo8nRFo4tgtgZsYcHs5i8DJROD/AQAA///OIj7rAAAABklEQVQDAJicy6zN8QL3AAAAAElFTkSuQmCC', 10,
-        'identical canvas fingerprint tail across cluster-A captures — same-image signal, will break on a Chrome/Skia version change',
+        'canvas fingerprint tail matching the cluster-A captures — a GPU-family/platform fingerprint shared with unrelated machines of the same GPU family (see DETECTOR-open-issues.md §4), not a machine identifier; breaks on a Chrome/Skia version change',
         'browser-fingerprint', 'low', instinctCapture7, { reviewBy: '2026-12-01' }),
       mkRule('environment.rendering.audioMagnitude', 'eq', 88.985451, 10,
-        'identical Web Audio fingerprint magnitude across cluster-A captures — same-image signal, will break on an audio-stack or image update',
+        'Web Audio fingerprint magnitude matching the cluster-A captures — only 3 distinct values exist across the whole corpus and they do not even separate platforms cleanly (see DETECTOR-open-issues.md §4), so this is weak corroboration, not identification',
         'browser-fingerprint', 'low', instinctCapture7, { reviewBy: '2026-12-01' }),
       mkRule('behavior.intervalP10Ms', 'lte', 0.6, 10,
-        'sub-millisecond p10 event interval (0.4-0.6ms across all five typing captures) — ~10x below every other capture in this registry\'s corpus and implausible for physical input hardware; no same-task human baseline exists yet to confirm the contrast',
+        'sub-millisecond p10 event interval (0.4–0.6ms across all five typing captures) — ~10x below every other capture in this corpus and implausible for physical input hardware; see DETECTOR-open-issues.md §3 and §7 before trusting',
         'behavioral', 'low', instinctCorpusV2, { reviewBy: '2026-12-01' })
     ]
   }));
 
-  registerProfiles(mkProfile({
-    id: 'town-townie', name: 'Town / Townie', vendor: 'Town, Inc. / Val Town', aliases: ['Townie'],
-    category: 'product-agent', execution: 'unknown', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [
-      mkSource('official-docs', 'verified-official', 'https://www.town.com/', 'Town: official site', '2026-09-01'),
-      mkSource('official-docs', 'verified-official', 'https://docs.val.town/guides/prompting/townie/', 'Val Town: Townie docs', '2026-09-01')
-    ],
-    notes: 'Two unrelated real products share this name: Town.com (a16z/Forerunner-backed personal AI assistant) and Val Town\'s in-app coding agent "Townie" (unrelated company, not a browser-navigating agent). Neither publishes a UA/header/IP/extension signature. Confirms the task\'s prior finding that no stable public client-side signature is known. Missing evidence: clarification of which "Town" product the task means, and any labeled capture of either.',
-    rules: []
-  }));
-
-  registerProfiles(unprofiled('hark-handoff', 'Hark Handoff', 'Hark', [], 'unknown',
-    'https://hark.com/articles/introducing-hark-handoff', 'Hark: Introducing Handoff',
-    'Real, notable product from Hark (Brett Adcock) positioned as a fast computer-use/browser-use agent. Press coverage (VentureBeat, TechCrunch) describes capability, not a technical signature. No UA/header/IP/fingerprint published.'));
-
-  registerProfiles(unprofiled('lindy-autopilot', 'Lindy Autopilot', 'Lindy AI', [], 'cloud',
-    'https://docs.lindy.ai/fundamentals/lindy-101/ai-agents', 'Lindy: AI agents docs',
-    '"Autopilot" is a feature within Lindy 3.0, not a standalone product. Lindy agents primarily act via API/integrations and a no-code workflow builder rather than driving a visibly fingerprintable client browser. No UA/header/IP signal published.'));
-
-  registerProfiles(mkProfile({
-    id: 'polar', name: 'Polar', vendor: 'Polar Browser Inc.', aliases: ['Polar Browser'],
-    category: 'product-agent', execution: 'local', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [mkSource('official-docs', 'verified-official', 'https://polarbrowser.com/', 'Polar Browser: official site', '2026-09-01')],
-    notes: 'Name collision warning: "Polar" also refers to an unrelated billing/monetization platform (polar.sh) and to unrelated "Polar Analytics" ecommerce tooling. This profile is specifically Polar Browser (polarbrowser.com), an AI browser agent for knowledge work founded by an ex-Perplexity/Comet engineer. No UA/header/IP/fingerprint signal published.',
-    rules: []
-  }));
-
-  registerProfiles(mkProfile({
-    id: 'aera', name: 'Aera', vendor: 'independent ("Aera Browser", getaera.app)', aliases: ['Aera Browser'],
-    category: 'product-agent', execution: 'local', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [mkSource('official-docs', 'verified-official', 'https://getaera.app/', 'Aera Browser: official site', '2026-09-01')],
-    notes: 'Name collision warning: "Aera Technology" (aeratechnology.com) is a separate, established enterprise decision-intelligence platform unrelated to browser agents. This profile is specifically the smaller desktop browser-automation app at getaera.app. No UA/header/IP/fingerprint signal published for either.',
-    rules: []
-  }));
-
-  registerProfiles(unprofiled('aside', 'Aside', 'Aside', [], 'local',
-    'https://aside.com/', 'Aside: official site',
-    'Real, Y Combinator-backed product ("a browser rebuilt for people and agents"). No UA/header/IP/extension/fingerprint signal published in press or docs surfaced.'));
-
-  registerProfiles(mkProfile({
-    id: 'browseros-neo', name: 'BrowserOS / Neo', vendor: 'BrowserOS (browseros-ai)', aliases: ['Neo'],
-    category: 'product-agent', execution: 'local', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [mkSource('official-repo', 'verified-official', 'https://github.com/browseros-ai/BrowserOS', 'BrowserOS: GitHub repository', '2026-09-01')],
-    notes: 'Real, open-source Chromium fork. Being source-available means a custom UA token could in principle be derived directly from source, but no one has published one and this task instance did not do so (inventing one from an untested source read would violate the no-speculative-rules requirement). Missing evidence: a source-level check of BrowserOS\'s UA override (if any) plus a labeled network capture.',
-    rules: []
-  }));
-
-  registerProfiles(mkProfile({
-    id: 'strawberry-browser', name: 'Strawberry', vendor: 'Strawberry (Sweden)', aliases: ['Strawberry Browser'],
-    category: 'product-agent', execution: 'local', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [mkSource('official-docs', 'verified-official', 'https://strawberrybrowser.com/', 'Strawberry Browser: official site', '2026-09-01')],
-    notes: 'Distinct from OpenAI\'s internal "Strawberry" codename for the o1 reasoning model (unrelated). This profile is the Swedish AI browser-for-work product at strawberrybrowser.com. No UA/header/IP/fingerprint signal published.',
-    rules: []
-  }));
-
-  registerProfiles(mkProfile({
-    id: 'meteor-browser', name: 'Meteor', vendor: 'browse.dev (YC S25)', aliases: [],
-    category: 'product-agent', execution: 'local', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [mkSource('official-docs', 'verified-official', 'https://www.browse.dev/', 'browse.dev / Meteor: Y Combinator listing', '2026-09-01')],
-    notes: 'Name collision warning: unrelated to the Meteor.js/Galaxy web framework and to an unrelated meteor.com.co ERP/WhatsApp business-agent product. This profile is the YC S25 AI-native browser by browse.dev. No UA/header/IP/fingerprint signal published.',
-    rules: []
-  }));
-})();
-
-
-//# sourceURL=src/registry/longtail-a.ts
-
-(function () {
-  'use strict';
-  function unprofiled(id        , name        , vendor        , aliases          , execution                , sourceUrl        , sourceTitle        , notes        ) {
-    return mkProfile({
-      id, name, vendor, aliases, category: 'product-agent'         , execution, status: 'unprofiled'         ,
-      minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-      sources: [mkSource('official-docs', 'verified-official', sourceUrl, sourceTitle, '2026-09-01')],
-      notes, rules: []
-    });
-  }
-
-  registerProfiles(unprofiled('opera-neon', 'Opera Neon', 'Opera Limited', [], 'local',
-    'https://www.operaneon.com/', 'Opera: Neon official site',
-    'Real, officially shipped Opera product (agentic AI browser, released Sept 2025). Chromium-based, so it follows Opera\'s generic `OPR/` UA convention, but no Neon-specific distinguishing UA token, header, IP range, or extension ID was found in Opera\'s own docs/FAQ. Worth a follow-up direct network inspection of a live Neon build.'));
-
-  registerProfiles(unprofiled('fellou', 'Fellou', 'Fellou AI', [], 'local',
-    'https://fellou.ai/', 'Fellou: official site',
-    'Real product marketed as "the world\'s first agentic browser," including an "Eko" agent framework. No published UA/header/IP/extension ID/fingerprint in official docs or third-party writeups surfaced. Worth a follow-up direct network trace of a live Fellou session.'));
-
-  registerProfiles(unprofiled('dia-browser', 'Dia', 'The Browser Company', [], 'local',
-    'https://www.diabrowser.com/', 'Dia: official site',
-    'Real, well-known official product (beta since June 2025), Arc-derived/Chromium-based. No official UA string, header, or extension ID published in Dia\'s own help/security docs or in press coverage surfaced. Likely carries a standard Chromium-family UA with no distinct "Dia/" token documented.'));
-
-  registerProfiles(unprofiled('openclaw', 'OpenClaw', 'OpenClaw (open-source)', ['Clawdbot', 'Moltbot'], 'local',
-    'https://openclaw.ai/', 'OpenClaw: official site',
-    'Real, open-source general local/agentic assistant framework (formerly named Clawdbot/Moltbot). It is not specifically a browser client — no published UA/header/IP/extension signature for browser-driving behavior specifically.'));
-
-  registerProfiles(unprofiled('moclaw', 'MoClaw', 'MoClaw', [], 'cloud',
-    'https://moclaw.ai/', 'MoClaw: official site',
-    'Real product, "cloud AI computer for autonomous AI agents." Despite the naming similarity, no evidence was found linking it to OpenClaw as the same product — treat as unrelated. No UA/header/IP/fingerprint signal published.'));
-
-  registerProfiles(mkProfile({
-    id: 'multion', name: 'MultiOn', vendor: 'MultiOn / AGI, Inc.', aliases: [],
-    category: 'product-agent', execution: 'extension', status: 'research-profile',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [
-      mkSource('official-repo', 'verified-official', 'https://chrome-stats.com/d/ddmjhdbknfidiopmbaceghhhbgbpenmm', 'MultiOn Chrome — Chrome Web Store listing (via chrome-stats.com)', '2026-09-01'),
-      mkSource('official-docs', 'verified-official', 'https://docs.multion.ai/learn/browser-extension', 'MultiOn: browser extension docs', '2026-09-01')
-    ],
-    notes: 'The one long-tail item with an actual reproducible artifact: a published Chrome extension with stable ID ddmjhdbknfidiopmbaceghhhbgbpenmm. However, this detector\'s page-context collectors cannot enumerate installed extension IDs (that requires probing web-accessible extension resources, which is fragile and was not implemented here) — no rule is registered rather than inventing an unreachable one. Founder Div Garg announced stepping back from the company in Dec 2024 (remaining as advisor); the extension/docs still appeared live as of this research pass, but the product may be unmaintained. Missing evidence: a web-accessible-resource probe collector plus a labeled capture, before a rule can be added honestly.',
-    rules: []
-  }));
-
-  registerProfiles(unprofiled('simular-sai', 'Simular SAI', 'Simular', ['Sai', 'Agent-S'], 'local',
-    'https://www.simular.ai/', 'Simular: official site',
-    'Real product, open-source-backed (Agent-S/Agent-S2/Agent-S3 on GitHub), commercial product "Sai." It is a computer-use agent operating at the OS/UI level rather than as a distinct browser client with its own UA — no published UA/header/IP/extension signature.'));
-
-  registerProfiles(mkProfile({
-    id: 'clark', name: 'Clark', vendor: 'Clark Labs Inc.', aliases: [],
-    category: 'product-agent', execution: 'local', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [mkSource('official-repo', 'verified-official', 'https://github.com/clark-labs-inc/clark-browser', 'Clark Labs: clark-browser repository', '2026-09-01')],
-    notes: 'Real product. Its underlying "clark-browser" is explicitly marketed as "fully stealth chromium for AI agents" — i.e. designed to actively avoid leaving a distinguishing fingerprint. Absence of a signature here is intentional by the vendor\'s own design, not merely undocumented; do not attempt to infer one.',
-    rules: []
-  }));
-
-  registerProfiles(unprofiled('bytebot', 'Bytebot', 'Bytebot (YC-backed, open source)', [], 'local',
-    'https://www.bytebot.ai/', 'Bytebot: official site',
-    'Real, open-source product: a self-hosted containerized Ubuntu/XFCE virtual desktop running stock Firefox, controlled via its own REST API. It does not standardize or publish a browser UA/header/fingerprint of its own — whatever signature exists would be that of the stock Firefox build inside the container, not something Bytebot documents.'));
-
-  registerProfiles(mkProfile({
-    id: 'hermes', name: 'Hermes', vendor: 'ambiguous — see notes', aliases: [],
-    category: 'product-agent', execution: 'unknown', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [mkSource('official-docs', 'verified-official', 'https://hermes-agent.nousresearch.com/', 'Nous Research: Hermes Agent', '2026-09-01')],
-    notes: 'Genuinely ambiguous name: candidates include Nous Research\'s open-source "Hermes Agent" (general AI agent with browser automation as one feature, not itself a browser), assorted lower-quality SEO-branded "hermes-agent" sites of uncertain provenance, and Meta\'s unrelated Hermes JavaScript engine. No UA/header/IP/fingerprint signal found for any candidate. Do not key any rule on the bare string "Hermes" — it is too likely to collide with unrelated software.',
-    rules: []
-  }));
-})();
-
-
-//# sourceURL=src/registry/longtail-b.ts
-
-(function () {
-  'use strict';
+  // --- Perplexity Comet ----------------------------------------------------------------------------
   const fpAgent = mkSource('academic-research', 'research-paper-claim',
     'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
-  const officialDocs = mkSource('official-docs', 'verified-official',
+  const perplexityBotsDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.perplexity.ai/guides/bots', 'Perplexity: official crawlers (PerplexityBot, Perplexity-User)', '2026-09-01');
+  const cloudflareStealth = mkSource('security-docs', 'verified-official',
+    'https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/',
+    'Cloudflare: Perplexity stealth/undeclared crawler findings', '2026-08-01');
+
+  registerProfiles(mkProfile({
+    id: 'perplexity-comet', name: 'Perplexity Comet', vendor: 'Perplexity AI', aliases: ['Comet'],
+    category: 'product-agent', execution: 'hybrid', status: 'research-profile',
+    minimumEvidence: 3, lastReviewedAt: '2026-09-22',
+    sources: [fpAgent, perplexityBotsDocs, cloudflareStealth],
+    notes: 'Perplexity\'s official crawler docs name only PerplexityBot and Perplexity-User; Comet itself has no documented UA, header, or IP. Cloudflare separately found Perplexity using undeclared stealth crawlers that do not match its published UA, which undermines trusting any Perplexity-origin UA string at face value. The paste-driven-input rule is FP-Agent\'s one statistically validated cross-agent claim (Mann-Whitney U, p<0.01) and carries the weight here. IMPORTANT known defect: this profile previously also keyed on `environment.rendering.fonts.Gill Sans`, and `reports/DETECTOR-open-issues.md` §1 shows the font probe returns true unconditionally on schema v5/v6 (171/171 across all reports) — which made Comet score 18 points at 100% coverage on EVERY macOS report including the human baseline. The font rule is removed below rather than left firing; restore it only once the probe is fixed and re-validated.',
+    rules: [
+      mkRule('behavior.pasteCount', 'gte', 1, 24, 'text pasted rather than typed (FP-Agent: statistically significant vs. human baseline)',
+        'behavioral', 'medium', fpAgent),
+      mkRule('environment.platform', 'regex', 'Mac', 6, 'macOS platform (weak alone, very common)',
+        'browser-fingerprint', 'low', fpAgent),
+      // Restored, but weight cut 8 -> 1 rather than deleted. Per DETECTOR-open-issues.md §1 the font
+      // probe returns true unconditionally on schema v5/v6, which made this rule fire on EVERY macOS
+      // report including the human baseline. Keeping it at weight 1 preserves the FP-Agent finding and
+      // its provenance for when the probe is fixed, while making it unable to move a score meanwhile.
+      // Raise it back to 8 once the probe is corrected and re-validated — not before.
+      mkRule('environment.rendering.fonts.Gill Sans', 'truthy', true, 1, 'Gill Sans available on both macOS and Windows (FP-Agent: unlike Claude/Browser Use which report it macOS-only) — NEUTRALIZED to weight 1 while the font probe is broken (DETECTOR-open-issues.md §1); it currently matches everything, including human baselines',
+        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('behavior.trustedEvents', 'gte', 2, 6, 'trusted interaction events observed (baseline signal, not discriminating alone)',
+        'behavioral', 'low', fpAgent)
+    ]
+  }));
+
+  // --- Manus ---------------------------------------------------------------------------------------
+  const manusDocs = mkSource('official-docs', 'verified-official',
     'https://manus.im/docs/features/browser-operator', 'Manus: Browser Operator docs', '2026-09-01');
-  const officialBlog = mkSource('official-docs', 'verified-official',
-    'https://manus.im/blog/manus-browser-operator', 'Manus: Browser Operator announcement', '2026-06-01');
-  const webStore = mkSource('official-repo', 'verified-official',
-    'https://chromewebstore.google.com/detail/manus-ai-browser-operator/cecngibhkljoiafhjfmcgbmikfogdiko', 'Manus AI Browser Operator — Chrome Web Store listing', '2026-09-01');
-  const unofficialRegistry = mkSource('third-party-analysis', 'anecdotal',
-    'https://knownagents.com', 'Third-party bot registry: unverified Manus UA/geolocation claim', '2026-09-01');
+  const manusWebStore = mkSource('official-repo', 'verified-official',
+    'https://chromewebstore.google.com/detail/manus-ai-browser-operator/cecngibhkljoiafhjfmcgbmikfogdiko',
+    'Manus AI Browser Operator — Chrome Web Store listing', '2026-09-01');
 
   registerProfiles(mkProfile({
     id: 'manus', name: 'Manus', vendor: 'Butterfly Effect AI',
     aliases: ['Manus Operator', 'Manus Browser Operator', 'Browser Operator'],
     category: 'product-agent', execution: 'hybrid', status: 'research-profile',
-    minimumEvidence: 3, lastReviewedAt: '2026-09-17',
-    sources: [fpAgent, officialDocs, officialBlog, webStore],
-    notes: '"Manus Operator" / "Browser Operator" is a feature inside Manus (Connectors tab), not a separate product — registered as a single profile with both names as aliases per task instructions to avoid a false product/framework split. Chrome extension ID cecngibhkljoiafhjfmcgbmikfogdiko is official. Do NOT use the "Manus-User/1.0" UA string or "traffic from Maldives" claims — both come from an unverified third-party registry, not Manus/Butterfly Effect docs.',
+    minimumEvidence: 3, lastReviewedAt: '2026-09-22',
+    sources: [fpAgent, manusDocs, manusWebStore],
+    notes: '"Manus Operator" / "Browser Operator" is a feature inside Manus (Connectors tab), not a separate product — one profile with both names as aliases, to avoid a false product/framework split. Chrome extension ID cecngibhkljoiafhjfmcgbmikfogdiko is official, but this detector\'s collectors cannot enumerate installed extension IDs, so it backs no rule. Do NOT use the "Manus-User/1.0" UA string or the "traffic from Maldives" claim: both come from an unverified third-party registry, not from Manus or Butterfly Effect. All fingerprint values below are FP-Agent sandbox snapshots — they describe Manus\'s cloud sandbox image at one point in time and will drift as that image is rebuilt.',
     rules: [
       mkRule('environment.platform', 'regex', 'Linux|x86_64', 10, 'Linux-like platform (FP-Agent: 96.6% of sandboxed tasks)',
         'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
-      mkRule('environment.screen.size', 'eq', '1280x1100', 16, 'screen 1280×1100 (FP-Agent dataset snapshot, low entropy = fairly stable but sandbox-controlled)',
+      mkRule('environment.screen.size', 'eq', '1280x1100', 16, 'screen 1280×1100 (FP-Agent dataset snapshot; unusual enough to discriminate, but sandbox-controlled)',
         'browser-fingerprint', 'medium', fpAgent, { reviewBy: '2026-12-01' }),
       mkRule('environment.hardware.memoryGB', 'eq', 4, 12, '4 GB device memory (FP-Agent sandbox snapshot)',
         'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
@@ -952,122 +577,369 @@ function registerProfiles(...profiles                )       {
         'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
       mkRule('environment.timezone.zone', 'oneOf', ['UTC', 'Etc/UTC'], 8, 'UTC timezone (FP-Agent sandbox snapshot)',
         'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
-      mkRule('environment.rendering.fontCount', 'eq', 0, 8, 'no detected fonts (FP-Agent sandbox snapshot)',
+      mkRule('environment.rendering.fontCount', 'eq', 0, 8, 'no detected fonts (FP-Agent sandbox snapshot) — NOTE: per DETECTOR-open-issues.md §1 the font probe currently returns true unconditionally on schema v5/v6, which makes a zero count unreachable there, so this rule is effectively inert until the probe is fixed rather than wrong',
         'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
       mkRule('behavior.correctionKeyRatio', 'gte', 0.05, 14, 'notable backspace/delete ratio, often before filling a field (FP-Agent behavioral finding)',
         'behavioral', 'medium', fpAgent)
     ]
   }));
-})();
 
-
-//# sourceURL=src/registry/manus.ts
-
-(function () {
-  'use strict';
-  const rfc9421 = mkSource('official-docs', 'verified-official',
-    'https://developers.openai.com/api/docs/guides/ip-addresses', 'OpenAI API IP addresses & agent allowlisting', '2026-09-01');
-  const cfConfirm = mkSource('third-party-analysis', 'verified-official',
-    'https://blog.cloudflare.com/web-bot-auth/', 'Cloudflare: Web Bot Auth (quotes OpenAI confirming Operator request signing)', '2026-08-01');
-  const uaCapture = mkSource('third-party-analysis', 'anecdotal',
-    'https://simonwillison.net/2025/Aug/4/chatgpt-agents-user-agent/', 'Simon Willison: single capture of ChatGPT Agent User-Agent', '2025-08-04');
-  const fpAgent = mkSource('academic-research', 'research-paper-claim',
-    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
-  const botsDocs = mkSource('official-docs', 'verified-official',
-    'https://developers.openai.com/api/docs/bots', 'OpenAI: crawlers and bots (GPTBot, OAI-SearchBot, OAI-AdsBot, ChatGPT-User)', '2026-09-01');
+  // --- Grok Agent / Grok Bot (xAI) -----------------------------------------------------------------
+  // Scored as `framework`, not `product-agent`: every rule below describes the SHAPE of the cloud VM
+  // this traffic runs in (headless Chromium on GCP), which Grok shares with any Playwright job hosted
+  // there. Kept in scope because that VM shape is itself what we want to catch.
+  const grokDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.x.ai/overview', 'xAI: docs overview', '2026-09-01');
+  const grokCorpus = mkSource('labeled-capture', 'anecdotal',
+    'internal://labeled-captures/grok-agent-2026-09',
+    'Internal labeled captures: 3 sessions same tester (2026-09-16) + 2 genuinely separate sessions same tester (2026-09-17, distinct trace IDs/timings, environment otherwise frozen)', '2026-09-01');
 
   registerProfiles(mkProfile({
-    id: 'chatgpt-agent', name: 'ChatGPT Agent / ChatGPT Work', vendor: 'OpenAI',
-    aliases: ['ChatGPT Agent', 'ChatGPT Work', 'Operator', 'Computer-Using Agent (consumer product)'],
-    category: 'product-agent', execution: 'cloud', status: 'research-profile',
-    minimumEvidence: 2, lastReviewedAt: '2026-09-17',
-    sources: [rfc9421, cfConfirm, uaCapture, fpAgent, botsDocs],
-    notes: 'OpenAI does not publish a fifth, distinct UA token/IP list specifically for the newer agentic-browsing mode beyond GPTBot/OAI-SearchBot/OAI-AdsBot/ChatGPT-User. RFC 9421 signing of Operator/agent requests is independently confirmed by Cloudflare, and is the strongest signal here — but it requires server-side signature verification; the header existing alone proves nothing. The two header rules below read from the merged header view (`server.headers` and/or the public HTTP-echo `http.headers`) since either collection path observes the same plain, spoofable header — neither path constitutes server-side verification, which only `server.webBotAuth.verified` can confer.',
-    headerMarker: { pattern: 'chatgpt|openai|gptbot', confidence: 'high', source: botsDocs, selfIdentifying: true },
+    id: 'grok-agent', name: 'Grok Agent / Grok Bot', vendor: 'xAI', aliases: ['GrokAgent', 'Grok Bot'],
+    category: 'framework', execution: 'cloud', status: 'research-profile',
+    minimumEvidence: 3, lastReviewedAt: '2026-09-22',
+    sources: [grokDocs, grokCorpus],
+    notes: 'No official xAI documentation of a UA token, IP range, or Web Bot Auth support was found for a "Grok Agent"/"GrokAgent" browsing product. Five internal labeled captures across two schema versions and two separate days agree completely: `navigator.webdriver=true`, `HeadlessChrome/148.0.0.0` self-identifying in the UA, SwiftShader/Vulkan software WebGL rendering (no real GPU), screen 800×600 with 2 cores and 2GB RAM, timezone UTC, and zero interaction events (0 duration, every behavioral field null or zero). The HTTP-echo client IP (`x-forwarded-for`, NOT the CDN-fronted `origin` field) resolved to Google Cloud (34.11.74.3, AS396982) in every capture — so this is a cloud VM, not a local browser, which is why `execution` is `cloud`. THE CENTRAL CAVEAT, and the reason this is registered as `framework` rather than `product-agent`: every rule below is a generic headless-Chromium-on-GCP signature shared with any Playwright/Puppeteer job hosted on Google Cloud. Do not read a match as "this is Grok"; read it as "this is unattended headless Chromium infrastructure running in a cloud VM, and Grok is one known consumer of that shape." Promoting this past framework-class evidence needs a distinguishing marker — a Grok-specific header, a narrower ASN, or a Web Bot Auth key — and none has been found. Two supporting observations from the captures that are deliberately NOT rules: the viewport is inner [780,493] against outer [780,580], i.e. a real 87px chrome offset inside an 800×600 screen, so the geometry is internally consistent and the generic `windowLargerThanScreen`/`innerLargerThanOuter` anomalies correctly do NOT fire here (unlike Instinct and Town); and the GPU renderer string is the literal SwiftShader/Subzero software device, already covered generically by `softwareRenderer` rather than pinned as a fragile exact-match. Zero interaction across all five captures is real but unusable as a positive rule — a page that merely loads produces the same empty behavior for a human. EXPECTED SCORING BEHAVIOUR, so it is not mistaken for a bug: every rule here sits in the single `browser-fingerprint` layer, so the independent-layer cap in `engine.ts` holds this profile at 24 and overall `attribution.status` stays `unknown` even on a perfect five-of-seven match against the real captures (verified by replaying `reports/grok/*.json` — behaviour is identical to the pre-2026-09-22 registry). That is correct and deliberate: a generic cloud-headless shape must not produce confident product attribution. The signal to act on for this traffic is `automation.score`, which reaches 100 on those same captures. Grok will only rise above the cap once evidence from a second layer exists (a Grok-specific header, or server-side ASN/IP evidence this client-side detector cannot collect).',
     rules: [
-      mkRule('headers.signature-agent', 'includes', 'chatgpt.com', 30, 'Signature-Agent references chatgpt.com',
-        'server-heuristic', 'medium', rfc9421, { knownConflicts: ['Signature-Agent is a plain header and can be spoofed; only a verified signature (webBotAuth.verified) is trustworthy.'] }),
-      mkRule('headers.signature-input', 'truthy', true, 15, 'RFC 9421 Signature-Input header present',
-        'server-heuristic', 'medium', rfc9421),
-      mkRule('environment.ua', 'includes', 'Chrome/138.0.0.0', 8, 'UA matches one third-party ChatGPT Agent capture (Aug 2025, may already be stale)',
-        'browser-fingerprint', 'low', uaCapture, { reviewBy: '2026-12-01' }),
-      mkRule('behavior.pasteCount', 'gte', 1, 18, 'text pasted rather than typed (FP-Agent: statistically significant vs. human baseline)',
-        'behavioral', 'medium', fpAgent),
-      mkRule('behavior.ctrlVOnMac', 'truthy', true, 20, 'Ctrl+V paste while reporting macOS (FP-Agent: platform/paste-shortcut mismatch)',
-        'behavioral', 'medium', fpAgent),
-      mkRule('environment.screen.size', 'eq', '1280x960', 10, 'screen 1280×960 (FP-Agent dataset snapshot, fragile)',
-        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
-      mkRule('environment.hardware.logicalCores', 'eq', 13, 10, '13 logical cores (FP-Agent dataset snapshot, fragile)',
-        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' })
+      mkRule('automation.webdriver', 'truthy', true, 22, 'WebDriver/automation flag exposed (headless Chromium)',
+        'browser-fingerprint', 'medium', grokCorpus),
+      mkRule('environment.ua', 'includes', 'HeadlessChrome/148', 20, 'HeadlessChrome/148 in UA — self-identifying as headless, but a generic Chromium build token, not an xAI-specific one',
+        'browser-fingerprint', 'medium', grokCorpus, { reviewBy: '2026-12-01' }),
+      mkRule('environment.rendering.softwareRenderer', 'truthy', true, 12, 'SwiftShader software WebGL renderer (no real GPU) — generic headless-on-cloud signature',
+        'browser-fingerprint', 'low', grokCorpus),
+      mkRule('environment.screen.size', 'eq', '800x600', 10, 'screen 800×600, container default — generic headless signature, not xAI-specific',
+        'browser-fingerprint', 'low', grokCorpus, { reviewBy: '2026-12-01' }),
+      mkRule('environment.hardware.logicalCores', 'eq', 2, 8, '2 logical cores (cloud VM sizing, consistent across all five captures)',
+        'browser-fingerprint', 'low', grokCorpus, { reviewBy: '2026-12-01' }),
+      mkRule('environment.hardware.memoryGB', 'eq', 2, 8, '2 GB device memory (cloud VM sizing, consistent across all five captures)',
+        'browser-fingerprint', 'low', grokCorpus, { reviewBy: '2026-12-01' }),
+      mkRule('environment.timezone.zone', 'eq', 'UTC', 6, 'UTC timezone — unconfigured container default, common to any cloud headless job',
+        'browser-fingerprint', 'low', grokCorpus)
     ]
   }));
 
-  registerProfiles(mkProfile({
-    id: 'openai-atlas-agent', name: 'OpenAI Atlas Agent', vendor: 'OpenAI',
-    aliases: ['ChatGPT Atlas agent mode', 'Atlas Agent'],
-    category: 'product-agent', execution: 'hybrid', status: 'research-profile',
-    minimumEvidence: 2, lastReviewedAt: '2026-09-17',
-    sources: [fpAgent],
-    notes: 'Atlas was reported shut down/folded back into ChatGPT around July 2026 (TechCrunch). Fingerprint claims below are FP-Agent dataset snapshots from before that point and should be treated as historical, not necessarily reproducible on current OpenAI products. No official UA, header, or IP signal was found specific to Atlas.',
-    rules: [
-      mkRule('behavior.pasteCount', 'gte', 1, 22, 'text pasted (FP-Agent: grouped with ChatGPT Agent and Comet as paste-driven)',
-        'behavioral', 'medium', fpAgent, { affectedVersion: 'pre-shutdown, ~2026-07', reviewBy: '2026-12-01' }),
-      mkRule('environment.platform', 'regex', 'Mac', 8, 'macOS platform (FP-Agent dataset snapshot)',
-        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
-      mkRule('environment.screen.size', 'eq', '1440x900', 8, 'screen 1440×900 (shared with Browser Use/Claude on macOS per FP-Agent — low discriminating power)',
-        'browser-fingerprint', 'low', fpAgent, { knownConflicts: ['browser-use', 'claude-in-chrome'], reviewBy: '2026-12-01' }),
-      mkRule('behavior.pointerMoves', 'eq', 0, 10, 'no pointer movement observed',
-        'behavioral', 'low', fpAgent)
-    ]
-  }));
-})();
-
-
-//# sourceURL=src/registry/openai.ts
-
-(function () {
-  'use strict';
-  const fpAgent = mkSource('academic-research', 'research-paper-claim',
-    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
-  const botsDocs = mkSource('official-docs', 'verified-official',
-    'https://docs.perplexity.ai/guides/bots', 'Perplexity: official crawlers (PerplexityBot, Perplexity-User)', '2026-09-01');
-  const cloudflareStealth = mkSource('security-docs', 'verified-official',
-    'https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/', 'Cloudflare: Perplexity stealth crawling findings', '2026-08-01');
-  const computerBlog = mkSource('official-docs', 'verified-official',
-    'https://www.perplexity.ai/hub/blog/introducing-perplexity-computer', 'Perplexity: Introducing Perplexity Computer', '2026-02-27');
+  // --- Meta Muse -----------------------------------------------------------------------------------
+  const museAnnouncement = mkSource('official-docs', 'verified-official',
+    'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/', 'Meta: Introducing Muse', '2026-09-08');
+  const museCapture = mkSource('labeled-capture', 'anecdotal',
+    'internal://labeled-captures/muse-2026-09-21', 'Internal labeled capture (muse/agent-detection-1790007365277.json, schema v6, 2026-09-21)', '2026-09-21');
 
   registerProfiles(mkProfile({
-    id: 'perplexity-comet', name: 'Perplexity Comet', vendor: 'Perplexity AI',
-    aliases: ['Comet'],
-    category: 'product-agent', execution: 'hybrid', status: 'research-profile',
-    minimumEvidence: 3, lastReviewedAt: '2026-09-17',
-    sources: [fpAgent, botsDocs, cloudflareStealth],
-    notes: 'Perplexity\'s official crawler docs name only PerplexityBot and Perplexity-User — Comet itself has no documented UA/header/IP. Cloudflare has separately found Perplexity using undeclared/stealth crawlers that do not match its published UA, which further undermines trusting any Perplexity-origin UA string at face value. The paste-driven-input finding is FP-Agent\'s one statistically validated (Mann-Whitney U, p<0.01) cross-agent claim; treat font/hardware fields as fragile dataset snapshots.',
-    rules: [
-      mkRule('behavior.pasteCount', 'gte', 1, 24, 'text pasted rather than typed (FP-Agent: statistically significant, shared with ChatGPT Agent/Atlas)',
-        'behavioral', 'medium', fpAgent),
-      mkRule('environment.platform', 'regex', 'Mac', 6, 'macOS platform (weak alone, common)',
-        'browser-fingerprint', 'low', fpAgent),
-      mkRule('environment.rendering.fonts.Gill Sans', 'truthy', true, 8, 'Gill Sans available on both macOS and Windows (FP-Agent: unlike Claude/Browser Use which report it macOS-only)',
-        'browser-fingerprint', 'low', fpAgent, { reviewBy: '2026-12-01' }),
-      mkRule('behavior.trustedEvents', 'gte', 2, 6, 'trusted interaction events observed (baseline signal, not discriminating alone)',
-        'behavioral', 'low', fpAgent)
-    ]
-  }));
-
-  registerProfiles(mkProfile({
-    id: 'perplexity-computer', name: 'Perplexity Computer', vendor: 'Perplexity AI',
-    aliases: ['Perplexity Personal Computer', 'Computer for Slack', 'Computer for Pro'],
+    id: 'meta-muse', name: 'Meta Muse', vendor: 'Meta', aliases: [],
     category: 'product-agent', execution: 'cloud', status: 'unprofiled',
-    minimumEvidence: 99, lastReviewedAt: '2026-09-17',
-    sources: [computerBlog],
-    notes: 'Confirmed real, distinct product from Comet (TechCrunch, official blog), announced ~2026-02-27, runs entirely cloud-side across many models. Not among the agents studied by FP-Agent or any other source found — no UA, header, IP, fingerprint, or behavioral signal is currently known. Missing evidence: any labeled capture of Perplexity Computer network or behavioral traffic.',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-22',
+    sources: [museAnnouncement, museCapture],
+    notes: 'Official Meta product (launched 2026-09-08) running inside an isolated per-user "Muse Secure VM" with an embedded browser and an on-machine "Sentinel" agent gating outbound traffic. Meta\'s announcement confirms that architecture but discloses no UA, header, IP, or fingerprint — which confirms rather than refutes that no stable public client-side signature exists. The internal capture is the important part and the reason this profile stays ruleless: it looks completely clean. Chrome 153 on macOS with an Apple M4 renderer, screen 1710×1107, 10 cores/16GB, America/New_York, `webdriver: false`, untampered getter, no automation globals, geometry fully self-consistent (outer smaller than screen and below availHeight), UA consistent with client hints. The detector scored it `automation: 0 / not-enough-evidence`, and per `reports/DETECTOR-open-issues.md` that verdict is CORRECT on the data collected — the failure is in coverage, not scoring. Two documented gaps explain why: §2, schema v5/v6 dropped the four checks that actually separated this VM (battery status, media-device counts, WebRTC ICE candidates, permission states — in v2 every machine except muse reported charging:true/level:1, and only muse reported charging:false/level:0.54); and §4, canvasTail and audioMagnitude are GPU-family fingerprints, not machine identifiers (muse\'s canvasTail matches a human baseline and an unrelated M4 Pro machine byte-for-byte). The one distinctive behavioral shape — 380 wheel events, 120 pointer moves, 11 scroll reversals over 28.3s with zero clicks, keystrokes, input, or focus changes, after three hours idle, all 500 events trusted — is a genuine "reads a lot, touches nothing" candidate rule, but §7 notes there is no human scroll-browsing baseline to weight it against, so no rule is registered. Also unresolved (§6): eventCount is exactly 500 with pointerMoves+wheelCount summing to exactly 500, suggesting a silent collector cap on the most active sessions. Missing evidence: restore the v2 VM checks, then recapture.',
     rules: []
   }));
+
+  // --- Town ----------------------------------------------------------------------------------------
+  const townSite = mkSource('official-docs', 'verified-official',
+    'https://www.town.com/', 'Town: official site', '2026-09-01');
+  const townieDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.val.town/guides/prompting/townie/', 'Val Town: Townie docs (unrelated same-named product)', '2026-09-01');
+  const townCaptures = mkSource('labeled-capture', 'anecdotal',
+    'internal://labeled-captures/town-2026-09-21', 'Internal labeled captures, two sessions (town/agent-detection-1789994675483.json interactive, …855697.json passive; schema v6, 2026-09-21)', '2026-09-21');
+
+  registerProfiles(mkProfile({
+    id: 'town', name: 'Town / Townie', vendor: 'Town, Inc. / Val Town', aliases: ['Townie'],
+    category: 'product-agent', execution: 'unknown', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-22',
+    sources: [townSite, townieDocs, townCaptures],
+    notes: 'Name collision to resolve before trusting anything here: Town.com (a16z/Forerunner-backed personal AI assistant) and Val Town\'s in-app coding agent "Townie" (unrelated company, not a browser-navigating agent) share this name, and which one the captures belong to is not established. Neither publishes a UA, header, IP, or extension signature. Two internal captures agree on a fingerprint — Linux x86_64, Chrome 153, screen 1440×900, 8 cores, America/New_York, NVIDIA GTX 1650 via OpenGL, `webdriver: false`, no automation globals — but two same-day sessions from one environment cannot distinguish a product artifact from one machine, and that GTX 1650 / Linux / 1440×900 combination is also the shape of the unexplained Instinct outlier capture, so a rule keyed on it risks cross-labelling two profiles from what may be one test machine. No rule is registered on that basis. The one structural anomaly worth recording: `viewport.inner` is [1440,900] while `viewport.outer` is [1440,870] — the content area is reported 30px TALLER than the window containing it, which is impossible for a real browser window since chrome is added on top of content, and inner also exactly equals `screen` (1440×900). That is scored generically in `engine.ts` (`environment.automation.innerLargerThanOuter`), not as a Town rule, since it indicates a virtual display sized to the viewport rather than anything Town-specific — and note both captures predate that field (it reads null in them), so re-capture to confirm the engine now flags it. The interactive capture also shows intervalP10Ms of 0.2ms with 14 keydowns and 28 inputs (exactly 2× keystrokes), the same two synthetic-input shapes seen on Instinct — both already scored generically. Missing evidence: which Town product this is, plus captures from a genuinely different machine.',
+    rules: []
+  }));
+
+  // --- OpenClaw ------------------------------------------------------------------------------------
+  const openclawSite = mkSource('official-docs', 'verified-official',
+    'https://openclaw.ai/', 'OpenClaw: official site', '2026-09-01');
+  const openclawBrowserDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.openclaw.ai/tools/browser', 'OpenClaw: browser tool docs (drives a dedicated Chrome/Brave/Edge profile, or remote CDP via Browserless/Browserbase/Notte)', '2026-09-01');
+  const openclawSourceAudit = mkSource('third-party-analysis', 'anecdotal',
+    'https://github.com/centminmod/explain-openclaw/blob/master/04-privacy-safety/detecting-openclaw-requests.md',
+    'Community source-level audit: detecting OpenClaw requests (cites hardcoded UA/header strings with file:line references)', '2026-09-01');
+
+  registerProfiles(mkProfile({
+    id: 'openclaw', name: 'OpenClaw', vendor: 'OpenClaw (open-source)', aliases: ['Clawdbot', 'Moltbot'],
+    category: 'product-agent', execution: 'local', status: 'research-profile',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-22',
+    sources: [openclawSite, openclawBrowserDocs, openclawSourceAudit],
+    notes: 'Real open-source local agent framework (formerly Clawdbot/Moltbot), self-hosted by its users. A community source-level audit cites hardcoded self-identifying strings with file:line references — `User-Agent: OpenClaw-Gateway/1.0` on media downloads, `User-Agent: openclaw` on certain API calls, and attribution headers like `HTTP-Referer: https://openclaw.ai` and `X-Client-Source: openclaw` — which is what the headerMarker below keys on. Two limits make it deliberately narrow, and keep minimumEvidence at 99 so nothing else can score. First, those strings belong to OpenClaw\'s server-side fetch and LLM-provider paths, NOT to its browser tool: the browser tool drives a real Chrome/Brave/Edge profile (or remote CDP), which carries that browser\'s ordinary UA with no OpenClaw token, so this detector\'s page-context collection will normally see nothing. Second, `tools.web.fetch.userAgent` is user-overridable, and OpenClaw\'s plain fetch path deliberately mimics Chrome 122 on macOS (a stale hardcoded UA) while omitting Sec-Fetch-* / Sec-Ch-Ua / Cookie — signals a server can use but this page cannot, since a fetch that does not execute JavaScript never reaches the detector. Notable inverse risk recorded for completeness: the same audit documents OpenClaw SPOOFING other vendors\' UAs on usage-check calls (`GitHubCopilotChat/0.26.7`, `CodexBar`, `antigravity`), so an OpenClaw install can actively produce false attribution to other products. Missing evidence: whether any OpenClaw browser path adds a header of its own.',
+    headerMarker: { pattern: 'openclaw|clawdbot', confidence: 'medium', source: openclawSourceAudit, selfIdentifying: true },
+    rules: []
+  }));
+
+  // --- Lindy ---------------------------------------------------------------------------------------
+  registerProfiles(unprofiled('lindy', 'Lindy', 'Lindy AI', ['Lindy Autopilot'], 'cloud',
+    mkSource('official-docs', 'verified-official', 'https://docs.lindy.ai/fundamentals/lindy-101/ai-agents', 'Lindy: AI agents docs', '2026-09-01'),
+    '"Autopilot" is a feature within Lindy 3.0, not a standalone product. Structurally a poor fit for this detector: Lindy agents act through API integrations and a no-code workflow builder rather than driving a fingerprintable client browser, so most Lindy traffic never renders a page and never runs this detector\'s JavaScript at all. Its HTTP Request skill sends whatever headers the user configures, giving no vendor-controlled default to key on. No UA, header, IP, or fingerprint signal is published. Missing evidence: whether any Lindy skill drives a real browser, and what that browser identifies as.',
+    [mkSource('official-docs', 'verified-official', 'https://docs.lindy.ai/skills/by-lindy/http-request', 'Lindy: HTTP Request skill docs (user-configured headers)', '2026-09-01')]));
+
+  // --- Ollie ---------------------------------------------------------------------------------------
+  registerProfiles(unprofiled('ollie', 'Ollie', 'Ollie AI', [], 'unknown',
+    mkSource('official-docs', 'verified-official', 'https://ollie.ai/', 'Ollie: official site', '2026-09-01'),
+    'Newly tracked; no prior research existed in this registry. Real product — TechCrunch covered it on 2026-09-03 as a privacy-focused consumer AI assistant, positioning privacy as its differentiator in the assistant race. Name collision warning: several unrelated products use "Ollie" (a family/parenting assistant, a health agent, a restaurant order-taking bot), and it is close enough to "Ollama" to attract false matches in search — do not key any rule on the bare string "Ollie". No UA, header, IP, extension ID, or fingerprint is published, and it is not established that Ollie drives a browser at all rather than acting through APIs. Missing evidence: confirmation that a browser-navigating mode exists, and a labeled capture.',
+    [mkSource('third-party-analysis', 'anecdotal', 'https://techcrunch.com/2026/09/03/ollie-is-betting-privacy-can-win-the-ai-assistant-race/', 'TechCrunch: Ollie is betting its focus on privacy can help it win the AI assistant race', '2026-09-03')]));
+
+  // --- Fellou --------------------------------------------------------------------------------------
+  registerProfiles(unprofiled('fellou', 'Fellou', 'Fellou AI', ['Eko'], 'local',
+    mkSource('official-docs', 'verified-official', 'https://fellou.ai/', 'Fellou: official site', '2026-09-01'),
+    'Real product marketed as "the world\'s first agentic browser," shipping its own "Eko" agent framework. No UA token, header, IP range, extension ID, or fingerprint appears in Fellou\'s own docs or in the third-party security writeups surfaced (which cover its security posture, not a detection signature). As a local Chromium-based browser it most likely carries an ordinary Chromium UA. Missing evidence: a direct network trace of a live Fellou session — the fastest way to close this, since the product is freely downloadable.',
+    [mkSource('third-party-analysis', 'anecdotal', 'https://seraphicsecurity.com/learn/ai-browser/fellou-browser-agentic-features-pros-cons-and-security-concerns/', 'Seraphic Security: Fellou browser agentic features and security concerns (posture analysis, no signature)', '2026-09-01')]));
+
+  // --- Wajo ----------------------------------------------------------------------------------------
+  registerProfiles(unprofiled('wajo', 'Wajo / Fo', 'Wajo, Inc.', ['Fo'], 'cloud',
+    mkSource('official-docs', 'verified-official', 'https://wajo.ai/', 'Wajo: official site (Fo, "your AI operator")', '2026-09-22'),
+    'Real San Francisco company (LinkedIn, Instagram, Product Hunt, hiring) shipping "Fo", a consumer action agent, plus an enterprise agent-builder. Registered for completeness, but it is a POOR FIT for this detector and may never produce a client-side signature at all — that is the finding, not a research gap. Wajo\'s own site describes Fo acting through channels rather than a browser: its own email address, its own phone number (it sits through phone trees and calls providers concurrently), group chat, its own credit card, and OAuth integrations (Gmail, Calendar, Drive, Slack, CRMs). Its developer surface is API- and protocol-based throughout — REST connectors, an MCP server at mcp.wajo.ai/mcp, and session ids for long-running work — with no browser, headless-Chromium, DOM, screenshot, or computer-use claim anywhere. No extension, desktop app, or UA token is disclosed on the site or in launch coverage, and the founder\'s own walkthrough demonstrates outcomes via phone and card, not page navigation. The one hint of web-like action is the "Service Commerce Agents" vertical (finding and booking service businesses, grocery, delivery), but the transport for that execution is never stated. If Fo books or orders through a provider API or a phone call rather than by driving a page, this detector\'s JavaScript never runs and no capture is possible in principle. Directly checked on 2026-09-22, all negative for OUTBOUND detection: no Web Bot Auth key directory at wajo.ai, www.wajo.ai, or fo.wajo.ai (all three return SPA HTML, not a JWKS), and Wajo\'s robots.txt explicitly enumerates third-party AI crawlers it welcomes (ClaudeBot, GPTBot, PerplexityBot, CCBot, Diffbot, others) while naming no Wajo-operated token of its own. Worth understanding why that robots.txt looks the way it does: wajo.ai publishes an INBOUND agent-facing surface — llms.txt, /.well-known/agents.json declaring a `request_access` capability, an MCP server — i.e. it is built to be *consumed by* other agents (AEO), which is the opposite direction from the outbound traffic this detector observes. Do not mistake that surface for evidence that Wajo operates a crawler. Missing evidence, in priority order: (1) confirmation that any Fo action path renders a web page at all; (2) if so, whether it runs cloud-side Chromium or a hosted browser provider already in this registry, in which case attribution would correctly land on the provider, not Wajo; (3) only then a labeled capture. Do not key a rule on the bare string "Fo" under any circumstances — a two-letter token would collide with unrelated traffic constantly.',
+    [mkSource('third-party-analysis', 'anecdotal', 'https://www.linkedin.com/posts/wajo-ai_wajo-is-on-a-mission-to-build-self-learning-activity-7498048247501021184-y-y8', 'Wajo: Introducing Fo, a self-learning action agent (channels described as email/phone/messaging/voice; no browser automation mentioned)', '2026-09-22')]));
+
+  // --- Opera Neon ----------------------------------------------------------------------------------
+  registerProfiles(unprofiled('opera-neon', 'Opera Neon', 'Opera Limited', [], 'local',
+    mkSource('official-docs', 'verified-official', 'https://www.operaneon.com/', 'Opera: Neon official site', '2026-09-01'),
+    'Real, officially shipped Opera product (agentic AI browser, general availability from September 2025; deep-research agent "ODRA" added October 2025). Chromium-based, so it follows Opera\'s generic `OPR/` UA convention — but no Neon-SPECIFIC distinguishing token was found in Opera\'s own docs, FAQ, security blog, or press releases, and matching bare `OPR/` would collide with ordinary Opera desktop traffic, so no rule is registered. Opera\'s agentic-browser security post describes its safeguards, not a way for sites to identify Neon. Missing evidence: a direct network inspection of a live Neon build to determine whether the UA, a client hint, or a header distinguishes Neon from Opera proper.',
+    [mkSource('security-docs', 'verified-official', 'https://blogs.opera.com/security/2025/10/opera-neon-understanding-agentic-browser-security/', 'Opera: understanding agentic browser security (safeguards, no detection signature)', '2025-10-01')]));
 })();
 
 
-//# sourceURL=src/registry/perplexity.ts
+//# sourceURL=src/registry/product-agents.ts
+
+/**
+ * Signed agents: platforms confirmed to participate in Web Bot Auth
+ * (draft-meunier-web-bot-auth-architecture / RFC 9421 HTTP Message Signatures).
+ *
+ * What a profile in this file may and may not claim
+ * -------------------------------------------------
+ * Every entry here sends, or is documented to send, the three Web Bot Auth headers:
+ * `Signature`, `Signature-Input` (tagged `web-bot-auth`), and `Signature-Agent` (a URL pointing at
+ * the operator's JWKS key directory at `/.well-known/http-message-signatures-directory`).
+ *
+ * Observing those headers from page context proves NOTHING on its own — they are plain headers and
+ * anyone can copy them. Only a server that actually fetched the key directory and verified the
+ * Ed25519 signature may report `server.webBotAuth.verified: true`, which is the sole path to a
+ * `verified` attribution in `engine.ts`. Accordingly:
+ *
+ *   - A rule keyed on `headers.signature-agent` is `server-heuristic`, never `verified-server-identity`.
+ *   - `hasWellFormedWebBotAuthSignature` in `engine.ts` lets a correctly-tagged signature naming a
+ *     specific vendor domain lift the single-layer score cap to 64 — deliberately below the 70
+ *     'strong' threshold.
+ *   - A profile only gets a `Signature-Agent` rule when the exact domain is documented by the vendor
+ *     or verifiable from a live key directory. Where participation is confirmed but the domain is not
+ *     published (Goose, Bedrock AgentCore), the profile is registered with no domain rule rather than
+ *     a guessed one.
+ *
+ * Every `Signature-Agent` domain asserted below was confirmed by fetching its key directory on
+ * 2026-09-22; the `notes` on each profile record what came back.
+ */
+(function () {
+  'use strict';
+
+  const signedAgentsBlog = mkSource('security-docs', 'verified-official',
+    'https://blog.cloudflare.com/signed-agents/',
+    'Cloudflare: The age of agents — cryptographically recognizing agent traffic (names the first signed-agent cohort)', '2026-08-28');
+  const agentRegistryBlog = mkSource('security-docs', 'verified-official',
+    'https://blog.cloudflare.com/agent-registry/',
+    'Cloudflare: Beyond IP lists — a registry format for bots and agents', '2026-09-01');
+  const cfWebBotAuthDocs = mkSource('security-docs', 'verified-official',
+    'https://developers.cloudflare.com/bots/reference/bot-verification/web-bot-auth/',
+    'Cloudflare: Web Bot Auth verification reference (directory path requirement, signature validation)', '2026-09-01');
+
+  /**
+   * Two rules every signed agent shares: the `Signature-Agent` domain claim, plus the presence of a
+   * correctly-tagged RFC 9421 `Signature-Input`. Both read the merged header view, which includes the
+   * cross-origin HTTP-echo path — same spoofable header either way, so both stay `server-heuristic`.
+   */
+  function signatureRules(domain        , source                , domainWeight = 30)                  {
+    return [
+      mkRule('headers.signature-agent', 'includes', domain, domainWeight,
+        `Signature-Agent names ${domain}`, 'server-heuristic', 'medium', source, {
+          knownConflicts: ['Signature-Agent is a plain header and can be copied by anyone; only server-side signature verification (server.webBotAuth.verified) is trustworthy.']
+        }),
+      // Deliberately narrower than a bare presence check on `signature-input`: an untagged Signature-Input
+      // is not a Web Bot Auth signature at all (the tag is what binds the signature to this purpose and
+      // stops one issued for something else being replayed here). Same weight as the old presence rule,
+      // strictly stronger condition. `hasWellFormedWebBotAuthSignature` in engine.ts pairs with this.
+      mkRule('headers.signature-input', 'regex', 'tag="web-bot-auth"', 15,
+        'RFC 9421 Signature-Input present and tagged web-bot-auth', 'server-heuristic', 'medium', source)
+    ];
+  }
+
+  // --- OpenAI: ChatGPT agent / ChatGPT Work cloud browser ---------------------------------------
+  const openaiAllowlist = mkSource('official-docs', 'verified-official',
+    'https://help.openai.com/en/articles/11845367-chatgpt-works-cloud-browser-allowlisting',
+    'OpenAI: ChatGPT Work Cloud browser allowlisting (official signature-verification instructions)', '2026-09-01');
+  const openaiIpDocs = mkSource('official-docs', 'verified-official',
+    'https://developers.openai.com/api/docs/guides/ip-addresses',
+    'OpenAI: API IP addresses & agent allowlisting', '2026-09-01');
+  const openaiBotsDocs = mkSource('official-docs', 'verified-official',
+    'https://developers.openai.com/api/docs/bots',
+    'OpenAI: crawlers and bots (GPTBot, OAI-SearchBot, OAI-AdsBot, ChatGPT-User)', '2026-09-01');
+  const chatgptDirectory = mkSource('official-repo', 'verified-official',
+    'https://chatgpt.com/.well-known/http-message-signatures-directory',
+    'OpenAI: live Web Bot Auth key directory (fetched 2026-09-22 — returns signature_agent "https://chatgpt.com", purpose "ai", Ed25519 key)', '2026-09-22');
+  const castleCapture = mkSource('third-party-analysis', 'anecdotal',
+    'https://blog.castle.io/how-to-authenticate-openai-operator-requests-using-http-message-signatures/',
+    'Castle: captured OpenAI Operator request showing Signature-Agent "https://chatgpt.com", tag="web-bot-auth", alg="ed25519"', '2026-08-01');
+  const openaiFpAgent = mkSource('academic-research', 'research-paper-claim',
+    'https://arxiv.org/html/2605.01247v1', 'FP-Agent: Fingerprinting AI Browsing Agents', '2026-05-01');
+  const openaiUaCapture = mkSource('third-party-analysis', 'anecdotal',
+    'https://simonwillison.net/2025/Aug/4/chatgpt-agents-user-agent/',
+    'Simon Willison: single capture of ChatGPT Agent User-Agent', '2025-08-04');
+
+  registerProfiles(mkProfile({
+    id: 'chatgpt-agent', name: 'ChatGPT agent / ChatGPT Work cloud browser', vendor: 'OpenAI',
+    aliases: ['ChatGPT Agent', 'ChatGPT Work', 'Operator', 'ChatGPT Work Cloud browser'],
+    category: 'product-agent', execution: 'cloud', status: 'verified-signature',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-22',
+    sources: [openaiAllowlist, chatgptDirectory, openaiIpDocs, openaiBotsDocs, signedAgentsBlog, castleCapture, openaiFpAgent, openaiUaCapture],
+    notes: 'The best-documented signed agent in this registry, and the only one where OpenAI publishes step-by-step verification instructions of its own. The key directory at https://chatgpt.com/.well-known/http-message-signatures-directory was fetched on 2026-09-22 and returned an Ed25519 JWKS with the self-certified field "signature_agent": "https://chatgpt.com" and "purpose": "ai" — so the Signature-Agent value below is confirmed against OpenAI\'s own published card, not inferred. A third-party capture independently shows the signature covering @authority/@method/@path/signature-agent with tag="web-bot-auth" and alg="ed25519". Still: the header rules below are heuristic only. Verifying the Ed25519 signature against that directory requires a server, which this static page has no access to; only `server.webBotAuth.verified` set by a trusted server integration can produce a verified attribution. OpenAI documents no distinct UA token for the agentic browsing mode beyond its four crawler tokens (GPTBot/OAI-SearchBot/OAI-AdsBot/ChatGPT-User), so the headerMarker below can also fire on ordinary OpenAI crawler traffic — treat it as "OpenAI-operated", not specifically "ChatGPT agent".',
+    headerMarker: { pattern: 'chatgpt|openai|gptbot', confidence: 'high', source: openaiBotsDocs, selfIdentifying: true },
+    rules: [
+      ...signatureRules('chatgpt.com', chatgptDirectory, 32),
+      // Behavioral and fingerprint evidence below predates the Web Bot Auth work and is retained
+      // deliberately: signing is what OpenAI does on the wire, but these are the only signals that fire
+      // when the signature is absent or stripped, and the two behavioral rules are also what give this
+      // profile a SECOND evidence layer — without them a signature-only match stays capped at 64 and
+      // can never corroborate across layers. See docs/architecture.md on the independent-layer cap.
+      mkRule('behavior.pasteCount', 'gte', 1, 18, 'text pasted rather than typed (FP-Agent: statistically significant vs. human baseline)',
+        'behavioral', 'medium', openaiFpAgent),
+      mkRule('behavior.ctrlVOnMac', 'truthy', true, 20, 'Ctrl+V paste while reporting macOS (FP-Agent: platform/paste-shortcut mismatch)',
+        'behavioral', 'medium', openaiFpAgent),
+      mkRule('environment.ua', 'includes', 'Chrome/138.0.0.0', 8, 'UA matches one third-party ChatGPT Agent capture (Aug 2025, likely stale already)',
+        'browser-fingerprint', 'low', openaiUaCapture, { reviewBy: '2026-12-01' }),
+      mkRule('environment.screen.size', 'eq', '1280x960', 10, 'screen 1280×960 (FP-Agent dataset snapshot, fragile)',
+        'browser-fingerprint', 'low', openaiFpAgent, { reviewBy: '2026-12-01' }),
+      mkRule('environment.hardware.logicalCores', 'eq', 13, 10, '13 logical cores (FP-Agent dataset snapshot, fragile)',
+        'browser-fingerprint', 'low', openaiFpAgent, { reviewBy: '2026-12-01' })
+    ]
+  }));
+
+  // --- Block: Goose ------------------------------------------------------------------------------
+  const gooseSite = mkSource('official-repo', 'verified-official',
+    'https://github.com/block/goose', 'Block: goose — open-source extensible AI agent', '2026-09-01');
+
+  registerProfiles(mkProfile({
+    id: 'goose', name: 'Goose', vendor: 'Block, Inc.', aliases: ['block goose'],
+    category: 'product-agent', execution: 'local', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-22',
+    sources: [signedAgentsBlog, gooseSite],
+    notes: 'Cloudflare names Goose in the first cohort of signed agents, so participation in Web Bot Auth is confirmed by a first-party source on the verifying side. No Signature-Agent domain or key directory is published anywhere, however: Block\'s own goose docs/repo never mention Web Bot Auth, signing, or a Signature-Agent value, and probes of the obvious candidate authorities (block.xyz, goose.block.xyz, goose.ai, goose.dev, goose.computer) returned no key directory on 2026-09-22. No rule is registered rather than a guessed domain. A second, more important caveat Cloudflare states directly: inclusion in the signed-agent list does NOT mean every local Goose installation signs its traffic — Goose is an open-source agent users run themselves, with whatever LLM and browser backend they configure, so the typical self-hosted install is expected to look like generic local automation and carry no signature at all. Missing evidence: the Signature-Agent domain, plus whether signing is a hosted-only or opt-in feature.',
+    rules: []
+  }));
+
+  // --- Browserbase --------------------------------------------------------------------------------
+  const browserbaseIdentity = mkSource('official-docs', 'verified-official',
+    'https://www.browserbase.com/identity', 'Browserbase: Identity — Web Bot Auth for agents', '2026-09-01');
+  const browserbaseStealthDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.browserbase.com/features/stealth-mode',
+    'Browserbase: Identity / Web Bot Auth docs (Cloudflare Signed Agents partnership; beta-gated)', '2026-09-01');
+  const browserbaseDirectory = mkSource('official-repo', 'verified-official',
+    'https://www.browserbase.com/.well-known/http-message-signatures-directory',
+    'Browserbase: live Web Bot Auth key directory (fetched 2026-09-22 — two Ed25519 signing keys, purpose "rag")', '2026-09-22');
+
+  registerProfiles(mkProfile({
+    id: 'browserbase', name: 'Browserbase', vendor: 'Browserbase, Inc.', aliases: ['Stagehand', 'Browserbase Identity'],
+    category: 'browser-infrastructure', execution: 'cloud', status: 'research-profile',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-22',
+    sources: [browserbaseIdentity, browserbaseDirectory, browserbaseStealthDocs, signedAgentsBlog],
+    notes: 'Browserbase Identity signs browser traffic via Web Bot Auth in partnership with Cloudflare\'s Signed Agents program; Cloudflare independently names Browserbase in the first signed-agent cohort. Neither Browserbase page publishes the Signature-Agent value, but its key directory at https://www.browserbase.com/.well-known/http-message-signatures-directory was fetched on 2026-09-22 and returned two Ed25519 signing keys with "purpose": "rag" — that live directory is the basis for the domain rule below. Two caveats keep this at research-profile rather than verified-signature. First, the directory publishes no self-certified "signature_agent" field (unlike OpenAI\'s), so the exact header value is inferred from the directory authority rather than read from the card. Second, Web Bot Auth is explicitly beta-gated ("Request beta access"), so most Browserbase sessions today are unsigned — and Browserbase separately sells stealth/proxy and "verified sessions" features whose whole purpose is to make sessions indistinguishable from an ordinary browser. Absence of a signature is therefore no evidence against Browserbase. As infrastructure, a match also never identifies which product or customer drove the session.',
+    rules: signatureRules('browserbase.com', browserbaseDirectory)
+  }));
+
+  // --- Anchor Browser -----------------------------------------------------------------------------
+  const anchorWbaDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.anchorbrowser.io/advanced/cloudflare-web-bot-auth',
+    'Anchor Browser: Cloudflare Web Bot Auth docs (web_bot_auth.active session flag, default false)', '2026-09-01');
+  const anchorDirectory = mkSource('official-repo', 'verified-official',
+    'https://api.anchorbrowser.io/.well-known/http-message-signatures-directory',
+    'Anchor Browser: live Web Bot Auth key directory (fetched 2026-09-22 — one Ed25519 signing key)', '2026-09-22');
+
+  registerProfiles(mkProfile({
+    id: 'anchor-browser', name: 'Anchor Browser', vendor: 'Anchor Browser',
+    aliases: [], category: 'browser-infrastructure', execution: 'cloud', status: 'research-profile',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-22',
+    sources: [anchorWbaDocs, anchorDirectory, signedAgentsBlog],
+    notes: 'Cloudflare names Anchor Browser as a signed-agent participant, and Anchor documents the feature itself: requests are signed with "Anchor\'s own registered identity" per RFC 9421, enabled per session with browser.web_bot_auth.active = true. Signing is OFF by default, so an unsigned Anchor session is the norm rather than the exception — and Anchor separately sells a paid "extra stealth mode" (residential proxies plus fingerprint spoofing) explicitly designed to defeat fingerprinting. Absence of a signature is therefore no evidence against Anchor. Anchor publishes no Signature-Agent value in its docs; the apex anchorbrowser.io serves no key directory, but https://api.anchorbrowser.io/.well-known/http-message-signatures-directory was fetched on 2026-09-22 and returned one Ed25519 signing key, which is the basis for the domain rule below. Because the directory carries no self-certified "signature_agent" field, the rule matches the registrable domain (anchorbrowser.io) rather than a full URL, so it still fires if Anchor moves the directory between subdomains. As infrastructure, a match never identifies the calling product.',
+    rules: signatureRules('anchorbrowser.io', anchorDirectory)
+  }));
+
+  // --- Kernel --------------------------------------------------------------------------------------
+  const kernelWbaDocs = mkSource('official-docs', 'verified-official',
+    'https://www.kernel.sh/docs/browsers/bot-detection/web-bot-auth',
+    'Kernel: Web Bot Auth docs (extension attaches Signature, Signature-Input, Signature-Agent)', '2026-09-01');
+  const kernelBotsDocs = mkSource('official-docs', 'verified-official',
+    'https://www.kernel.sh/docs/bots',
+    'Kernel: published bot identities — Kernel Agent (Signature-Agent https://www.kernel.sh) and Kernel Search (KernelSearchBot, https://search.bot.kernel.sh)', '2026-09-01');
+  const kernelCfBlog = mkSource('official-docs', 'verified-official',
+    'https://www.kernel.sh/blog/cloudflare',
+    'Kernel: Cloudflare blog post (documents adding all three Web Bot Auth headers via a cloud-browser extension)', '2026-09-01');
+  const kernelDirectory = mkSource('official-repo', 'verified-official',
+    'https://www.kernel.sh/.well-known/http-message-signatures-directory',
+    'Kernel: live Web Bot Auth key directory (fetched 2026-09-22 — Ed25519 key with short nbf/exp rotation window)', '2026-09-22');
+
+  registerProfiles(mkProfile({
+    id: 'kernel', name: 'Kernel', vendor: 'Kernel (kernel.sh)', aliases: ['Kernel Agent', 'Kernel Search'],
+    category: 'browser-infrastructure', execution: 'cloud', status: 'research-profile',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-22',
+    sources: [kernelBotsDocs, kernelWbaDocs, kernelCfBlog, kernelDirectory],
+    notes: 'The most precisely documented signed agent here after OpenAI: Kernel publishes two separate identities with distinct authorities so sites can allow them independently by purpose. "Kernel Agent" (end-user-directed browser automation, no crawler UA token) uses Signature-Agent https://www.kernel.sh; "Kernel Search" (the crawler) uses UA token KernelSearchBot and Signature-Agent https://search.bot.kernel.sh. The www.kernel.sh directory was fetched on 2026-09-22 and returned an Ed25519 key with a roughly one-hour nbf/exp window, i.e. keys rotate frequently — any rule keyed on a specific kid would go stale within the hour, which is why the rules below key on the domain and the tag only. The load-bearing caveat: Kernel\'s CLI (`kernel extensions build-web-bot-auth --signature-agent https://yourdomain.com`) is built so CUSTOMERS sign with their OWN domain and key. A Kernel-hosted session therefore commonly carries a Signature-Agent that is not kernel.sh at all, so the rule below detects only sessions signed with Kernel\'s own identity, and a customer-signed Kernel session will not match. Signing also requires installing the extension, so plain Kernel sessions are unsigned.',
+    rules: [
+      ...signatureRules('kernel.sh', kernelBotsDocs),
+      mkRule('headers.user-agent', 'includes', 'KernelSearchBot', 25,
+        'UA contains Kernel\'s documented KernelSearchBot crawler token (Kernel Search identity, not the end-user-directed Kernel Agent)',
+        'server-heuristic', 'medium', kernelBotsDocs)
+    ]
+  }));
+
+  // --- Amazon Bedrock AgentCore Browser ------------------------------------------------------------
+  const agentCoreWbaDocs = mkSource('official-docs', 'verified-official',
+    'https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-web-bot-auth.html',
+    'AWS: Reducing CAPTCHAs with Web Bot Auth in Bedrock AgentCore Browser (documents the three signature headers; browserSigning.enabled)', '2026-09-01');
+  const agentCoreBlog = mkSource('official-docs', 'verified-official',
+    'https://aws.amazon.com/blogs/machine-learning/reduce-captchas-for-ai-agents-browsing-the-web-with-web-bot-auth-preview-in-amazon-bedrock-agentcore-browser/',
+    'AWS: Web Bot Auth (Preview) in Bedrock AgentCore Browser announcement', '2026-09-01');
+
+  registerProfiles(mkProfile({
+    id: 'bedrock-agentcore-browser', name: 'Amazon Bedrock AgentCore Browser', vendor: 'AWS/Amazon',
+    aliases: ['AgentCore Browser', 'Bedrock AgentCore Browser Tool'],
+    category: 'browser-infrastructure', execution: 'cloud', status: 'unprofiled',
+    minimumEvidence: 99, lastReviewedAt: '2026-09-22',
+    sources: [agentCoreWbaDocs, agentCoreBlog, agentRegistryBlog],
+    notes: 'Web Bot Auth support is confirmed from both sides: AWS documents that enabling browserSigning adds Signature, Signature-Agent, and Signature-Input to every request, and Cloudflare confirms the implementation while describing the key model — AgentCore currently signs with a SINGLE SERVICE KEY shared across all customers in public preview, intending to move to customer-specific keys once the protocol matures. That shared-key model is exactly why no rule is registered: a verified AgentCore signature identifies the AgentCore service, not the customer or the agent product driving the browser, so a match would be attribution in name only. No Signature-Agent domain is published in AWS docs, the announcement, or the Cloudflare post, and probes of the plausible AWS authorities returned no key directory on 2026-09-22 — Cloudflare\'s registry work implies per-region entries (Radar lists e.g. an eu-west-1 AgentCore Browser bot), so the value is likely regional rather than a single domain. Signing is also disabled by default and must be enabled at browser-tool creation. Missing evidence: the per-region Signature-Agent domains, and whether preview keys are distinguishable per region.',
+    rules: []
+  }));
+
+  // --- Cloudflare Browser Rendering ----------------------------------------------------------------
+  const cfBrowserRenderingDocs = mkSource('official-docs', 'verified-official',
+    'https://developers.cloudflare.com/browser-rendering/reference/automatic-request-headers/',
+    'Cloudflare: Browser Rendering automatic request headers (non-removable cf-biso-devtools / cf-brapi-devtools; Signature-Agent value)', '2026-09-01');
+  const cfBrowserRenderingDirectory = mkSource('official-repo', 'verified-official',
+    'https://web-bot-auth.cloudflare-browser-rendering-085.workers.dev/.well-known/http-message-signatures-directory',
+    'Cloudflare Browser Rendering: live Web Bot Auth key directory (fetched 2026-09-22 — three Ed25519 keys)', '2026-09-22');
+
+  registerProfiles(mkProfile({
+    id: 'cloudflare-browser-rendering', name: 'Cloudflare Browser Rendering', vendor: 'Cloudflare',
+    aliases: ['Browser Rendering API', 'Browser Run'],
+    category: 'browser-infrastructure', execution: 'cloud', status: 'verified-signature',
+    minimumEvidence: 2, lastReviewedAt: '2026-09-22',
+    sources: [cfBrowserRenderingDocs, cfBrowserRenderingDirectory, signedAgentsBlog, cfWebBotAuthDocs],
+    notes: 'The only entry in this file whose exact Signature-Agent value is printed verbatim in vendor documentation: https://web-bot-auth.cloudflare-browser-rendering-085.workers.dev, whose key directory was fetched on 2026-09-22 and returned three Ed25519 keys. Unusually strong for a second reason — Cloudflare documents non-configurable headers that "cannot be removed or overridden" by the caller: cf-biso-devtools (flags a request from Cloudflare rendering infrastructure) and cf-brapi-devtools (flags a Puppeteer/Playwright/CDP request). Those are rare in this registry: a vendor-documented marker the operator cannot switch off, unlike the stealth-configurable fingerprints of every other infra vendor here. Cloudflare\'s own guidance still says User-Agent "is not a reliable way to identify Browser Run requests" and points to these headers plus signature verification instead, so the UA rule below is weighted low: the crawl endpoint sends the fixed non-customizable token CloudflareBrowserRenderingCrawler/1.0, but Quick Actions ships an ordinary Chrome 119 UA that IS customizable, and the CDP path just uses Chrome\'s default. As infrastructure, a match identifies the runtime, never which product or Worker invoked it.',
+    rules: [
+      ...signatureRules('web-bot-auth.cloudflare-browser-rendering-085.workers.dev', cfBrowserRenderingDocs, 32),
+      mkRule('headers.cf-biso-devtools', 'truthy', true, 30,
+        'cf-biso-devtools header present — vendor-documented, non-removable flag that the request came from Cloudflare rendering infrastructure',
+        'server-heuristic', 'high', cfBrowserRenderingDocs),
+      mkRule('headers.cf-brapi-devtools', 'truthy', true, 20,
+        'cf-brapi-devtools header present — vendor-documented, non-removable flag of a Puppeteer/Playwright/CDP-driven Browser Rendering request',
+        'server-heuristic', 'high', cfBrowserRenderingDocs),
+      mkRule('headers.user-agent', 'includes', 'CloudflareBrowserRenderingCrawler', 18,
+        'UA contains the fixed CloudflareBrowserRenderingCrawler/1.0 token (crawl endpoint only; the Quick Actions and CDP paths send ordinary Chrome UAs)',
+        'server-heuristic', 'medium', cfBrowserRenderingDocs)
+    ]
+  }));
+})();
+
+
+//# sourceURL=src/registry/web-bot-auth.ts
 
 (function (root                   ) {
   'use strict';
@@ -1088,9 +960,27 @@ function registerProfiles(...profiles                )       {
     ctx.textBaseline = 'top'; ctx.font = '16px Arial'; ctx.fillStyle = '#f60'; ctx.fillRect(10, 8, 100, 25);
     ctx.fillStyle = '#069'; ctx.fillText('agent-detector 🧭', 4, 4); return canvas.toDataURL().slice(-160);
   }
+  // `document.fonts.check()` alone is unreliable: some platforms (observed on headless Linux/SwiftShader
+  // configs) alias an unrecognized family name to a generic substitute and still report the check as
+  // matched. Cross-checking against measured glyph width — does this family actually render differently
+  // from each generic fallback? — catches that false-true case that `check()` alone misses.
+  function fontReallyAvailable(name        , ctx                          )          {
+    if (!AD.safe(() => document.fonts.check(`16px "${name}"`), false)) return false;
+    const probe = 'mmmmmmmmmmlliiI0O';
+    const fallbacks           = ['serif', 'sans-serif', 'monospace'];
+    return fallbacks.some(fallback => {
+      ctx.font = `16px "${fallback}"`;
+      const fallbackWidth = ctx.measureText(probe).width;
+      ctx.font = `16px "${name}", "${fallback}"`;
+      const namedWidth = ctx.measureText(probe).width;
+      return Math.abs(namedWidth - fallbackWidth) > 0.5;
+    });
+  }
   function fonts()               {
     const names = ['Arial', 'Calibri', 'Times New Roman', 'Courier New', 'Segoe UI', 'Roboto', 'Noto Sans', 'Liberation Sans', 'Gill Sans'];
-    const values = Object.fromEntries(names.map(name => [name, AD.safe(() => document.fonts.check(`16px "${name}"`), false) ?? false]));
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const values = Object.fromEntries(names.map(name => [name, ctx ? AD.safe(() => fontReallyAvailable(name, ctx), false) ?? false : false]));
     return { fonts: values, fontCount: Object.values(values).filter(Boolean).length };
   }
   async function audio()                         {
@@ -1145,6 +1035,9 @@ function registerProfiles(...profiles                )       {
     // its outer chrome is drawn inside the screen bounds by definition. A virtual display sized
     // exactly to the viewport (rather than a window placed on a desktop) can violate this.
     const windowLargerThanScreen = (outerWidth > 0 || outerHeight > 0) && (outerWidth > screen.width || outerHeight > screen.height);
+    // A window's outer chrome (its own frame) can never be smaller than the inner content area it contains —
+    // the browser always adds its own toolbar/border on top of the viewport, never subtracts from it.
+    const innerLargerThanOuter = (outerWidth > 0 || outerHeight > 0) && (innerWidth > outerWidth || innerHeight > outerHeight);
     const environment                      = {
       collectedAt: new Date().toISOString(), ua, platform: navigator.platform, vendor: navigator.vendor,
       isChrome: /Chrome|Chromium/.test(ua), clientHints: { brands: navigator.userAgentData?.brands || null, mobile: navigator.userAgentData?.mobile ?? null, platform: navigator.userAgentData?.platform || null, highEntropy },
@@ -1159,7 +1052,7 @@ function registerProfiles(...profiles                )       {
       automation: {
         webdriver: navigator.webdriver === true, webdriverDescriptor, globals,
         rootAttributes: ['webdriver', 'selenium', 'driver'].filter(x => document.documentElement.hasAttribute(x)),
-        webdriverTampered, zeroOuterWindow, pluginsEmpty, windowLargerThanScreen
+        webdriverTampered, zeroOuterWindow, pluginsEmpty, windowLargerThanScreen, innerLargerThanOuter
       },
       rendering: { ...gl, ...detectedFonts, canvasTail: AD.safe(canvasHash), audioMagnitude: await audio() },
       page: { origin: location.origin, path: location.pathname, secure: isSecureContext, framed: top !== self },
@@ -1384,6 +1277,145 @@ function registerProfiles(...profiles                )       {
   function unquote(value        )         { return value.replace(/^\s*"|"\s*$/g, ''); }
 
   /**
+   * `Signature-Agent` values present in the headers. The merged header view can join observations from
+   * several HTTP-echo services with ' || ', so split before parsing. Values are structured-field
+   * strings (quoted URLs), optionally with an RFC 8941 parameter prefix like `g="https://..."`.
+   */
+  function signatureAgentDomains(headers                        )           {
+    const raw = headers['signature-agent'];
+    if (!raw) return [];
+    const domains = raw.split(' || ').flatMap(part => part.split(',')).map(part => {
+      const value = unquote(part.replace(/^[^"]*=/, '').trim());
+      // Accept a bare authority as well as a full URL; `URL` throws on the former.
+      const host = AD.safe(() => new URL(value).hostname, null) ?? value.replace(/^.*:\/\//, '').split('/')[0];
+      return (host ?? '').trim().toLowerCase().replace(/^www\./, '');
+    });
+    return [...new Set(domains.filter(Boolean))];
+  }
+
+  /**
+   * Domains the registry already claims, collected from every profile's `headers.signature-agent`
+   * rule. Derived from the registry rather than hardcoded so adding a signed agent to
+   * `src/registry/web-bot-auth.ts` automatically stops it being reported as unrecognized.
+   */
+  function knownSignatureAgentDomains(profiles                )           {
+    return profiles.flatMap(profile => profile.rules
+      .filter(rule => rule.path === 'headers.signature-agent' && typeof rule.value === 'string')
+      .map(rule => String(rule.value).toLowerCase()));
+  }
+
+  /**
+   * A `Signature-Agent` naming a domain no profile claims. This is the honest middle ground between
+   * silently scoring nothing (the old behaviour — a signed agent we simply have not catalogued would
+   * vanish from attribution entirely) and inventing a profile for it: the domain IS a self-declared
+   * identity, so it is reported verbatim as an unrecognized signer rather than guessed at.
+   *
+   * Deliberately `status: 'unprofiled'` and capped below `strong`: the header is unverified and
+   * spoofable, and naming a domain says nothing about which product operates it. A well-formed,
+   * correctly-tagged signature scores higher than a bare header, but neither reaches 70 — only
+   * `server.webBotAuth.verified` can produce a verified identity.
+   */
+  function unrecognizedSignerCandidate(headers                        , profiles                )                        {
+    const known = knownSignatureAgentDomains(profiles);
+    const unknown = signatureAgentDomains(headers).filter(domain => !known.some(k => domain === k || domain.endsWith(`.${k}`)));
+    if (!unknown.length) return null;
+
+    const wellFormed = !!headers['signature-input'] && !!headers.signature && /tag="web-bot-auth"/i.test(headers['signature-input'] ?? '');
+    const domainList = unknown.join(', ');
+    const weight = wellFormed ? 55 : 30;
+    return {
+      id: 'unrecognized-signed-agent',
+      name: `Unrecognized signed agent (${domainList})`,
+      vendor: domainList,
+      category: 'browser-infrastructure', execution: 'unknown', status: 'unprofiled',
+      score: weight, coverage: 100,
+      matched: [{
+        label: wellFormed
+          ? `Signature-Agent names ${domainList}, with RFC 9421 signature headers tagged web-bot-auth — a self-declared identity no registry profile claims (unverified)`
+          : `Signature-Agent names ${domainList} without a complete web-bot-auth-tagged signature — a self-declared identity no registry profile claims (unverified)`,
+        layer: 'server-heuristic', weight, value: domainList, path: 'headers.signature-agent', confidence: wellFormed ? 'medium' : 'low'
+      }],
+      missing: ['no registry profile for this signer — see docs/adding-an-agent.md'],
+      conflicting: [], availableRules: 1, totalRules: 1, sources: [], verified: false,
+      notes: `This domain is not in the registry, so the agent behind it is unidentified — only its own claim of identity (${domainList}) is reported, never resolved to a product. The header is unverified and can be copied by anyone; fetch ${unknown.map(d => `https://${d}/.well-known/http-message-signatures-directory`).join(' , ')} to check whether it publishes a real Web Bot Auth key directory before treating it as a genuine signer.`
+    };
+  }
+
+  /**
+   * An unattended/headless browser that matches no registry profile — the environment-side sibling of
+   * `unrecognizedSignerCandidate`. Same reasoning: a session can be plainly, structurally automated
+   * while the registry has nothing to attribute it to, and reporting `top: null` there reads
+   * identically to "nothing found". The generic Grok captures are exactly this case — `automation: 100`
+   * with `attribution: unknown`, because every Grok rule sits in one layer and stays capped at 24.
+   *
+   * Unlike a signed agent, an unattended browser makes no claim about who it is, so there is no
+   * identity to report. What IS reportable is the shape: which structural signals fired. Those are
+   * summarized in the candidate name (e.g. "Unrecognized headless browser (webdriver, software GPU)")
+   * so the operator sees the basis, not a bare label.
+   *
+   * Deliberately kept weak and honest:
+   *  - `category: 'framework'` — this is automation tooling of unknown make, never a product.
+   *  - `status: 'generic-only'` — the existing status meaning "a real signal, but only framework-class".
+   *  - Scored from the structural signals only, hard-capped at 60 so it can never reach `strong`
+   *    (70) and can never outrank a real profile that matched actual vendor evidence. It exists to
+   *    replace `unknown` with something actionable, not to compete with attribution.
+   *  - Requires at least two independent structural signals: any single one (a lone software renderer
+   *    on a VM, say) is far too common to call a session automated on its own.
+   */
+  function unrecognizedAutomationCandidate(
+    environment                     , automationScore        , candidates                  
+  )                        {
+    // Only step in when no real profile reached even 'weak' (25): a matched profile is always the
+    // better answer, and this must never mask it.
+    if ((candidates[0]?.score ?? 0) >= 25) return null;
+
+    const auto = environment.automation;
+    const signals                                                          = [
+      { label: 'navigator.webdriver is true', short: 'webdriver', weight: 30, ...{} },
+      { label: 'navigator.webdriver getter is patched to hide automation', short: 'patched webdriver', weight: 22 },
+      { label: 'automation global(s) present on window', short: 'automation globals', weight: 22 },
+      { label: 'automation attribute on <html>', short: 'automation attribute', weight: 14 },
+      { label: 'HeadlessChrome build token in the User-Agent', short: 'headless UA', weight: 26 },
+      { label: 'software WebGL renderer, no real GPU (SwiftShader/llvmpipe)', short: 'software GPU', weight: 14 },
+      { label: 'zero-size outer window (typical of a CDP-driven browser)', short: 'zero outer window', weight: 14 },
+      { label: 'outer window larger than the screen (virtual display sized to the viewport)', short: 'window > screen', weight: 16 },
+      { label: 'viewport inner size larger than the outer window (impossible for a real window)', short: 'inner > outer', weight: 16 },
+      { label: 'empty plugin list on a Chrome/Chromium UA', short: 'no plugins', weight: 8 }
+    ];
+    const fired = [
+      auto.webdriver, auto.webdriverTampered, auto.globals.length > 0, auto.rootAttributes.length > 0,
+      /headlesschrome/i.test(environment.ua ?? ''), !!environment.rendering.softwareRenderer,
+      auto.zeroOuterWindow, auto.windowLargerThanScreen, auto.innerLargerThanOuter, auto.pluginsEmpty
+    ].map((hit, index) => (hit ? signals[index] : null)).filter((s)                              => !!s);
+
+    if (fired.length < 2) return null;
+
+    // Profiles that partially matched this same shape are named as *possible consumers of it*, so the
+    // honest generic answer does not throw away the registry's hint. This is the one place the two are
+    // connected: e.g. the Grok VM shape scores 24 (single-layer cap) while this candidate scores 60, so
+    // without this the operator would lose "Grok is one known consumer of this shape" entirely.
+    const partial = candidates.filter(c => c.score > 0 && c.category !== 'product-agent').slice(0, 3);
+    const consumerNote = partial.length
+      ? ` Registry profiles that partially match this same shape, and are therefore POSSIBLE (not identified) consumers of it: ${partial.map(c => `${c.name} (${c.score})`).join('; ')}. Each is listed as a separate candidate below with its own evidence; none matched strongly enough to attribute.`
+      : '';
+
+    const score = Math.min(60, fired.reduce((sum, s) => sum + s.weight, 0));
+    return {
+      id: 'unrecognized-automation',
+      name: `Unrecognized headless/automated browser (${fired.map(s => s.short).join(', ')})`,
+      vendor: 'unidentified automation tooling',
+      category: 'framework', execution: 'unknown', status: 'generic-only',
+      score, coverage: 100,
+      matched: fired.map(s => ({
+        label: s.label, layer: 'browser-fingerprint'                 , weight: s.weight, value: true, confidence: 'medium'                  
+      })),
+      missing: ['no registry profile matched this environment — see docs/adding-an-agent.md'],
+      conflicting: [], availableRules: fired.length, totalRules: fired.length, sources: [], verified: false,
+      notes: `This session is structurally automated (${fired.length} independent signals, automation score ${automationScore}) but matches no agent profile in the registry, so WHICH tool is driving it is unknown — these signals are shared by Playwright, Puppeteer, Selenium, CDP sessions, and every cloud browser built on them. Do not read this as a product identification. It is also not proof of bad intent: accessibility tooling, internal QA suites, and monitoring checks produce the same shape. If this shape recurs in your traffic, the way to turn it into a real profile is a labeled capture (docs/collecting-labeled-sessions.md) plus a vendor-specific marker; IP/ASN evidence, which this client-side detector cannot collect, is usually what distinguishes one operator from another.${consumerNote}`
+    };
+  }
+
+  /**
    * A header marker is a narrowly-sourced, documented regex — never a fuzzy match against the profile's
    * own name/aliases. It raises heuristic attribution but is explicitly never treated as verified: a
    * client-observable header can be spoofed by anyone, verification must happen server-side (RFC 9421 /
@@ -1409,38 +1441,55 @@ function registerProfiles(...profiles                )       {
     }).sort((a, b) => b.score - a.score);
   }
 
+  /**
+   * Generic automation/agent markers in a User-Agent. This fires the vendor-agnostic
+   * `bot-header-marker` AUTOMATION rule, which says "something self-identifies as automated", never
+   * "this is product X" — attribution is the registry's job.
+   *
+   * Deliberately NOT derived from the registry, and deliberately BROADER than it: a UA that names an
+   * agent is worth flagging as automation whether or not that agent is in scope for attribution. In
+   * particular `grok` stays listed even though the Grok profile was removed — the detector should
+   * still notice traffic announcing itself as Grok. Removing a token here is a silent capability loss
+   * (a self-identifying UA drops from an automation score of 45 to 0), so only remove one if it
+   * produces false positives on human traffic, never merely because a profile went out of scope.
+   */
+  const botHeaderPattern = /headless|playwright|puppeteer|selenium|phantom|chatgpt|openai|gptbot|claude|anthropic|perplexity|comet|grok|instinct|manus|openclaw|kernelsearchbot|cloudflarebrowserrendering|\bbot\b|crawler|spider/i;
+
+  AD.automationRules = [
+    { id: 'webdriver-flag', layer: 'browser-fingerprint', weight: 55, check: ctx => ctx.automation.webdriver, label: () => 'navigator.webdriver=true' },
+    { id: 'automation-globals', layer: 'browser-fingerprint', weight: 35, check: ctx => ctx.automation.traces > 0, label: ctx => `${ctx.automation.traces} automation global(s)` },
+    { id: 'automation-root-attributes', layer: 'browser-fingerprint', weight: 25, check: ctx => ctx.automation.rootAttributes > 0, label: () => 'automation attribute on <html>' },
+    { id: 'webdriver-tampered', layer: 'browser-fingerprint', weight: 30, check: ctx => ctx.environment.automation.webdriverTampered, label: () => 'navigator.webdriver getter is non-native or an own property (patched to hide automation)' },
+    { id: 'zero-outer-window', layer: 'browser-fingerprint', weight: 20, check: ctx => ctx.environment.automation.zeroOuterWindow, label: () => 'zero-size outer window (typical of CDP-driven Chrome)' },
+    { id: 'window-larger-than-screen', layer: 'browser-fingerprint', weight: 25, check: ctx => ctx.environment.automation.windowLargerThanScreen, label: () => 'browser outer window is larger than the screen (impossible for a window placed on a real desktop; typical of a virtual display sized to the viewport)' },
+    { id: 'inner-larger-than-outer', layer: 'browser-fingerprint', weight: 25, check: ctx => ctx.environment.automation.innerLargerThanOuter, label: () => 'viewport inner size is larger than the outer window (impossible — a real browser window always adds its own chrome on top of the content area)' },
+    { id: 'plugins-empty', layer: 'browser-fingerprint', weight: 10, check: ctx => ctx.environment.automation.pluginsEmpty, label: () => 'empty plugin list on a Chrome/Chromium UA (typical of a bare CDP session)' },
+    { id: 'software-renderer', layer: 'browser-fingerprint', weight: 15, check: ctx => !!ctx.environment.rendering.softwareRenderer, label: () => 'software WebGL renderer (SwiftShader/llvmpipe, common in headless/CDP environments)' },
+    { id: 'interaction-without-pointer-movement', layer: 'behavioral', weight: 12, check: ctx => ctx.behavior.trustedEvents >= 4 && ctx.behavior.pointerMoves === 0 && !!(ctx.behavior.keydownCount || ctx.behavior.clickCount), label: () => 'interaction without pointer movement' },
+    { id: 'uniform-typing-cadence', layer: 'behavioral', weight: 22, check: ctx => ctx.behavior.keydownCount >= 6 && ctx.behavior.interKeyStdMs !== null && ctx.behavior.interKeyStdMs < 5, label: () => 'near-uniform typing cadence' },
+    { id: 'paste-driven-input', layer: 'behavioral', weight: 8, check: ctx => ctx.behavior.pasteCount > 0, label: () => 'paste-driven input' },
+    { id: 'change-without-typing', layer: 'behavioral', weight: 24, check: ctx => ctx.behavior.changeWithoutTyping, label: () => 'field changed without typing/paste events' },
+    { id: 'double-input-per-keystroke', layer: 'behavioral', weight: 18, check: ctx => ctx.behavior.keydownCount >= 6 && ctx.behavior.inputCount >= ctx.behavior.keydownCount * 1.7, label: () => 'roughly two input events per keystroke (consistent with a synthetic key event plus a direct value write, e.g. driving a field through CDP while also dispatching keys)' },
+    { id: 'sub-millisecond-event-gaps', layer: 'behavioral', weight: 20, check: ctx => ctx.behavior.keydownCount >= 6 && ctx.behavior.intervalP10Ms !== null && ctx.behavior.intervalP10Ms < 1, label: () => 'sub-millisecond gaps between consecutive events (physical input hardware cannot deliver events this close together)' },
+    { id: 'bot-header-marker', layer: 'server-heuristic', weight: 45, check: ctx => !!ctx.headers['user-agent'] && botHeaderPattern.test(ctx.headers['user-agent']), label: () => 'bot/agent marker in HTTP User-Agent' },
+    { id: 'signature-agent-header', layer: 'server-heuristic', weight: 35, check: ctx => !!ctx.headers['signature-agent'], label: () => 'Signature-Agent HTTP header observed (unverified)' },
+    { id: 'signature-headers', layer: 'server-heuristic', weight: 20, check: ctx => !!ctx.headers['signature-input'] && !!ctx.headers.signature, label: () => 'HTTP Message Signature headers observed (unverified)' },
+    { id: 'ua-mismatch', layer: 'server-heuristic', weight: 18, check: ctx => !!ctx.headers['user-agent'] && !!ctx.environment.ua && !ctx.headers['user-agent'].split(' || ').includes(ctx.environment.ua), label: () => 'HTTP and JavaScript User-Agent mismatch' },
+    { id: 'platform-mismatch', layer: 'server-heuristic', weight: 12, check: ctx => !!ctx.headers['sec-ch-ua-platform'] && !!ctx.environment.clientHints?.platform && !ctx.headers['sec-ch-ua-platform'].split(' || ').some(value => unquote(value) === ctx.environment.clientHints.platform), label: () => 'HTTP and JavaScript Client Hint platform mismatch' },
+    { id: 'language-mismatch', layer: 'server-heuristic', weight: 8, check: ctx => !!ctx.headers['accept-language'] && !!ctx.environment.languages?.primary && !ctx.headers['accept-language'].toLowerCase().includes(ctx.environment.languages.primary.toLowerCase()), label: () => 'HTTP and JavaScript language mismatch' }
+  ];
+
   AD.detect = function ({ environment, behavior, server, http }) {
     const automation = { webdriver: environment.automation.webdriver, traces: environment.automation.globals.length, rootAttributes: environment.automation.rootAttributes.length };
     const headers = mergedHeaders(server, http);
+    const ctx                        = { automation, environment, behavior, headers };
     let automationScore = 0;
     const automationEvidence                  = [];
-    const add = (points        , label        , layer               ) => { automationScore += points; automationEvidence.push({ label, layer, weight: points, value: true }); };
-
-    if (automation.webdriver) add(55, 'navigator.webdriver=true', 'browser-fingerprint');
-    if (automation.traces) add(35, `${automation.traces} automation global(s)`, 'browser-fingerprint');
-    if (automation.rootAttributes) add(25, 'automation attribute on <html>', 'browser-fingerprint');
-    if (environment.automation.webdriverTampered) add(30, 'navigator.webdriver getter is non-native or an own property (patched to hide automation)', 'browser-fingerprint');
-    if (environment.automation.zeroOuterWindow) add(20, 'zero-size outer window (typical of CDP-driven Chrome)', 'browser-fingerprint');
-    if (environment.automation.windowLargerThanScreen) add(25, 'browser outer window is larger than the screen (impossible for a window placed on a real desktop; typical of a virtual display sized to the viewport)', 'browser-fingerprint');
-    if (environment.automation.pluginsEmpty) add(10, 'empty plugin list on a Chrome/Chromium UA (typical of a bare CDP session)', 'browser-fingerprint');
-    if (environment.rendering.softwareRenderer) add(15, 'software WebGL renderer (SwiftShader/llvmpipe, common in headless/CDP environments)', 'browser-fingerprint');
-    if (behavior.trustedEvents >= 4 && behavior.pointerMoves === 0 && (behavior.keydownCount || behavior.clickCount)) add(12, 'interaction without pointer movement', 'behavioral');
-    if (behavior.keydownCount >= 6 && behavior.interKeyStdMs !== null && behavior.interKeyStdMs < 5) add(22, 'near-uniform typing cadence', 'behavioral');
-    if (behavior.pasteCount) add(8, 'paste-driven input', 'behavioral');
-    if (behavior.changeWithoutTyping) add(24, 'field changed without typing/paste events', 'behavioral');
-    if (behavior.keydownCount >= 6 && behavior.inputCount >= behavior.keydownCount * 1.7) add(18, 'roughly two input events per keystroke (consistent with a synthetic key event plus a direct value write, e.g. driving a field through CDP while also dispatching keys)', 'behavioral');
-    if (behavior.keydownCount >= 6 && behavior.intervalP10Ms !== null && behavior.intervalP10Ms < 1) add(20, 'sub-millisecond gaps between consecutive events (physical input hardware cannot deliver events this close together)', 'behavioral');
-
-    const headerUa = headers['user-agent'];
-    const botHeaderPattern = /headless|playwright|puppeteer|selenium|phantom|chatgpt|openai|gptbot|claude|anthropic|perplexity|comet|grok|instinct|\bbot\b|crawler|spider/i;
-    if (headerUa && botHeaderPattern.test(headerUa)) add(45, 'bot/agent marker in HTTP User-Agent', 'server-heuristic');
-    if (headers['signature-agent']) add(35, 'Signature-Agent HTTP header observed (unverified)', 'server-heuristic');
-    if (headers['signature-input'] && headers.signature) add(20, 'HTTP Message Signature headers observed (unverified)', 'server-heuristic');
-    if (headerUa && environment.ua && !headerUa.split(' || ').includes(environment.ua)) add(18, 'HTTP and JavaScript User-Agent mismatch', 'server-heuristic');
-    const headerPlatform = headers['sec-ch-ua-platform'];
-    if (headerPlatform && environment.clientHints?.platform && !headerPlatform.split(' || ').some(value => unquote(value) === environment.clientHints.platform)) add(12, 'HTTP and JavaScript Client Hint platform mismatch', 'server-heuristic');
-    const headerLanguage = headers['accept-language'];
-    if (headerLanguage && environment.languages?.primary && !headerLanguage.toLowerCase().includes(environment.languages.primary.toLowerCase())) add(8, 'HTTP and JavaScript language mismatch', 'server-heuristic');
+    for (const rule of AD.automationRules) {
+      if (!rule.check(ctx)) continue;
+      automationScore += rule.weight;
+      automationEvidence.push({ label: rule.label(ctx), layer: rule.layer, weight: rule.weight, value: true });
+    }
 
     // Client-provided claims about server verification are never trusted directly: `webBotAuth.verified`
     // is only honored because it is documented to be set by a trusted server integration, never by
@@ -1451,6 +1500,17 @@ function registerProfiles(...profiles                )       {
 
     let candidates = AD.registry.map(profile => AD.scoreProfile(profile, { environment, behavior, server, http, automation, headers })).sort((a, b) => b.score - a.score);
     candidates = applyHeaderMarkers(candidates, AD.registry, headers);
+
+    // A Signature-Agent naming a domain no profile claims is surfaced as an explicitly unidentified
+    // signer carrying the declared domain, rather than being dropped from attribution entirely.
+    const unrecognizedSigner = unrecognizedSignerCandidate(headers, AD.registry);
+    if (unrecognizedSigner) candidates = [...candidates, unrecognizedSigner].sort((a, b) => b.score - a.score);
+
+    // Likewise for a plainly automated browser that matches no profile: report the observed shape
+    // rather than `unknown`. Added last and only when nothing real matched, so it cannot mask a
+    // genuine attribution (the function itself bails out if any profile reached 'weak').
+    const unrecognizedAutomation = unrecognizedAutomationCandidate(environment, automationScore, candidates);
+    if (unrecognizedAutomation) candidates = [...candidates, unrecognizedAutomation].sort((a, b) => b.score - a.score);
 
     if (verifiedAgentId) {
       const name = auth?.agentName || verifiedAgentId;
@@ -1509,7 +1569,9 @@ function registerProfiles(...profiles                )       {
       case 'local-sample': return 'Local sample (heuristic, single capture)';
       case 'generic-only': return 'Generic automation only';
       case 'unprofiled': return 'Unprofiled — no public signature';
-      case 'verified-signature': return 'Verified signature';
+      // NOT "this session was verified" — it means the vendor publishes a cryptographic identity that
+      // a server could verify. Only `status: 'verified'` above reflects an actual checked signature.
+      case 'verified-signature': return 'Publishes a verifiable signature (not verified here)';
       default: return status;
     }
   }
@@ -1537,6 +1599,23 @@ function registerProfiles(...profiles                )       {
       : 'no scoring rules registered for this profile';
     const notes = candidate.notes ? `<p class="notes">${esc(candidate.notes)}</p>` : '';
     return `<article class="candidate"><div class="rank">${index + 1}</div><div class="candidate-main"><div class="candidate-head"><strong>${esc(candidate.name)}</strong>${badge}<span>${candidate.score}%</span></div><div class="meter"><i style="width:${candidate.score}%"></i></div><p>${esc(statusLabel(candidate.status))} · ${esc(candidate.category)} · ${esc(coverageLabel)}</p>${notes}<details><summary>Matched evidence (${candidate.matched.length})</summary><ul>${matches}</ul></details>${conflicts}${missing}${sources}</div></article>`;
+  }
+  function automationRuleRow(rule                )         {
+    return `<tr><td>${esc(rule.weight)}</td><td>${esc(rule.layer)}</td><td>${esc(rule.id)}</td></tr>`;
+  }
+  function profileRulesHtml(profile              )         {
+    const rows = profile.rules.map(rule =>
+      `<tr><td>${esc(rule.weight)}</td><td>${esc(rule.layer)}</td><td>${esc(rule.confidence)}</td><td>${esc(rule.label)}</td><td><code>${esc(rule.path)} ${esc(rule.op)} ${esc(JSON.stringify(rule.value))}</code></td></tr>`
+    ).join('');
+    const totalWeight = profile.rules.reduce((sum, rule) => sum + rule.weight, 0);
+    return `<details class="rule-profile"><summary>${esc(profile.name)} <small>(${esc(profile.rules.length)} rules, ${esc(totalWeight)} pts total · ${esc(statusLabel(profile.status))})</small></summary><table class="rules-table"><thead><tr><th>Weight</th><th>Layer</th><th>Confidence</th><th>Label</th><th>Condition</th></tr></thead><tbody>${rows}</tbody></table></details>`;
+  }
+  function rulesHtml()         {
+    const automationRows = AD.automationRules.map(automationRuleRow).join('');
+    const automationTotal = AD.automationRules.reduce((sum, rule) => sum + rule.weight, 0);
+    const automationSection = `<details class="rule-profile" open><summary>Automation signals <small>(${AD.automationRules.length} rules, ${automationTotal} pts total if all fired)</small></summary><table class="rules-table"><thead><tr><th>Weight</th><th>Layer</th><th>Rule id</th></tr></thead><tbody>${automationRows}</tbody></table></details>`;
+    const profileSections = AD.registry.filter(profile => profile.rules.length > 0).map(profileRulesHtml).join('');
+    return `${automationSection}${profileSections}`;
   }
   AD.render = function () {
     if (!AD.state.snapshot) return;
@@ -1617,6 +1696,7 @@ function registerProfiles(...profiles                )       {
   }
   document.addEventListener('DOMContentLoaded', () => {
     AD.startBehaviorObserver();
+    $('rulesPanel').innerHTML = rulesHtml();
     $                   ('rerun').onclick = collect;
     $('clear').onclick = () => { AD.state.events = []; AD.render(); };
     $('export').onclick = () => AD.download(`agent-detection-${Date.now()}.json`, JSON.stringify(report(), null, 2));
