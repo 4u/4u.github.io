@@ -14,7 +14,7 @@
     <section><div class="section-head"><div><p class="eyebrow">05 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">06 / Rules</p><h2>Every rule this detector can fire</h2></div><p>Generated straight from the running code — automation signals plus every registered agent profile's scoring rules and their point weights.</p></div><div id="rulesPanel" class="rules">Waiting…</div></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-21T23:46:50.517Z</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-22T00:00:24.757Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -228,6 +228,20 @@
                            
                             
                                    
+     
+                                                                                                        
+                                                                                                   
+                                                                                                        
+                                                                                               
+    
+                                                                                                       
+                                                                                              
+                                                                                                    
+                                                                                               
+                                                                                                     
+                                           
+     
+                                 
                                                                                                          
                     
  
@@ -423,7 +437,7 @@ function mkSource(
 function mkRule(
   path        , op              , value         , weight        , label        ,
   layer               , confidence                , source                ,
-  opts                                                                                                                                    = {}
+  opts                                                                                                                                                                    = {}
 )                {
   return {
     path, op, value, weight, label, layer, confidence, source,
@@ -431,6 +445,7 @@ function mkRule(
     ...(opts.affectedVersion ? { affectedVersion: opts.affectedVersion } : {}),
     ...(opts.knownConflicts ? { knownConflicts: opts.knownConflicts } : {}),
     ...(opts.requiresServerEvidence ? { requiresServerEvidence: true } : {}),
+    ...(opts.vendorEnforcedMarker ? { vendorEnforcedMarker: true } : {}),
     ...(opts.reviewBy ? { reviewBy: opts.reviewBy } : {})
   };
 }
@@ -922,15 +937,18 @@ function registerProfiles(...profiles                )       {
     category: 'browser-infrastructure', execution: 'cloud', status: 'verified-signature',
     minimumEvidence: 2, lastReviewedAt: '2026-09-22',
     sources: [cfBrowserRenderingDocs, cfBrowserRenderingDirectory, signedAgentsBlog, cfWebBotAuthDocs],
-    notes: 'The only entry in this file whose exact Signature-Agent value is printed verbatim in vendor documentation: https://web-bot-auth.cloudflare-browser-rendering-085.workers.dev, whose key directory was fetched on 2026-09-22 and returned three Ed25519 keys. Unusually strong for a second reason — Cloudflare documents non-configurable headers that "cannot be removed or overridden" by the caller: cf-biso-devtools (flags a request from Cloudflare rendering infrastructure) and cf-brapi-devtools (flags a Puppeteer/Playwright/CDP request). Those are rare in this registry: a vendor-documented marker the operator cannot switch off, unlike the stealth-configurable fingerprints of every other infra vendor here. Cloudflare\'s own guidance still says User-Agent "is not a reliable way to identify Browser Run requests" and points to these headers plus signature verification instead, so the UA rule below is weighted low: the crawl endpoint sends the fixed non-customizable token CloudflareBrowserRenderingCrawler/1.0, but Quick Actions ships an ordinary Chrome 119 UA that IS customizable, and the CDP path just uses Chrome\'s default. As infrastructure, a match identifies the runtime, never which product or Worker invoked it.',
+    notes: 'The only entry in this file whose exact Signature-Agent value is printed verbatim in vendor documentation: https://web-bot-auth.cloudflare-browser-rendering-085.workers.dev, whose key directory was fetched on 2026-09-22 and returned three Ed25519 keys. Unusually strong for a second reason — Cloudflare documents THREE non-configurable headers that "cannot be removed or overridden" by the caller: cf-biso-devtools (flags a request originating from Cloudflare rendering infrastructure), cf-brapi-devtools (flags a Puppeteer/Playwright/CDP-driven request), and cf-brapi-request-id (per-request identifier on Quick Actions requests). Those are rare in this registry: vendor-documented markers the operator cannot switch off, unlike the stealth-configurable fingerprints of every other infra vendor here. They also split by code path rather than all firing together — cf-brapi-request-id and cf-brapi-devtools accompany the Quick Actions / CDP paths, so a match on one but not the others is normal and not a sign of spoofing. Cloudflare publishes bot-detection ids alongside them (119853733 for Quick Actions/Puppeteer/Playwright/CDP, 128292352 for the crawl endpoint), but those are visible only inside Cloudflare\'s own bot management, not to an origin, so no rule keys on them. Cloudflare\'s own guidance still says User-Agent "is not a reliable way to identify Browser Run requests" and points to these headers plus signature verification instead, so the UA rule below is weighted low: the crawl endpoint sends the fixed non-customizable token CloudflareBrowserRenderingCrawler/1.0, but Quick Actions ships an ordinary Chrome 119 UA that IS customizable, and the CDP path just uses Chrome\'s default. As infrastructure, a match identifies the runtime, never which product or Worker invoked it.',
     rules: [
       ...signatureRules('web-bot-auth.cloudflare-browser-rendering-085.workers.dev', cfBrowserRenderingDocs, 32),
       mkRule('headers.cf-biso-devtools', 'truthy', true, 30,
         'cf-biso-devtools header present — vendor-documented, non-removable flag that the request came from Cloudflare rendering infrastructure',
-        'server-heuristic', 'high', cfBrowserRenderingDocs),
+        'server-heuristic', 'high', cfBrowserRenderingDocs, { vendorEnforcedMarker: true }),
       mkRule('headers.cf-brapi-devtools', 'truthy', true, 20,
         'cf-brapi-devtools header present — vendor-documented, non-removable flag of a Puppeteer/Playwright/CDP-driven Browser Rendering request',
-        'server-heuristic', 'high', cfBrowserRenderingDocs),
+        'server-heuristic', 'high', cfBrowserRenderingDocs, { vendorEnforcedMarker: true }),
+      mkRule('headers.cf-brapi-request-id', 'truthy', true, 16,
+        'cf-brapi-request-id header present — vendor-documented, non-removable per-request identifier set on Browser Rendering Quick Actions requests',
+        'server-heuristic', 'high', cfBrowserRenderingDocs, { vendorEnforcedMarker: true }),
       mkRule('headers.user-agent', 'includes', 'CloudflareBrowserRenderingCrawler', 18,
         'UA contains the fixed CloudflareBrowserRenderingCrawler/1.0 token (crawl endpoint only; the Quick Actions and CDP paths send ordinary Chrome UAs)',
         'server-heuristic', 'medium', cfBrowserRenderingDocs)
@@ -1260,7 +1278,13 @@ function registerProfiles(...profiles                )       {
     const meetsMinimum = matched.length >= profile.minimumEvidence;
     const independentLayers = matchedLayerCount(matched) >= 2;
     const webBotAuthSignature = hasWellFormedWebBotAuthSignature(matched, data.headers);
-    const score = meetsMinimum && independentLayers ? raw : webBotAuthSignature ? Math.min(raw, 64) : Math.min(raw, 24);
+    // A marker the vendor documents as non-removable by the caller (see `vendorEnforcedMarker` in
+    // types.ts) is exempt from the single-layer cap. That cap exists to stop several weak, same-kind
+    // clues looking like corroboration, which is not what a non-suppressible vendor flag is. It still
+    // never confers verification — the header is observable and forgeable by a third party.
+    const vendorEnforced = matchedRules.some(rule => rule.vendorEnforcedMarker);
+    const score = (meetsMinimum && independentLayers) || vendorEnforced ? raw
+      : webBotAuthSignature ? Math.min(raw, 64) : Math.min(raw, 24);
 
     return {
       id: profile.id, name: profile.name, vendor: profile.vendor, category: profile.category, execution: profile.execution,
@@ -1338,6 +1362,64 @@ function registerProfiles(...profiles                )       {
       missing: ['no registry profile for this signer — see docs/adding-an-agent.md'],
       conflicting: [], availableRules: 1, totalRules: 1, sources: [], verified: false,
       notes: `This domain is not in the registry, so the agent behind it is unidentified — only its own claim of identity (${domainList}) is reported, never resolved to a product. The header is unverified and can be copied by anyone; fetch ${unknown.map(d => `https://${d}/.well-known/http-message-signatures-directory`).join(' , ')} to check whether it publishes a real Web Bot Auth key directory before treating it as a genuine signer.`
+    };
+  }
+
+  /**
+   * Visa Trusted Agent Protocol (TAP) and Mastercard Agent Pay build directly on Web Bot Auth, adding
+   * their own `Signature-Input` tag to state the agent's INTENT rather than just its identity:
+   *
+   *   tag="agent-browser-auth"  → the agent is browsing (e.g. a product page)
+   *   tag="agent-payer-auth"    → the agent is checking out / paying
+   *
+   * That makes the tag a documented, protocol-level signal independent of any one vendor, which is why
+   * it is handled here rather than as a registry profile: the card networks register many agents and
+   * host the key directories themselves (Visa's JWKS is at https://mcp.visa.com/.well-known/jwks,
+   * confirmed live 2026-09-22, RSA keys), so the signer could be any registered shopping agent. There
+   * is no single product to attribute to — what is established is "a payment-network-registered agent,
+   * declaring this intent".
+   *
+   * Reported as its own candidate, never as verified: TAP's own merchant verification sequence requires
+   * fetching the key for `keyid`, checking `created`/`expires` (max 8 minutes apart), and rejecting
+   * replayed `nonce` values — all server-side work this page cannot do. `agent-payer-auth` scores
+   * slightly higher than `agent-browser-auth` only because a payment-intent claim is the narrower,
+   * more consequential declaration; both stay well below `strong`.
+   */
+  function trustedAgentProtocolCandidate(headers                        )                        {
+    const signatureInput = headers['signature-input'] ?? '';
+    const paying = /tag="agent-payer-auth"/i.test(signatureInput);
+    const browsing = /tag="agent-browser-auth"/i.test(signatureInput);
+    if (!paying && !browsing) return null;
+
+    const intents = [paying ? 'payment' : null, browsing ? 'browsing' : null].filter(Boolean).join(' + ');
+    const complete = !!headers.signature;
+    // The protocol requires these; their absence is a sign of a malformed or hand-copied signature.
+    const hasNonce = /nonce=/i.test(signatureInput);
+    const hasKeyid = /keyid=/i.test(signatureInput);
+    const hasWindow = /created=/i.test(signatureInput) && /expires=/i.test(signatureInput);
+    const base = paying ? 45 : 38;
+    const score = Math.min(60, base + (complete ? 8 : 0) + (hasNonce && hasKeyid && hasWindow ? 7 : 0));
+
+    const gaps = [
+      hasKeyid ? null : 'no keyid (the protocol requires it to locate the verification key)',
+      hasNonce ? null : 'no nonce (required for replay protection)',
+      hasWindow ? null : 'no created/expires window (required; must be under 8 minutes apart)',
+      complete ? null : 'no Signature header accompanying the Signature-Input'
+    ].filter(Boolean)            ;
+
+    return {
+      id: 'trusted-agent-protocol',
+      name: `Payment-network shopping agent, unidentified (Trusted Agent Protocol, ${intents} intent)`,
+      vendor: 'registered with Visa and/or Mastercard — specific agent not identified',
+      category: 'product-agent', execution: 'unknown', status: 'unprofiled',
+      score, coverage: 100,
+      matched: [{
+        label: `Signature-Input carries the Trusted Agent Protocol tag ${paying ? 'agent-payer-auth (declaring payment intent)' : 'agent-browser-auth (declaring browsing intent)'} — a documented protocol-level declaration by an agent registered with a payment network (unverified)`,
+        layer: 'server-heuristic', weight: score, value: intents, path: 'headers.signature-input', confidence: 'medium'
+      }],
+      missing: gaps.length ? gaps : ['server-side verification of the signature, key, timestamps and nonce'],
+      conflicting: [], availableRules: 1, totalRules: 1, sources: [], verified: false,
+      notes: `Visa Trusted Agent Protocol (and Mastercard Agent Pay, which uses the same tags) extends Web Bot Auth so an agent can declare INTENT, not just identity: agent-browser-auth for browsing, agent-payer-auth for paying. The tag is present here, so this traffic claims to be a shopping agent registered with a payment network${paying ? ', and specifically claims payment intent — the higher-consequence of the two' : ''}. WHICH agent it is cannot be determined from the tag: the card networks register many agents and host the key directories themselves, so identifying the signer means resolving its keyid against the network directory (Visa: https://mcp.visa.com/.well-known/jwks). Treat as an unverified claim until a server completes TAP's documented checks — resolve the keyid, confirm now sits between created and expires with the two no more than 8 minutes apart, and reject a replayed nonce.${gaps.length ? ` This request is INCOMPLETE against the protocol's own requirements (${gaps.join('; ')}), which the spec says should be blocked rather than trusted — a plausible sign of a copied or forged header.` : ''}`
     };
   }
 
@@ -1474,6 +1556,18 @@ function registerProfiles(...profiles                )       {
     { id: 'bot-header-marker', layer: 'server-heuristic', weight: 45, check: ctx => !!ctx.headers['user-agent'] && botHeaderPattern.test(ctx.headers['user-agent']), label: () => 'bot/agent marker in HTTP User-Agent' },
     { id: 'signature-agent-header', layer: 'server-heuristic', weight: 35, check: ctx => !!ctx.headers['signature-agent'], label: () => 'Signature-Agent HTTP header observed (unverified)' },
     { id: 'signature-headers', layer: 'server-heuristic', weight: 20, check: ctx => !!ctx.headers['signature-input'] && !!ctx.headers.signature, label: () => 'HTTP Message Signature headers observed (unverified)' },
+    { id: 'trusted-agent-protocol-tag', layer: 'server-heuristic', weight: 40,
+      check: ctx => /tag="agent-(browser|payer)-auth"/i.test(ctx.headers['signature-input'] ?? ''),
+      label: ctx => /tag="agent-payer-auth"/i.test(ctx.headers['signature-input'] ?? '')
+        ? 'Trusted Agent Protocol tag agent-payer-auth — an agent declaring PAYMENT intent (Visa TAP / Mastercard Agent Pay, unverified)'
+        : 'Trusted Agent Protocol tag agent-browser-auth — an agent declaring browsing intent (Visa TAP / Mastercard Agent Pay, unverified)' },
+    // Cloudflare documents these as non-removable, so unlike a UA string the caller cannot suppress
+    // them. `cf-biso-devtools` marks rendering infrastructure; the `cf-brapi-*` pair marks the
+    // Quick Actions / CDP code paths and may fire without it.
+    { id: 'cloudflare-browser-rendering-headers', layer: 'server-heuristic', weight: 40,
+      check: ctx => !!ctx.headers['cf-biso-devtools'] || !!ctx.headers['cf-brapi-devtools'] || !!ctx.headers['cf-brapi-request-id'],
+      label: ctx => `Cloudflare Browser Rendering header(s) present — vendor-documented and non-removable by the caller (${
+        ['cf-biso-devtools', 'cf-brapi-devtools', 'cf-brapi-request-id'].filter(name => ctx.headers[name]).join(', ')})` },
     { id: 'ua-mismatch', layer: 'server-heuristic', weight: 18, check: ctx => !!ctx.headers['user-agent'] && !!ctx.environment.ua && !ctx.headers['user-agent'].split(' || ').includes(ctx.environment.ua), label: () => 'HTTP and JavaScript User-Agent mismatch' },
     { id: 'platform-mismatch', layer: 'server-heuristic', weight: 12, check: ctx => !!ctx.headers['sec-ch-ua-platform'] && !!ctx.environment.clientHints?.platform && !ctx.headers['sec-ch-ua-platform'].split(' || ').some(value => unquote(value) === ctx.environment.clientHints.platform), label: () => 'HTTP and JavaScript Client Hint platform mismatch' },
     { id: 'language-mismatch', layer: 'server-heuristic', weight: 8, check: ctx => !!ctx.headers['accept-language'] && !!ctx.environment.languages?.primary && !ctx.headers['accept-language'].toLowerCase().includes(ctx.environment.languages.primary.toLowerCase()), label: () => 'HTTP and JavaScript language mismatch' }
@@ -1505,6 +1599,11 @@ function registerProfiles(...profiles                )       {
     // signer carrying the declared domain, rather than being dropped from attribution entirely.
     const unrecognizedSigner = unrecognizedSignerCandidate(headers, AD.registry);
     if (unrecognizedSigner) candidates = [...candidates, unrecognizedSigner].sort((a, b) => b.score - a.score);
+
+    // Visa TAP / Mastercard Agent Pay declare intent via their own Signature-Input tag. Protocol-level,
+    // not vendor-level, so it is a candidate of its own rather than a registry profile.
+    const tapCandidate = trustedAgentProtocolCandidate(headers);
+    if (tapCandidate) candidates = [...candidates, tapCandidate].sort((a, b) => b.score - a.score);
 
     // Likewise for a plainly automated browser that matches no profile: report the observed shape
     // rather than `unknown`. Added last and only when nothing real matched, so it cannot mask a
