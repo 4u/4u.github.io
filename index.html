@@ -11,10 +11,11 @@
     <section><div class="section-head"><div><p class="eyebrow">02 / Behavioral probe</p><h2>Give the visitor a tiny task</h2></div><span id="eventCount" class="pill">0 events observed</span></div><p>Ask the visitor to type <code>agent test 123</code>, click the target, and scroll the panel. Text itself is never stored; only event types, timing, coordinates, and modifier keys.</p><div class="probe"><label>Test field<input id="testInput" autocomplete="off" placeholder="Type agent test 123"></label><button id="testButton">Click target</button><div class="scrollbox" tabindex="0"><p>Scroll this panel ↓</p><div></div><p>End of panel</p></div></div><div class="actions" data-ignore-events><button id="clear">Clear observed events</button></div><details><summary>Behavior features</summary><pre id="behaviorJson">Waiting…</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">03 / HTTP headers</p><h2>Public echo checks</h2></div><button id="httpButton">Run HTTP header checks</button></div><p>Cross-origin requests reveal the headers actually sent by this browser. Echo services receive the request headers and source IP; the detector keeps only reflected headers and discards echoed IP data.</p><details open><summary>Observed request headers</summary><pre id="httpJson">HTTP header checks have not finished.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
-    <section><div class="section-head"><div><p class="eyebrow">05 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
-    <section><div class="section-head"><div><p class="eyebrow">06 / Rules</p><h2>Every rule this detector can fire</h2></div><p>Generated straight from the running code — automation signals plus every registered agent profile's scoring rules and their point weights.</p></div><div id="rulesPanel" class="rules">Waiting…</div></section>
+    <section><div class="section-head"><div><p class="eyebrow">05 / Third-party fingerprint</p><h2>Fingerprint Pro comparison</h2></div><button id="fingerprintButton">Run Fingerprint Pro</button></div><p>Optional external probe. Loads vendor code from fpjscdn.net and sends this session to Fingerprint Pro, so it runs only when you supply a public key. Its ids and bot verdict are recorded for comparison and never feed our scoring.</p><div class="server-controls" data-ignore-events><input id="fingerprintKey" placeholder="Fingerprint Pro public key"></div><details open><summary>Fingerprint Pro result</summary><pre id="fingerprintJson">Not run.</pre></details></section>
+    <section><div class="section-head"><div><p class="eyebrow">06 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
+    <section><div class="section-head"><div><p class="eyebrow">07 / Rules</p><h2>Every rule this detector can fire</h2></div><p>Generated straight from the running code — automation signals plus every registered agent profile's scoring rules and their point weights.</p></div><div id="rulesPanel" class="rules">Waiting…</div></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-09-22T00:00:24.757Z</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-10-12T10:00:32.412Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -184,6 +185,31 @@
                              
  
 
+/**
+ * Result of the optional third-party Fingerprint Pro probe. This is an EXTERNAL commercial service
+ * (fpjscdn.net), so it is deliberately isolated from every other collector: it loads over the
+ * network, it is the only probe that sends data off-box, and it must never block or break the rest
+ * of the collection. `status` records why a run produced no ids, so an absent result is
+ * distinguishable from a failed one.
+ *
+ * No scoring rule reads these fields. The ids are an identity service's opinion, not evidence of
+ * automation, and `botd`-style verdicts from a vendor are not reproducible from this snapshot —
+ * they are recorded for a human reviewer to compare against our own verdict.
+ */
+                               
+                                                                            
+                     
+                           
+                            
+                            
+                                  
+                                                                                            
+                  
+                                                                       
+                  
+                 
+ 
+
                                                                                                
 
 /** Which layer of the layered evidence model a rule belongs to. Ordering below matches confidence ranking. */
@@ -330,6 +356,7 @@
                     
                                 
                             
+                                          
                                  
                                                 
  
@@ -371,6 +398,7 @@
                                                      
                                                                         
                                              
+                                                                       
                                                            
                                 
                                                                
@@ -389,7 +417,7 @@
   'use strict';
   const AD = root.AgentDetector = root.AgentDetector || {}                    ;
   AD.VERSION = '0.4.0';
-  AD.state = { snapshot: null, events: [], startedAt: new Date().toISOString(), server: null, http: null, result: null };
+  AD.state = { snapshot: null, events: [], startedAt: new Date().toISOString(), server: null, http: null, fingerprint: null, result: null };
   AD.get = (obj         , path        ) => path.split('.').reduce         ((value, key) => {
     if (value === null || typeof value !== 'object') return undefined;
     return (value                           )[key];
@@ -1078,6 +1106,55 @@ function registerProfiles(...profiles                )       {
     };
     return environment;
   };
+  /**
+   * Optional third-party probe: Fingerprint Pro (fpjscdn.net).
+   *
+   * Isolated from every other collector on purpose. It is the only probe that loads remote code and
+   * sends data to an external service, so it is opt-in via a public key, it is time-boxed, and every
+   * failure path resolves rather than throws — a vendor outage must not stop our own collection.
+   *
+   * The returned ids are an identity vendor's opinion. Nothing here feeds scoring: a visitorId does
+   * not indicate automation, and a vendor bot verdict is not reproducible from our snapshot. It is
+   * recorded so a reviewer can compare their verdict against ours on the same session.
+   */
+  AD.collectFingerprint = async function (publicKey) {
+    const started = performance.now();
+    const stamp = (extra                              )                      => ({
+      observedAt: new Date().toISOString(), elapsedMs: AD.round(performance.now() - started, 1), ...extra
+    }                       );
+    if (!publicKey) return stamp({ status: 'not-configured' });
+    try {
+      const timeout = new Promise       ((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000));
+      // Dynamic import of a remote module: the vendor's documented entry point. Kept behind
+      // Promise.race so a hanging CDN cannot stall the page.
+      const loaded = await Promise.race([
+        import(/* @vite-ignore */ `https://fpjscdn.net/v4/${encodeURIComponent(publicKey)}`),
+        timeout
+      ])                                                                                          ;
+      const starter = loaded.start ?? loaded.load;
+      if (typeof starter !== 'function') return stamp({ status: 'load-error', error: 'module exposed no start()/load()' });
+      const agent = await Promise.race([starter.call(loaded, {}), timeout])                                                    ;
+      if (typeof agent?.get !== 'function') return stamp({ status: 'load-error', error: 'agent exposed no get()' });
+      const result = await Promise.race([agent.get(), timeout])                           ;
+      // Field names differ between the v3 and v4 shapes (visitorId/visitor_id, requestId/event_id),
+      // so read both rather than assuming one.
+      const pick = (...names          ) => {
+        for (const name of names) { const value = result[name]; if (typeof value === 'string' || typeof value === 'number') return String(value); }
+        return null;
+      };
+      return stamp({
+        status: 'success',
+        visitorId: pick('visitorId', 'visitor_id'),
+        requestId: pick('requestId', 'request_id', 'event_id'),
+        confidenceScore: typeof (result.confidence                      )?.score === 'number' ? (result.confidence                     ).score : null,
+        bot: (result.bot ?? null)             ,
+        raw: AD.safe(() => JSON.parse(JSON.stringify(result))             , null)
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      return stamp({ status: message === 'timeout' ? 'timeout' : 'load-error', error: message });
+    }
+  };
   AD.fetchServerEvidence = async function (endpoint) {
     if (!endpoint) return null;
     const url = new URL(endpoint, location.href);
@@ -1751,6 +1828,7 @@ function registerProfiles(...profiles                )       {
     $('eventCount').textContent = `${behavior.trustedEvents} trusted events observed`;
     $('serverJson').textContent = AD.state.server ? JSON.stringify(AD.state.server, null, 2) : 'No server evidence loaded.';
     $('httpJson').textContent = AD.state.http ? JSON.stringify(AD.state.http, null, 2) : 'HTTP header checks have not finished.';
+    $('fingerprintJson').textContent = AD.state.fingerprint ? JSON.stringify(AD.state.fingerprint, null, 2) : 'Not run.';
   };
   function report()                          {
     const snapshot = AD.state.snapshot;
@@ -1769,6 +1847,7 @@ function registerProfiles(...profiles                )       {
       performance: AD.performanceLog(),
       server: AD.state.server,
       http: AD.state.http,
+      fingerprint: AD.state.fingerprint,
       detection,
       profileVersions: AD.registry.map(p => ({ id: p.id, status: p.status, lastReviewedAt: p.lastReviewedAt })),
       limitations: [
@@ -1777,6 +1856,7 @@ function registerProfiles(...profiles                )       {
         'Browser values, events, and HTTP headers can be spoofed or normalized by intermediaries',
         'Research profiles drift as agents update; see each candidate\'s reviewBy/lastReviewedAt dates',
         'A low or zero score does not prove a human visitor, and a high heuristic score never proves a specific agent',
+        'Fingerprint Pro results, when present, are a third-party vendor opinion recorded for comparison only — they never feed attribution or automation scoring, and running that probe sends session data to fpjscdn.net',
         'The performance log is drawn from the Resource Timing API (same-origin/CORS-exposed assets only) and reflects only this page\'s own network activity, not a full HAR capture'
       ]
     };
@@ -1793,6 +1873,11 @@ function registerProfiles(...profiles                )       {
     AD.state.http = await AD.fetchHttpEvidence(); AD.render();
     button.disabled = false; button.textContent = 'Run HTTP header checks';
   }
+  async function collectFingerprint()                {
+    const button = $                   ('fingerprintButton'); button.disabled = true; button.textContent = 'Running…';
+    AD.state.fingerprint = await AD.collectFingerprint($                  ('fingerprintKey').value.trim()); AD.render();
+    button.disabled = false; button.textContent = 'Run Fingerprint Pro';
+  }
   document.addEventListener('DOMContentLoaded', () => {
     AD.startBehaviorObserver();
     $('rulesPanel').innerHTML = rulesHtml();
@@ -1805,6 +1890,7 @@ function registerProfiles(...profiles                )       {
       button.disabled = false; button.textContent = 'Load server evidence';
     };
     $('httpButton').onclick = collectHttp;
+    $('fingerprintButton').onclick = collectFingerprint;
     $                  ('importServer').onchange = async event => {
       const file = (event.currentTarget                    ).files?.[0]; if (!file) return;
       try { AD.state.server = JSON.parse(await file.text())                  ; AD.render(); } catch (error) { $('serverJson').textContent = `Invalid JSON: ${errorMessage(error)}`; }
