@@ -11,11 +11,11 @@
     <section><div class="section-head"><div><p class="eyebrow">02 / Behavioral probe</p><h2>Give the visitor a tiny task</h2></div><span id="eventCount" class="pill">0 events observed</span></div><p>Ask the visitor to type <code>agent test 123</code>, click the target, and scroll the panel. Text itself is never stored; only event types, timing, coordinates, and modifier keys.</p><div class="probe"><label>Test field<input id="testInput" autocomplete="off" placeholder="Type agent test 123"></label><button id="testButton">Click target</button><div class="scrollbox" tabindex="0"><p>Scroll this panel ↓</p><div></div><p>End of panel</p></div></div><div class="actions" data-ignore-events><button id="clear">Clear observed events</button></div><details><summary>Behavior features</summary><pre id="behaviorJson">Waiting…</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">03 / HTTP headers</p><h2>Public echo checks</h2></div><button id="httpButton">Run HTTP header checks</button></div><p>Cross-origin requests reveal the headers actually sent by this browser. Echo services receive the request headers and source IP; the detector keeps only reflected headers and discards echoed IP data.</p><details open><summary>Observed request headers</summary><pre id="httpJson">HTTP header checks have not finished.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
-    <section><div class="section-head"><div><p class="eyebrow">05 / Third-party fingerprint</p><h2>Fingerprint Pro comparison</h2></div><button id="fingerprintButton">Run Fingerprint Pro</button></div><p>Optional external probe. Loads vendor code from fpjscdn.net and sends this session to Fingerprint Pro, so it runs only when you supply a public key. Its ids and bot verdict are recorded for comparison and never feed our scoring.</p><div class="server-controls" data-ignore-events><input id="fingerprintKey" placeholder="Fingerprint Pro public key"></div><details open><summary>Fingerprint Pro result</summary><pre id="fingerprintJson">Not run.</pre></details></section>
+    <section><div class="section-head"><div><p class="eyebrow">05 / Third-party fingerprint</p><h2>Fingerprint Pro comparison</h2></div></div><p>External probe, runs on load. Loads vendor code from fpjscdn.net and sends this session to Fingerprint Pro. Configured by <code>AD.config.fingerprintPublicKey</code> in <code>src/core.ts</code>. Its ids and bot verdict are recorded for comparison and never feed our scoring.</p><details open><summary>Fingerprint Pro result</summary><pre id="fingerprintJson">Waiting…</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">06 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">07 / Rules</p><h2>Every rule this detector can fire</h2></div><p>Generated straight from the running code — automation signals plus every registered agent profile's scoring rules and their point weights.</p></div><div id="rulesPanel" class="rules">Waiting…</div></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-10-12T10:03:13.884Z</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-10-12T10:10:23.337Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -350,6 +350,12 @@
                             
  
 
+/** Build-time configuration, set in `core.ts`. */
+                          
+                                                                                   
+                               
+ 
+
                          
                                                         
                           
@@ -384,6 +390,7 @@
 
                             
                   
+                         
                            
                        
                            
@@ -417,6 +424,16 @@
   'use strict';
   const AD = root.AgentDetector = root.AgentDetector || {}                    ;
   AD.VERSION = '0.4.0';
+  /**
+   * Build-time configuration. Edit here, not in the UI.
+   *
+   * `fingerprintPublicKey` is Fingerprint Pro's *public* (client-side) key, which is designed to be
+   * embedded in page source — it identifies the subscription, it is not a secret, and the vendor
+   * scopes it by origin. Set it to '' to skip that probe entirely.
+   */
+  AD.config = {
+    fingerprintPublicKey: 'EVR4jWJDXuuCeKohmcTr'
+  };
   AD.state = { snapshot: null, events: [], startedAt: new Date().toISOString(), server: null, http: null, fingerprint: null, result: null };
   AD.get = (obj         , path        ) => path.split('.').reduce         ((value, key) => {
     if (value === null || typeof value !== 'object') return undefined;
@@ -1828,7 +1845,7 @@ function registerProfiles(...profiles                )       {
     $('eventCount').textContent = `${behavior.trustedEvents} trusted events observed`;
     $('serverJson').textContent = AD.state.server ? JSON.stringify(AD.state.server, null, 2) : 'No server evidence loaded.';
     $('httpJson').textContent = AD.state.http ? JSON.stringify(AD.state.http, null, 2) : 'HTTP header checks have not finished.';
-    $('fingerprintJson').textContent = AD.state.fingerprint ? JSON.stringify(AD.state.fingerprint, null, 2) : 'Not run.';
+    $('fingerprintJson').textContent = AD.state.fingerprint ? JSON.stringify(AD.state.fingerprint, null, 2) : 'Waiting…';
   };
   function report()                          {
     const snapshot = AD.state.snapshot;
@@ -1874,9 +1891,7 @@ function registerProfiles(...profiles                )       {
     button.disabled = false; button.textContent = 'Run HTTP header checks';
   }
   async function collectFingerprint()                {
-    const button = $                   ('fingerprintButton'); button.disabled = true; button.textContent = 'Running…';
-    AD.state.fingerprint = await AD.collectFingerprint($                  ('fingerprintKey').value.trim()); AD.render();
-    button.disabled = false; button.textContent = 'Run Fingerprint Pro';
+    AD.state.fingerprint = await AD.collectFingerprint(AD.config.fingerprintPublicKey); AD.render();
   }
   document.addEventListener('DOMContentLoaded', () => {
     AD.startBehaviorObserver();
@@ -1890,12 +1905,11 @@ function registerProfiles(...profiles                )       {
       button.disabled = false; button.textContent = 'Load server evidence';
     };
     $('httpButton').onclick = collectHttp;
-    $('fingerprintButton').onclick = collectFingerprint;
     $                  ('importServer').onchange = async event => {
       const file = (event.currentTarget                    ).files?.[0]; if (!file) return;
       try { AD.state.server = JSON.parse(await file.text())                  ; AD.render(); } catch (error) { $('serverJson').textContent = `Invalid JSON: ${errorMessage(error)}`; }
     };
-    collect(); collectHttp();
+    collect(); collectHttp(); collectFingerprint();
   });
 })(globalThis);
 
