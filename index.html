@@ -13,9 +13,10 @@
     <section><div class="section-head"><div><p class="eyebrow">04 / Server layer</p><h2>Optional verified evidence</h2></div></div><p>Public echoes describe fetch requests, not the original page navigation. Point this page at a same-origin JSON endpoint to inspect navigation or edge evidence, or import a captured response.</p><div class="server-controls" data-ignore-events><input id="serverEndpoint" placeholder="/agent-evidence.json"><button id="serverButton">Load server evidence</button><label class="file">Import JSON<input id="importServer" type="file" accept="application/json,.json"></label></div><details open><summary>Server evidence</summary><pre id="serverJson">No server evidence loaded.</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">05 / Third-party fingerprint</p><h2>Fingerprint Pro comparison</h2></div></div><p>External probe, runs on load. Loads vendor code from fpjscdn.net and sends this session to Fingerprint Pro. Configured by <code>AD.config.fingerprintPublicKey</code> in <code>src/core.ts</code>. Its ids and bot verdict are recorded for comparison and never feed our scoring.</p><details open><summary>Fingerprint Pro result</summary><pre id="fingerprintJson">Waiting…</pre></details></section>
     <section><div class="section-head"><div><p class="eyebrow">06 / Raw environment</p><h2>Collected browser signals</h2></div></div><details><summary>Open snapshot</summary><pre id="environmentJson">Waiting…</pre></details></section>
-    <section><div class="section-head"><div><p class="eyebrow">07 / Rules</p><h2>Every rule this detector can fire</h2></div><p>Generated straight from the running code — automation signals plus every registered agent profile's scoring rules and their point weights.</p></div><div id="rulesPanel" class="rules">Waiting…</div></section>
+    <section><div class="section-head"><div><p class="eyebrow">07 / Tracker payload</p><h2>What our own tracker would send</h2></div></div><p>The same JSON our <code>autocomplete-ui</code> beacon builds with <code>utils.getClientEnvironment()</code> (standalone copy: <code>src/ciosnippet.js</code>). It is a subset of the snapshot above, kept in the tracker’s own field names so a capture can be compared with production data. It never feeds scoring.</p><details><summary>Open tracker payload</summary><pre id="clientEnvironmentJson">Waiting…</pre></details></section>
+    <section><div class="section-head"><div><p class="eyebrow">08 / Rules</p><h2>Every rule this detector can fire</h2></div><p>Generated straight from the running code — automation signals plus every registered agent profile's scoring rules and their point weights.</p></div><div id="rulesPanel" class="rules">Waiting…</div></section>
   </main>
-  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-10-12T10:10:23.337Z</p></footer>
+  <footer><p><strong>Interpret carefully.</strong> Fingerprints drift, ordinary browsers can look automated, and agents can spoof these values. Exact identity requires a server-verifiable mechanism.</p><p>Methods informed by <a href="https://github.com/ethanbwang/fp-agent">FP-Agent</a>, <a href="https://github.com/KabakaWilliam/known_actions">Known Actions</a>, <a href="https://arxiv.org/html/2606.30119v1">multi-layer browser-agent detection</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9421">HTTP Message Signatures</a>.</p><p class="build-info">Built 2026-11-06T13:21:06.551Z</p></footer>
   <script>                                                      
                                                                             
 
@@ -210,6 +211,49 @@
                  
  
 
+/**
+ * The payload our own `autocomplete-ui` tracker collects, through `utils.getClientEnvironment()`.
+ * `src/ciosnippet.js` is a standalone copy of that function, kept here so this page can produce the
+ * identical JSON without the tracker build.
+ *
+ * Field names are the tracker's `snake_case` shape, and a missing or rejected value is `null`, not
+ * an absent key — both on purpose. This block is meant to be compared against the production beacon
+ * field for field, so it must not be reshaped into this detector's own naming. The in-page section
+ * prints it in the tracker's own key order; the exported report sorts all keys (see `stableJson`).
+ *
+ * No scoring rule reads these fields. `environment` above already carries the same signals in a
+ * wider form; this block exists so a reviewer can see which of our detections the live tracker
+ * could reproduce from the data it already sends, and which need extra collection.
+ */
+                                     
+                            
+                         
+                                       
+                                            
+                                
+                            
+    
+                          
+           
+                         
+                          
+                               
+                                
+                               
+                               
+    
+           
+                               
+                                
+                               
+                                
+                                      
+    
+                      
+                           
+                                                                             
+ 
+
                                                                                                
 
 /** Which layer of the layered evidence model a rule belongs to. Ordering below matches confidence ranking. */
@@ -358,6 +402,8 @@
 
                          
                                                         
+                                                                                       
+                                                      
                           
                     
                                 
@@ -403,6 +449,7 @@
                                                       
                                              
                                                      
+                                                        
                                                                         
                                              
                                                                        
@@ -434,7 +481,7 @@
   AD.config = {
     fingerprintPublicKey: 'EVR4jWJDXuuCeKohmcTr'
   };
-  AD.state = { snapshot: null, events: [], startedAt: new Date().toISOString(), server: null, http: null, fingerprint: null, result: null };
+  AD.state = { snapshot: null, clientEnvironment: null, events: [], startedAt: new Date().toISOString(), server: null, http: null, fingerprint: null, result: null };
   AD.get = (obj         , path        ) => path.split('.').reduce         ((value, key) => {
     if (value === null || typeof value !== 'object') return undefined;
     return (value                           )[key];
@@ -1172,6 +1219,87 @@ function registerProfiles(...profiles                )       {
       return stamp({ status: message === 'timeout' ? 'timeout' : 'load-error', error: message });
     }
   };
+  /**
+   * Port of `utils.getClientEnvironment()` from `autocomplete-ui` (standalone copy in
+   * `src/ciosnippet.js`). It must keep producing the identical JSON shape, so do not "improve" the
+   * field names, the `null` fallbacks, or the Firefox WebGL branch below without changing the
+   * tracker first. The four readers replace the snippet's single `readEnvironmentSignal(read, type)`
+   * and keep its validation: a wrong type, a negative number, or a throw all become `null`.
+   */
+  function readBoolean(read               )                 {
+    const value = AD.safe(read);
+    return typeof value === 'boolean' ? value : null;
+  }
+  function readString(read               )                {
+    const value = AD.safe(read);
+    return typeof value === 'string' ? value : null;
+  }
+  function readInteger(read               )                {
+    const value = AD.safe(read);
+    return Number.isInteger(value) && (value          ) >= 0 ? value           : null;
+  }
+  function readNumber(read               )                {
+    const value = AD.safe(read);
+    return Number.isFinite(value) && (value          ) >= 0 ? value           : null;
+  }
+  function trackerGpu()                                   {
+    let gl                               = null;
+    try {
+      const canvas = document.createElement('canvas');
+      gl = canvas.getContext('webgl') ?? canvas.getContext('experimental-webgl')                                ;
+      // No WebGL at all is common in cloud agent browsers, so keep it distinct from a hidden GPU
+      if (!gl) return null;
+      // Firefox already returns the GPU in RENDERER and warns when the debug extension is
+      // requested, so Firefox (the only browser whose VENDOR is 'Mozilla') skips the extension
+      const vendor = readString(() => gl?.getParameter(gl.VENDOR));
+      const renderer = readString(() => gl?.getParameter(gl.RENDERER));
+      if (vendor === 'Mozilla' && renderer && renderer !== 'Mozilla') return { webgl_vendor: null, webgl_renderer: renderer };
+      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      if (!debugInfo) return { webgl_vendor: null, webgl_renderer: null };
+      return {
+        webgl_vendor: readString(() => gl?.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL)),
+        webgl_renderer: readString(() => gl?.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL))
+      };
+    } catch { return null; }
+    finally { AD.safe(() => gl?.getExtension('WEBGL_lose_context')?.loseContext()); }
+  }
+  AD.collectClientEnvironment = function () {
+    return {
+      webdriver: readBoolean(() => root.navigator.webdriver),
+      automation_artifacts: {
+        // Only set when the automation script exposes a function to the page
+        playwright_binding: readBoolean(() => '__playwright__binding__' in root),
+        // Only set by Playwright 1.45 to 1.53 — later versions removed it
+        playwright_init_scripts: readBoolean(() => '__pwInitScripts' in root),
+        // Names vary by ChromeDriver version (`cdc_` on window, older `$cdc_` on document), so
+        // match on the prefix. Own property names include non-enumerable keys Object.keys skips
+        cdc_globals: readBoolean(() => Object.getOwnPropertyNames(root)
+          .concat(Object.getOwnPropertyNames(document))
+          .some(key => /^\$?cdc_/.test(key))),
+        cypress: readBoolean(() => 'Cypress' in root)
+      },
+      timezone: readString(() => Intl.DateTimeFormat().resolvedOptions().timeZone),
+      screen: {
+        width: readInteger(() => root.screen.width),
+        height: readInteger(() => root.screen.height),
+        avail_width: readInteger(() => root.screen.availWidth),
+        avail_height: readInteger(() => root.screen.availHeight),
+        color_depth: readInteger(() => root.screen.colorDepth),
+        pixel_depth: readInteger(() => root.screen.pixelDepth)
+      },
+      window: {
+        outer_width: readInteger(() => root.outerWidth),
+        outer_height: readInteger(() => root.outerHeight),
+        inner_width: readInteger(() => root.innerWidth),
+        inner_height: readInteger(() => root.innerHeight),
+        device_pixel_ratio: readNumber(() => root.devicePixelRatio)
+      },
+      vcpu: readInteger(() => root.navigator.hardwareConcurrency),
+      // Chromium only — Safari and Firefox do not expose deviceMemory
+      memory_gb: readNumber(() => root.navigator.deviceMemory),
+      gpu: trackerGpu()
+    };
+  };
   AD.fetchServerEvidence = async function (endpoint) {
     if (!endpoint) return null;
     const url = new URL(endpoint, location.href);
@@ -1846,20 +1974,39 @@ function registerProfiles(...profiles                )       {
     $('serverJson').textContent = AD.state.server ? JSON.stringify(AD.state.server, null, 2) : 'No server evidence loaded.';
     $('httpJson').textContent = AD.state.http ? JSON.stringify(AD.state.http, null, 2) : 'HTTP header checks have not finished.';
     $('fingerprintJson').textContent = AD.state.fingerprint ? JSON.stringify(AD.state.fingerprint, null, 2) : 'Waiting…';
+    $('clientEnvironmentJson').textContent = AD.state.clientEnvironment ? JSON.stringify({ client_environment: AD.state.clientEnvironment }, null, 2) : 'Waiting…';
   };
+  /**
+   * `JSON.stringify` with every object's keys in sorted order, so two exports of the same session
+   * differ only where the data differs. Without this, the dynamic maps in a report (echoed HTTP
+   * headers, the font probe, a vendor's `raw` block, an imported server-evidence file) come out in
+   * whatever order they happened to be built in, and a plain `diff` of two captures is unreadable.
+   *
+   * Arrays keep their order — it is data, not formatting. Keys that look like array indices are
+   * still ordered numerically first, which is a rule of the language and not something a replacer
+   * can change; no report block uses such keys.
+   */
+  function stableJson(value         )         {
+    return JSON.stringify(value, (_key, inner         ) => {
+      if (!inner || typeof inner !== 'object' || Array.isArray(inner)) return inner;
+      const record = inner                           ;
+      return Object.fromEntries(Object.keys(record).sort().map(key => [key, record[key]]));
+    }, 2);
+  }
   function report()                          {
     const snapshot = AD.state.snapshot;
     if (!snapshot) throw new Error('Environment snapshot is not ready');
     const behavior = AD.behaviorFeatures();
     const detection = AD.detect({ environment: snapshot.environment, behavior, server: AD.state.server, http: AD.state.http });
     return {
-      schemaVersion: 6,
+      schemaVersion: 7,
       detectorVersion: AD.VERSION,
       registryVersion: AD.REGISTRY_VERSION,
       startedAt: AD.state.startedAt,
       exportedAt: new Date().toISOString(),
       page: { origin: location.origin, path: location.pathname },
       environment: snapshot.environment,
+      clientEnvironment: AD.state.clientEnvironment,
       behavior,
       performance: AD.performanceLog(),
       server: AD.state.server,
@@ -1874,6 +2021,7 @@ function registerProfiles(...profiles                )       {
         'Research profiles drift as agents update; see each candidate\'s reviewBy/lastReviewedAt dates',
         'A low or zero score does not prove a human visitor, and a high heuristic score never proves a specific agent',
         'Fingerprint Pro results, when present, are a third-party vendor opinion recorded for comparison only — they never feed attribution or automation scoring, and running that probe sends session data to fpjscdn.net',
+        'The clientEnvironment block is only the subset our autocomplete-ui tracker collects, recorded for comparison — it never feeds attribution or automation scoring',
         'The performance log is drawn from the Resource Timing API (same-origin/CORS-exposed assets only) and reflects only this page\'s own network activity, not a full HAR capture'
       ]
     };
@@ -1881,7 +2029,11 @@ function registerProfiles(...profiles                )       {
   async function collect()                {
     const rerun = $                   ('rerun');
     $('status').textContent = 'Collecting browser evidence…'; rerun.disabled = true;
-    try { AD.state.snapshot = { environment: await AD.collectEnvironment() }; $('status').textContent = 'Live analysis'; AD.render(); }
+    try {
+      AD.state.clientEnvironment = AD.collectClientEnvironment();
+      AD.state.snapshot = { environment: await AD.collectEnvironment() };
+      $('status').textContent = 'Live analysis'; AD.render();
+    }
     catch (error) { $('status').textContent = `Collection error: ${errorMessage(error)}`; }
     finally { rerun.disabled = false; }
   }
@@ -1898,7 +2050,7 @@ function registerProfiles(...profiles                )       {
     $('rulesPanel').innerHTML = rulesHtml();
     $                   ('rerun').onclick = collect;
     $('clear').onclick = () => { AD.state.events = []; AD.render(); };
-    $('export').onclick = () => AD.download(`agent-detection-${Date.now()}.json`, JSON.stringify(report(), null, 2));
+    $('export').onclick = () => AD.download(`agent-detection-${Date.now()}.json`, stableJson(report()));
     $('serverButton').onclick = async () => {
       const button = $                   ('serverButton'); button.disabled = true; button.textContent = 'Requesting…';
       AD.state.server = await AD.fetchServerEvidence($                  ('serverEndpoint').value.trim()); AD.render();
